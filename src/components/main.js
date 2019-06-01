@@ -74,7 +74,6 @@ import { Link } from 'react-router-dom'
       </Row>
 
 
-          
   </Container>
     )
   

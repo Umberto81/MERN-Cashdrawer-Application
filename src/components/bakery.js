@@ -6,13 +6,15 @@ import useFunctions from '../custom_hooks.js/hooks';
 import Keyboard from './keyboard';
 
 
-const Bakery = () => {
+const Bakery = (props) => {
 
-    const { addItemToState, itemsInserted } = useFunctions();
+
+    
+    const { addItemToState, itemsInserted, nums, setValue, reset, back, } = useFunctions();
 
     const [bakeryDetails, setBakeryDetails] = useState([]);
 
-    const [quantity, setquantity] = useState();
+    //const [quantity, setquantity] = useState();
 
     //shows bakery products in database
     useEffect(() =>{
@@ -68,7 +70,11 @@ const Bakery = () => {
                 </Col>
 
                 <Col>
-                <Keyboard />
+                {/* <Keyboard setValue={setValue}
+                            nums={nums}
+                            reset={reset}
+                            back={back}
+                  />   */}
                 </Col>
 
 

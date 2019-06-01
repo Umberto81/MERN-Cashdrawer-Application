@@ -1,13 +1,14 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
 
-const useFunctions = (defaultState) =>{
+const useFunctions = () =>{
 
-  const initialValue = JSON.parse(localStorage.getItem('list' || 0));
+    const initialValue = JSON.parse(localStorage.getItem('list' || 0));
 
-    const [nums, setNums] = useState(defaultState);
+    const [nums, setNums] = useState('');
     const [productDetails, setproductDetails] = useState(initialValue);
     const [itemsInserted, setitemsInserted] = useState(false);
+
 
     //keeps persistent localstorage database
     useEffect(() =>{
@@ -93,7 +94,7 @@ const useFunctions = (defaultState) =>{
    ************/
 
 //request to fetch db products
-     const requestProducts = () =>{
+     const requestProducts = (nums) =>{
   
         axios.get('http://localhost:4000/products/' + nums)
         .then(response =>{
