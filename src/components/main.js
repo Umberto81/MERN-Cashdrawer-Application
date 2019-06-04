@@ -63,7 +63,7 @@ import { Link } from 'react-router-dom'
           <Col></Col>     
           
           <Col>
-          <Keyboard setValue={setValue}
+          <Keyboard         setValue={setValue}
                             nums={nums}
                             reset={reset}
                             back={back}

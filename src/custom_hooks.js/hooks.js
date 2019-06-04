@@ -8,7 +8,7 @@ const useFunctions = () =>{
     const [nums, setNums] = useState('');
     const [productDetails, setproductDetails] = useState(initialValue);
     const [itemsInserted, setitemsInserted] = useState(false);
-
+console.log(nums);
 
     //keeps persistent localstorage database
     useEffect(() =>{
@@ -94,9 +94,9 @@ const useFunctions = () =>{
    ************/
 
 //request to fetch db products
-     const requestProducts = (nums) =>{
+     const requestProducts = () =>{
   
-        axios.get('http://localhost:4000/products/' + nums)
+        axios.get('http://localhost:4000/products/' + nums )
         .then(response =>{
             //implementare il salvataggio in array
             let productJoin = productDetails.concat(response.data);
