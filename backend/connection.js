@@ -7,14 +7,10 @@ const productsRoute = express.Router();
 const bakeryRoute = express.Router();
 const produceRoute = express.Router();
 const PORT = 4000;
-//products schema
-let Products = require('./products.model');
+const product_controller = require('./router_calls/products_controller');
+const bakery_controller = require('./router_calls/bakery_controller');
+const produce_controller = require('./router_calls/produce_controller');
 
-//Bakery products schema
-let BakeryProducts = require('./bakery.model');
-
-//Produceproducts schema
-let ProduceProducts = require('./produce_model');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -30,180 +26,62 @@ connection.once('open', () =>{
 
 /*****
  * 
- * 
- * 
  * PRODUCTS SECTION
- * 
- * 
  * 
  *****/
 
 //save new product
-productsRoute.route('/add').post((req, res) => {
-    let products = new Products(req.body);
-    products.save()
-        .then(todo => {
-            res.status(200).json({'todo': 'todo added successfully'});
-        })
-        .catch(err => {
-            res.status(400).send('adding new todo failed');
-        });
-});
+productsRoute.route('/add').post(product_controller.addProduct);
 
 
 // show all the products
-productsRoute.route('/').get((req, res) => {
-    Products.find((err, todos) => {
-        if (err) {
-            console.log(err);
-        } else {
-            res.json(todos);
-        }
-    });
-});
+//the regex doesn't allow call with numbers in url....MUST BE FIXED THE SUBMIT BUTTON ON KEYBOARD
+productsRoute.route('/^[0-9]').get(product_controller.showProducts);
 
 //delete product by id
-productsRoute.route('/delete/:id').delete((req, res) => {
-    let id = req.params.id;
-    Products.findByIdAndRemove(id, (err)=> {
-        if (err) {
-            console.log(err);
-        } else{
-            res.json({message: 'deleted'});
-        }
-    });
-});
+productsRoute.route('/delete/:id').delete(product_controller.deleteProduct);
 
 //find product by number
-productsRoute.route('/:nums').get((req, res) =>{
-    let nums = req.params.nums;
-    Products.find({product_number: nums}, (err, product)=>{
-        if(err){
-            console.log(err);
-        }else{
-            res.json(product);
-        }
-    });
-});
+productsRoute.route('/:nums').get(product_controller.findProductByNumber);
 
 
 /*****
  * 
- * 
- * 
  * BAKERY SECTION
- * 
- * 
  * 
  *****/
 
 
 //save new bakery
-bakeryRoute.route('/addBakeryProduct').post((req, res) => {
-    let bakeryProducts = new BakeryProducts(req.body);
-    
-    bakeryProducts.save()
-        .then(todo => {
-            res.status(200).json({'img': 'img added successfully'});
-        })
-        .catch(err => {
-            res.status(400).send('adding new img failed');
-        });
-});
+bakeryRoute.route('/addBakeryProduct').post(bakery_controller.saveNewBakery);
 
 //retrieve bakery items
-bakeryRoute.route('/').get((req, res) => {
-    BakeryProducts.find((err, bakery) => {
-        if (err) {
-            console.log(err);
-        } else {
-            res.json(bakery);
-        }
-    });
-});
+bakeryRoute.route('/').get(bakery_controller.getBakeryItem);
 
 //delete bakeryProduct by id
-bakeryRoute.route('/delete/:id').delete((req, res) => {
-    let id = req.params.id;
-    BakeryProducts.findByIdAndRemove(id, (err)=> {
-        if (err) {
-            console.log(err);
-        } else{
-            res.json({message: 'deleted'});
-        }
-    });
-});
+bakeryRoute.route('/delete/:id').delete(bakery_controller.deleteBakeryItemById);
 
 //find bakeryProduct by description
-bakeryRoute.route('/:bakeryProductName').get((req, res) =>{
-    let description = req.params.bakeryProductName;
-    BakeryProducts.find({product_description: description}, (err, product)=>{
-        if(err){
-            console.log(err);
-        }else{
-            res.json(product);
-        }
-    });
-});
+bakeryRoute.route('/:bakeryProductName').get(bakery_controller.findBakeryItemByDescription);
 
 
 /*****
  * 
- * 
- * 
  * PRODUCE SECTION
- * 
- * 
  * 
  *****/
 
 //save new produce
-produceRoute.route('/addProduceProduct').post((req, res) => {
-    let produceProducts = new ProduceProducts(req.body);
-    
-    produceProducts.save()
-        .then(todo => {
-            res.status(200).json({'img': 'img added successfully'});
-        })
-        .catch(err => {
-            res.status(400).send('adding new img failed');
-        });
-});
+produceRoute.route('/addProduceProduct').post(produce_controller.saveNewProduce);
 
 //retrieve produce items
-produceRoute.route('/').get((req, res) => {
-    ProduceProducts.find((err, bakery) => {
-        if (err) {
-            console.log(err);
-        } else {
-            res.json(bakery);
-        }
-    });
-});
+produceRoute.route('/').get(produce_controller.getProduceIten);
 
 //delete produceProduct by id
-produceRoute.route('/delete/:id').delete((req, res) => {
-    let id = req.params.id;
-    ProduceProducts.findByIdAndRemove(id, (err)=> {
-        if (err) {
-            console.log(err);
-        } else{
-            res.json({message: 'deleted'});
-        }
-    });
-});
+produceRoute.route('/delete/:id').delete(produce_controller.deleteProduceById);
 
 //find produceProduct by description
-produceRoute.route('/:produceProductName').get((req, res) =>{
-    let description = req.params.produceProductName;
-    ProduceProducts.find({product_description: description}, (err, product)=>{
-        if(err){
-            console.log(err);
-        }else{
-            res.json(product);
-        }
-    });
-});
+produceRoute.route('/:produceProductName').get(produce_controller.findProduceByDescription);
 
 app.use('/products', productsRoute);
 app.use('/bakery', bakeryRoute);
