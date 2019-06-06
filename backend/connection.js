@@ -36,7 +36,7 @@ productsRoute.route('/add').post(product_controller.addProduct);
 
 // show all the products
 //the regex doesn't allow call with numbers in url....MUST BE FIXED THE SUBMIT BUTTON ON KEYBOARD
-productsRoute.route('/^[0-9]').get(product_controller.showProducts);
+productsRoute.route('/').get(product_controller.showProducts);
 
 //delete product by id
 productsRoute.route('/delete/:id').delete(product_controller.deleteProduct);

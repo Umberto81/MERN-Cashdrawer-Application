@@ -7,9 +7,9 @@ const useFunctions = () =>{
 
     const [nums, setNums] = useState('');
     const [productDetails, setproductDetails] = useState(initialValue);
-    const [itemsInserted, setitemsInserted] = useState(false);
-console.log(nums);
+    const [itemsInserted, setitemsInserted] = useState(null);
 
+console.log(itemsInserted);
     //keeps persistent localstorage database
     useEffect(() =>{
       
@@ -79,8 +79,8 @@ console.log(nums);
     .then(response =>{
       let productJoin = productDetails.concat(response.data);
       setproductDetails(productJoin);
-      localStorage.setItem('list', JSON.stringify(productDetails));
-      setitemsInserted(true);
+      //localStorage.setItem('list', JSON.stringify(productDetails));
+      //setitemsInserted(true); 
     });
 
   }
@@ -95,15 +95,18 @@ console.log(nums);
 
 //request to fetch db products
      const requestProducts = () =>{
+       if(nums != ""){
+          axios.get('http://localhost:4000/products/' + nums)
+            .then(response => {
+              //implementare il salvataggio in array
+              let productJoin = productDetails.concat(response.data);
+              setproductDetails(productJoin);
+              setNums('');
+
+            });
+       }
   
-        axios.get('http://localhost:4000/products/' + nums )
-        .then(response =>{
-            //implementare il salvataggio in array
-            let productJoin = productDetails.concat(response.data);
-            setproductDetails(productJoin);
-            setNums('');
-                        
-        });
+       
 
 }
 
@@ -124,7 +127,7 @@ console.log(nums);
     setValue, reset, back, nums, setNums,
      requestProducts, deleteProduct, 
      productDetails, addItemToState,
-     itemsInserted, clearList, addCarrierBag
+     itemsInserted, clearList, addCarrierBag, setitemsInserted
   }
 
 }

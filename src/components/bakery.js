@@ -4,13 +4,22 @@ import {Container, Button, Col, Row, Card, CardImg, CardBody,CardTitle, CardSubt
 import { Link } from 'react-router-dom'
 import useFunctions from '../custom_hooks.js/hooks';
 import Keyboard from './keyboard';
+import MessageModal from './messageModal';
 
 
 const Bakery = (props) => {
 
 
     
-    const { addItemToState, itemsInserted, nums, setValue, reset, back, } = useFunctions();
+    const {
+        addItemToState,
+        itemsInserted,
+        nums,
+        setValue,
+        reset,
+        back,
+        setitemsInserted
+    } = useFunctions();
 
     const [bakeryDetails, setBakeryDetails] = useState([]);
 
@@ -21,7 +30,7 @@ const Bakery = (props) => {
     
         //request to fetch db products
 
-    axios.get('http://localhost:4000/bakery/')
+    axios.get('http://localhost:4000/bakery')
     .then(response =>{
         //implementare il salvataggio in array
         setBakeryDetails(response.data);
@@ -32,7 +41,6 @@ const Bakery = (props) => {
 
     const bakeryList = bakeryDetails.map((item) =>{
         return(
-        	
             
     <Col className={'col-4'} style={{display: 'flex'}}>
 
@@ -54,16 +62,18 @@ const Bakery = (props) => {
 
     return (
         <Container className='container-fluid mt-2'>
+                            {itemsInserted && < MessageModal />}
+
              <Row >
 
                 <Col className={'col'}>
-                <p>{itemsInserted? 'inserito' : null}</p>
                 </Col>
 
                 <Col className={'col-6'}> 
                 <Container>
                 <Row>
                     {bakeryList}
+                    
                 </Row>
                   
                 </Container>
