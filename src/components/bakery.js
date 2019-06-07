@@ -24,25 +24,31 @@ const Bakery = () => {
 
     const [bakeryDetails, setBakeryDetails] = useState([]);
     const [modal, setModal] = useState(false);
+    const [product, sePproductDescription] = useState();
+    const [url, setUrl] = useState('');
+    console.log(product);
+    console.log(url);
 
     //toggle for modal window
-    const toggle = () => {
+    const toggle = (product, url) => {
 
         setModal(!modal);
+        sePproductDescription(product);
+        setUrl(url);
+        
 
     }
-
-    // adds item to shoppimg list
-    const addItemToState = (e, url) => {
-        e.preventDefault();
-        axios.get('http://localhost:4000/' + url + '/' + e.target.value)
+    //add bakeryitem to shopping list in modal window
+    const toggleAdd = () =>{
+    
+        axios.get('http://localhost:4000/' + url + '/' + product)
             .then(response => {
                 setproductDetails(productDetails.concat(response.data));
                 toggle();
             });
 
-
     }
+
 
     //const [quantity, setquantity] = useState();
 
@@ -70,11 +76,11 @@ const Bakery = () => {
         <CardBody >
         <CardTitle>{item.product_description}</CardTitle>
         <CardSubtitle>{item.product_price}</CardSubtitle>
-        <Button size='sm' color='success' outline onClick={(e) => addItemToState(e, 'bakery')} value={item.product_description}>Add Item</Button>
+        <Button size='sm' color='success' outline onClick={() => toggle(item.product_description, 'bakery')}>Add Item</Button>
         </CardBody>
       </Card>
-     </CardGroup>
-     </Col>
+      </CardGroup>
+      </Col>
             
         ); 
            
@@ -84,6 +90,7 @@ const Bakery = () => {
         <Container className='container-fluid mt-2'>
 
         < MessageModal toggle = {toggle}
+                        toggleAdd= {toggleAdd}
                        modal={modal} 
                        />            
 

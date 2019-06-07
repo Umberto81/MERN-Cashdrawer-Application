@@ -13,14 +13,15 @@ const MessageModal = (props) =>{
 
     return(
          < div > 
-        {/* <Button color="danger" onClick={toggle}>X</Button> */}
         <Modal isOpen={props.modal} toggle={props.toggle}>
-          <ModalHeader toggle={props.oggle}>Item Added to the list</ModalHeader>
+          <ModalHeader toggle={props.oggle}>Would you like to add the item?</ModalHeader>
           <ModalBody className={'text-center'}>
-            Item Added!!!
+            -----------
           </ModalBody>
           <ModalFooter>
-            <Button color="success" size='sm' onClick={props.toggle}>OK</Button>
+          <Button color="danger" size='sm' onClick={props.toggle}>Do not Add</Button>
+
+            <Button color="success" size='sm' onClick={props.toggleAdd}>OK</Button>
           </ModalFooter>
         </Modal>
       </div>
