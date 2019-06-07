@@ -7,7 +7,7 @@ import Keyboard from './keyboard';
 import MessageModal from './messageModal';
 
 
-const Bakery = (props) => {
+const Bakery = () => {
 
 
     
@@ -38,7 +38,6 @@ const Bakery = (props) => {
         axios.get('http://localhost:4000/' + url + '/' + e.target.value)
             .then(response => {
                 setproductDetails(productDetails.concat(response.data));
-                console.log(modal);
                 toggle();
             });
 

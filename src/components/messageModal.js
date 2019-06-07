@@ -11,15 +11,12 @@ import {
 
 const MessageModal = (props) =>{
 
- 
-
-
     return(
          <div>
         {/* <Button color="danger" onClick={toggle}>X</Button> */}
         <Modal isOpen={props.modal} toggle={props.toggle}>
-          <ModalHeader toggle={props.oggle}>Item Added to the list</ModalHeader>
-          <ModalBody>
+          <ModalHeader toggle={props.oggle} className={'text-center'}>Item Added to the list</ModalHeader>
+          <ModalBody className={'text-center'}>
             Item Added!!!
           </ModalBody>
           <ModalFooter>

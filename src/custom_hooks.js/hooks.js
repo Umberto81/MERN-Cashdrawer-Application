@@ -61,15 +61,6 @@ const useFunctions = () =>{
 
    }
 
-/************
-   * 
-   * 
-   * axios Bakeryproducts
-   * 
-   * 
-   ************/
-
-
   /************
    * 
    * 
