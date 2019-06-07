@@ -103,7 +103,7 @@ const useFunctions = () =>{
     setValue, reset, back, nums, setNums,
      requestProducts, deleteProduct, 
      productDetails, 
-      clearList, addCarrierBag, setproductDetails
+      clearList, addCarrierBag, setproductDetails,
   }
 
 }

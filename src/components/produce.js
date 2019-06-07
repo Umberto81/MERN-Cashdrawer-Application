@@ -3,11 +3,24 @@ import axios from 'axios';
 import {Container, Button, Col, Row, Card, CardImg, CardBody,CardTitle, CardSubtitle, CardGroup } from 'reactstrap';
 import { Link } from 'react-router-dom'
 import useFunctions from '../custom_hooks.js/hooks';
+import MessageModal from './messageModal';
 
 const Produce = () => {
-    const { addItemToState, itemsInserted } = useFunctions();
 
     const [produceDetails, setProduceDetails] = useState([]);
+    const [modal, setModal] = useState(false);
+
+    const {
+        setproductDetails,
+        productDetails,
+    } = useFunctions();
+
+    //toggle for modal window
+    const toggle = () => {
+
+        setModal(!modal);
+
+    }
 
     //shows bakery products in database
     useEffect(() =>{
@@ -22,12 +35,31 @@ const Produce = () => {
   
     }, []);
 
+    // adds item to shoppimg list
+    const addItemToState = (e, url) => {
+        e.preventDefault();
+        axios.get('http://localhost:4000/' + url + '/' + e.target.value)
+            .then(response => {
+                setproductDetails(productDetails.concat(response.data));
+                toggle();
+            });
+
+
+    }
+
 
     const produceList = produceDetails.map((item) =>{
         return(
         	
 
-    <Col className={'col-md-2'} style={{display: 'flex'}}>
+    < Col className = {
+        'col-4'
+    }
+    style = {
+        {
+            display: 'flex'
+        }
+    } >
         
       <CardGroup >
       <Card > 
@@ -47,20 +79,41 @@ const Produce = () => {
     });
 
     return (
-        <Container className='container-fluid'>
+        <Container className='container-fluid mt-2'>
 
+        < MessageModal toggle = {toggle}
+                       modal={modal} 
+                       />            
 
-            <Col>
-            <p>{itemsInserted? 'inserito' : null}</p>
-            </Col>
              <Row >
-        {produceList}
 
-        </Row>
+                <Col className={'col'}>
+                </Col>
 
-          <Link to="/">
-            <Button outline size='sm' color='primary' className={'mt-5'}> Shopping</Button>
-            </Link>
+                <Col className={'col-6'}> 
+                <Container>
+                <Row>
+                    {produceList}
+                    
+                </Row>
+                  
+                </Container>
+                </Col>
+
+                <Col>
+                {/* <Keyboard setValue={setValue}
+                            nums={nums}
+                            reset={reset}
+                            back={back}
+                  />   */}
+                </Col>
+
+
+            <Link to="/">
+                <Button outline size='sm' color='primary' className={'mt-5'}> Shopping</Button>
+                </Link>
+            </Row>
+
         </Container>
        
     

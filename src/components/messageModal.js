@@ -12,10 +12,10 @@ import {
 const MessageModal = (props) =>{
 
     return(
-         <div>
+         < div > 
         {/* <Button color="danger" onClick={toggle}>X</Button> */}
         <Modal isOpen={props.modal} toggle={props.toggle}>
-          <ModalHeader toggle={props.oggle} className={'text-center'}>Item Added to the list</ModalHeader>
+          <ModalHeader toggle={props.oggle}>Item Added to the list</ModalHeader>
           <ModalBody className={'text-center'}>
             Item Added!!!
           </ModalBody>

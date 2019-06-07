@@ -82,8 +82,10 @@ const Bakery = () => {
 
     return (
         <Container className='container-fluid mt-2'>
+
         < MessageModal toggle = {toggle}
-                       modal={modal} />            
+                       modal={modal} 
+                       />            
 
              <Row >
 
