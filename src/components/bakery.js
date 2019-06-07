@@ -12,16 +12,38 @@ const Bakery = (props) => {
 
     
     const {
-        addItemToState,
-        itemsInserted,
+    
+        setproductDetails,
+        productDetails,
         nums,
         setValue,
         reset,
         back,
-        setitemsInserted
+        
     } = useFunctions();
 
     const [bakeryDetails, setBakeryDetails] = useState([]);
+    const [modal, setModal] = useState(false);
+
+    //toggle for modal window
+    const toggle = () => {
+
+        setModal(!modal);
+
+    }
+
+    // adds item to shoppimg list
+    const addItemToState = (e, url) => {
+        e.preventDefault();
+        axios.get('http://localhost:4000/' + url + '/' + e.target.value)
+            .then(response => {
+                setproductDetails(productDetails.concat(response.data));
+                console.log(modal);
+                toggle();
+            });
+
+
+    }
 
     //const [quantity, setquantity] = useState();
 
@@ -38,7 +60,6 @@ const Bakery = (props) => {
   
     }, []);
 
-
     const bakeryList = bakeryDetails.map((item) =>{
         return(
             
@@ -46,7 +67,7 @@ const Bakery = (props) => {
 
       <CardGroup >
       <Card className={'mb-1'}> 
-      <CardImg className={'img-thumbnail mx-auto d-block'}  style={{flexGrow: '10'}}S src={item.img_path} alt="Card image cap" />
+      <CardImg className={'img-thumbnail mx-auto d-block'}  style={{flexGrow: '10'}} src={item.img_path} alt="Card image cap" />
         <CardBody >
         <CardTitle>{item.product_description}</CardTitle>
         <CardSubtitle>{item.product_price}</CardSubtitle>
@@ -62,7 +83,8 @@ const Bakery = (props) => {
 
     return (
         <Container className='container-fluid mt-2'>
-                            {itemsInserted && < MessageModal />}
+        < MessageModal toggle = {toggle}
+                       modal={modal} />            
 
              <Row >
 

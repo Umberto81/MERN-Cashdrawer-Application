@@ -7,9 +7,7 @@ const useFunctions = () =>{
 
     const [nums, setNums] = useState('');
     const [productDetails, setproductDetails] = useState(initialValue);
-    const [itemsInserted, setitemsInserted] = useState(null);
 
-console.log(itemsInserted);
     //keeps persistent localstorage database
     useEffect(() =>{
       
@@ -71,19 +69,6 @@ console.log(itemsInserted);
    * 
    ************/
 
-  
-// adds item to shoppimg list
-  const addItemToState = (e, url) =>{
-   
-    axios.get('http://localhost:4000/' + url + '/' +  e.target.value)
-    .then(response =>{
-      let productJoin = productDetails.concat(response.data);
-      setproductDetails(productJoin);
-      //localStorage.setItem('list', JSON.stringify(productDetails));
-      //setitemsInserted(true); 
-    });
-
-  }
 
   /************
    * 
@@ -95,7 +80,7 @@ console.log(itemsInserted);
 
 //request to fetch db products
      const requestProducts = () =>{
-       if(nums != ""){
+       if(nums !== ""){
           axios.get('http://localhost:4000/products/' + nums)
             .then(response => {
               //implementare il salvataggio in array
@@ -126,8 +111,8 @@ console.log(itemsInserted);
   return {
     setValue, reset, back, nums, setNums,
      requestProducts, deleteProduct, 
-     productDetails, addItemToState,
-     itemsInserted, clearList, addCarrierBag, setitemsInserted
+     productDetails, 
+      clearList, addCarrierBag, setproductDetails
   }
 
 }
