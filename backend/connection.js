@@ -61,6 +61,9 @@ bakeryRoute.route('/').get(bakery_controller.getBakeryItem);
 //delete bakeryProduct by id
 bakeryRoute.route('/delete/:id').delete(bakery_controller.deleteBakeryItemById);
 
+//update bakeryProduct by id
+bakeryRoute.route('/update/:id').post(bakery_controller.updateBakeryItemById);
+
 //find bakeryProduct by description
 bakeryRoute.route('/:bakeryProductName').get(bakery_controller.findBakeryItemByDescription);
 
