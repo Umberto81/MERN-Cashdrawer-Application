@@ -1,11 +1,20 @@
 
+  @import "../node_modules/bootstrap/scss/functions";
+  @import "../node_modules/bootstrap/scss/variables";
+
+
 $theme-colors: (
-    "secondary": #081c55,
+    "secondary": #bfc0bf,
     "danger": #ff4136
   );
-  
+  $body-bg: #eaeaea;
 
-  $btn-font-size: 1.5rem;
+  $btn-font-size: 1.8rem;
+  //$border-color: $black;
+
+  .btn-secondary {
+    border-color: black !important;
+  }
   
   @import "../node_modules/bootstrap/scss/bootstrap";
 

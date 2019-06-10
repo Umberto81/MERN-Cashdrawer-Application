@@ -87,6 +87,18 @@ const useFunctions = () =>{
 
 }
 
+const addProductItemFromKeyboard = (item) =>{
+  let copy = [...productDetails];
+    for(let i = 0; i < copy.length; i++){
+        if(i === item){
+        copy.
+        setproductDetails(copy);
+        localStorage.setItem('list', JSON.stringify(productDetails));
+
+        }
+    }
+}
+
 //deletes the product
   const deleteProduct = (id) =>{
     let copy = [...productDetails];
