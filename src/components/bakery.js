@@ -12,7 +12,7 @@ const Bakery = () => {
 
     const {
     
-        setproductDetails, productDetails, nums,
+         nums,
         setValue, reset, back,
         
     } = useFunctions();
@@ -91,4 +91,3 @@ const Bakery = () => {
 }
 
 export default Bakery;
-
