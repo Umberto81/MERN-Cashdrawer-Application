@@ -10,6 +10,7 @@ const TableList = (props) =>{
       <th scope="row" >{index + 1}</th>
       <td>{item.product_description}</td>
       <td>{item.product_price}</td>
+      <td>{item.product_count}</td>
       <td><Button color='danger' size="sm" outline onClick={() => props.deleteProduct(index)}>Delete</Button></td>
     </tr>
     )
@@ -20,7 +21,6 @@ const TableList = (props) =>{
   }, 0);
 
 
-
     return(
 <Table striped bordered hover responsive>
         <thead>
@@ -28,6 +28,7 @@ const TableList = (props) =>{
             <th>#</th>
             <th>Product</th>
             <th>Price</th>
+            <th>Qty</th>
             <th>Delete</th>
           </tr>
         </thead>
