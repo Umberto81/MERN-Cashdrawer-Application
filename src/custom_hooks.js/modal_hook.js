@@ -9,6 +9,7 @@ const useModal = () =>{
     const [url, setUrl] = useState('');
     const {setproductDetails, productDetails} = useFunctions();
     const [bakeryDetails, setBakeryDetails] = useState([]);
+    console.log([...productDetails]);
 
     //shows bakery products in database
     useEffect(() =>{
@@ -38,7 +39,7 @@ const useModal = () =>{
     
         axios.get('http://localhost:4000/' + url + '/' + product)
             .then(response => {
-                setproductDetails(productDetails.concat(response.data));
+                setproductDetails([...productDetails, ...response.data]);
                 setModal(!modal);
 
             });
