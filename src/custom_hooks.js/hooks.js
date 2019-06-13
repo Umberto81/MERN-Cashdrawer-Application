@@ -3,11 +3,12 @@ import axios from 'axios';
 
 const useFunctions = () =>{
 
-    const initialValue = JSON.parse(localStorage.getItem('list' || 0));
+    const initialValue = JSON.parse(localStorage.getItem('list' || {
+      test: 'test'
+    }));
 
     const [nums, setNums] = useState('');
     const [productDetails, setproductDetails] = useState(initialValue);
-    console.log(productDetails);
 
     //keeps persistent localstorage database
     useEffect(() =>{
@@ -54,7 +55,8 @@ const useFunctions = () =>{
 
     let productJoin = productDetails.concat([{
         product_description: 'carrierBag',
-        product_price: 0.5
+        product_price: 0.5,
+        product_count: 1
        }]);  
 
        setproductDetails(productJoin);

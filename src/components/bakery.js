@@ -12,8 +12,7 @@ const Bakery = () => {
 
     const {
     
-         nums,
-        setValue, reset, back,
+         nums, setValue, reset, back,
         
     } = useFunctions();
 

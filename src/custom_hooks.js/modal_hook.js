@@ -9,7 +9,7 @@ const useModal = () =>{
     const [url, setUrl] = useState('');
     const {setproductDetails, productDetails} = useFunctions();
     const [bakeryDetails, setBakeryDetails] = useState([]);
-    console.log([...productDetails]);
+    console.log(productDetails);
 
     //shows bakery products in database
     useEffect(() =>{
@@ -37,12 +37,30 @@ const useModal = () =>{
     //add bakeryitem to shopping list in modal window
     const toggleAdd = () =>{
     
-        axios.get('http://localhost:4000/' + url + '/' + product)
-            .then(response => {
-                setproductDetails([...productDetails, ...response.data]);
-                setModal(!modal);
-
+                axios.get('http://localhost:4000/' + url + '/' + product)
+                .then(response => {
+                    //const copy = [...productDetails];
+                    console.log(product);
+                    //console.log(copy);
+                    productDetails.forEach(element => {
+                        console.log(element.product_description);
+                        if(element.product_description === response.data[0].product_description){
+                            element.product_count++;
+                            setproductDetails(productDetails);
+                            setModal(!modal);
+                
+                        }else{
+                            setproductDetails([...productDetails, ...response.data]);
+                            setModal(!modal);
+                        }
+                        
+                    
+    
+                });
             });
+    
+        
+    
 
     }
 
