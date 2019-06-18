@@ -1,23 +1,18 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
 import {Container, Button, Col, Row, Card, CardImg, CardBody,CardTitle, CardSubtitle, CardGroup } from 'reactstrap';
 import { Link } from 'react-router-dom'
-import useFunctions from '../custom_hooks.js/hooks';
 import useModal from '../custom_hooks.js/modal_hook';
-import Keyboard from './keyboard';
+import KeyboardAddQuantity from './keyboardAddQuantity';
 import MessageModal from './messageModal';
 
 
 const Bakery = () => {
 
-    const {
-    
-         nums, setValue, reset, back,
-        
-    } = useFunctions();
+
 
     const {toggle, toggleAdd, noToggleAdd, modal,
-           product, bakeryDetails} = useModal();
+           product, bakeryDetails, setValue, reset, back, nums, addQtyNumber} = useModal();
+
 
 
     const bakeryList = bakeryDetails.map((item) =>{
@@ -51,6 +46,7 @@ const Bakery = () => {
                        productDescription={product}
                        modal={modal} 
                        noToggleAdd={noToggleAdd}
+                       product={product}
                        />            
 
              <Row >
@@ -70,10 +66,11 @@ const Bakery = () => {
 
                 <Col >
                 <h3 className={'text-left'}>Select a quantity</h3>
-                <Keyboard setValue={setValue}
-                            nums={nums}
-                            reset={reset}
-                            back={back}
+                <KeyboardAddQuantity     setValue={setValue}
+                                         nums={nums}
+                                         reset={reset}
+                                         back={back}
+                                         addQtyNumber={addQtyNumber}
                   />  
                 </Col>
 

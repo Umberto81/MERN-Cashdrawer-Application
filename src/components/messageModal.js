@@ -7,6 +7,9 @@ import {
 
 const MessageModal = (props) =>{
 
+
+
+
     return(
          < div > 
         <Modal isOpen={props.modal} toggle={props.toggle}>
@@ -15,7 +18,7 @@ const MessageModal = (props) =>{
           </ModalBody>
           <ModalFooter>
           <Button color="danger" className={'mr-auto'} size='sm' onClick={props.noToggleAdd}>Do not Add</Button>
-          <Button color="success" size='sm' onClick={props.toggleAdd}>OK</Button>
+          <Button color="success" size='sm' onClick={() => props.toggleAdd(props.product)}>OK</Button>
           </ModalFooter>
         </Modal>
       </div>

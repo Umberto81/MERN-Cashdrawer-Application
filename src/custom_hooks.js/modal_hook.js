@@ -9,7 +9,11 @@ const useModal = () =>{
     const [url, setUrl] = useState('');
     const {setproductDetails, productDetails} = useFunctions();
     const [bakeryDetails, setBakeryDetails] = useState([]);
-    console.log(productDetails);
+    const [nums, setNums] = useState('');
+    const [qty, setQty] = useState();
+    console.log(qty);
+
+
 
     //shows bakery products in database
     useEffect(() =>{
@@ -24,6 +28,31 @@ const useModal = () =>{
   
     }, []);
 
+      //set the state keyboard numbers
+      const setValue = (e) =>{
+        
+        setNums(nums + e.target.value);
+      }
+
+      //resets all the numbers into the text area
+     const reset = () =>{
+       
+        setNums('');
+  }
+
+    //delete only the last number into the text area
+     const  back = () =>{
+
+      setNums(nums.substr(0, nums.length-1));
+  }
+
+  const addQtyNumber = () =>{
+    setQty(parseInt(nums));
+    setNums('');
+  }
+
+     
+
      //toggle for modal window
      const toggle = (product, url) => {
 
@@ -34,33 +63,48 @@ const useModal = () =>{
 
     }
 
-    //add bakeryitem to shopping list in modal window
-    const toggleAdd = () =>{
+  
+
+
+        //add bakeryitem to shopping list in modal window
+        const toggleAdd = (product) =>{
     
-                axios.get('http://localhost:4000/' + url + '/' + product)
+            axios.get('http://localhost:4000/' + url + '/' + product)
                 .then(response => {
-                    //const copy = [...productDetails];
-                    console.log(product);
-                    //console.log(copy);
-                    productDetails.forEach(element => {
-                        console.log(element.product_description);
-                        if(element.product_description === response.data[0].product_description){
-                            element.product_count++;
-                            setproductDetails(productDetails);
+                    let copy = [...productDetails];
+                    for(let i in copy){
+                        if(copy[i].product_description === response.data[0].product_description){
+                            console.log('hhhhhhhhhhhhhhhhhh');
+                            copy[i].product_count += qty;
+                            //copy.push(copy[i]);
+                            console.log(copy);
+                            setproductDetails(copy);
                             setModal(!modal);
+
+                            break;
+                        }
+                        
+
+                        
+                    }
+                   
                 
-                        }else{
-                            setproductDetails([...productDetails, ...response.data]);
-                            setModal(!modal);
+                    });
+
     
-                });
-            });
-    
+        } 
+
+
+    // const toggleAdd = (product) =>{
+    //     for(let i in productDetails){
+    //         if(productDetails[i].product_description === product && productDetails === ''){
+    //             console.log('uguale');
+    //         }else{
+    //             console.log('diverso');
+    //         }
+    //     }
+    // }
         
-    
-
-    }
-
     //Opposite modal call on DoNotAdd Button in modal window
     const noToggleAdd = () => {
        
@@ -69,7 +113,9 @@ const useModal = () =>{
     }
 
     return {
-        toggleAdd, noToggleAdd, toggle, modal, setModal, url, setUrl, product, bakeryDetails
+        toggleAdd, noToggleAdd, toggle, modal, setModal,
+         url, setUrl, product, bakeryDetails, setValue, 
+         reset, back, nums, addQtyNumber
     }
 }
 

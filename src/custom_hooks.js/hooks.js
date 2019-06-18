@@ -1,14 +1,14 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
 
+
 const useFunctions = () =>{
 
-    const initialValue = JSON.parse(localStorage.getItem('list' || {
-      test: 'test'
-    }));
+    const initialValue = JSON.parse(localStorage.getItem('list' || 0));
 
     const [nums, setNums] = useState('');
     const [productDetails, setproductDetails] = useState(initialValue);
+    console.log(nums);
 
     //keeps persistent localstorage database
     useEffect(() =>{
@@ -17,7 +17,7 @@ const useFunctions = () =>{
 
     }, [productDetails]);
 
-
+ 
 
      //set the state keyboard numbers
      const setValue = (e) =>{
@@ -53,13 +53,11 @@ const useFunctions = () =>{
 
    const addCarrierBag = () =>{
 
-    let productJoin = productDetails.concat([{
-        product_description: 'carrierBag',
-        product_price: 0.5,
-        product_count: 1
-       }]);  
-
-       setproductDetails(productJoin);
+    let productJoin = [...productDetails, {product_description: 'carrierBag',
+    product_price: 0.50,
+    product_count: 1
+   }];
+    setproductDetails(productJoin);
    
 
    }
@@ -78,8 +76,7 @@ const useFunctions = () =>{
           axios.get('http://localhost:4000/products/' + nums)
             .then(response => {
               //implementare il salvataggio in array
-              let productJoin = productDetails.concat(response.data);
-              setproductDetails(productJoin);
+              setproductDetails([...productDetails, ...response.data]);
               setNums('');
 
             });
@@ -89,17 +86,9 @@ const useFunctions = () =>{
 
 }
 
-const addProductItemFromKeyboard = (item) =>{
-  let copy = [...productDetails];
-    for(let i = 0; i < copy.length; i++){
-        if(i === item){
-        copy.
-        setproductDetails(copy);
-        localStorage.setItem('list', JSON.stringify(productDetails));
 
-        }
-    }
-}
+
+
 
 //deletes the product
   const deleteProduct = (id) =>{
