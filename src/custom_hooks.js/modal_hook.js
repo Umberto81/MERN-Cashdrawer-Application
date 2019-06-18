@@ -52,9 +52,6 @@ const useModal = () =>{
                         }else{
                             setproductDetails([...productDetails, ...response.data]);
                             setModal(!modal);
-                        }
-                        
-                    
     
                 });
             });
