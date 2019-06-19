@@ -10,7 +10,7 @@ const useModal = () =>{
     const {setproductDetails, productDetails} = useFunctions();
     const [bakeryDetails, setBakeryDetails] = useState([]);
     const [nums, setNums] = useState('');
-    const [qty, setQty] = useState();
+    const [qty, setQty] = useState(1);
     console.log(qty);
 
 
@@ -72,22 +72,21 @@ const useModal = () =>{
             axios.get('http://localhost:4000/' + url + '/' + product)
                 .then(response => {
                     let copy = [...productDetails];
+
                     for(let i in copy){
                         if(copy[i].product_description === response.data[0].product_description){
                             console.log('hhhhhhhhhhhhhhhhhh');
                             copy[i].product_count += qty;
-                            //copy.push(copy[i]);
                             console.log(copy);
                             setproductDetails(copy);
                             setModal(!modal);
-
-                            break;
+                            return;
                         }
                         
-
                         
                     }
-                   
+                    setproductDetails([...productDetails, ...response.data]);
+                    setModal(!modal);
                 
                     });
 
@@ -97,7 +96,7 @@ const useModal = () =>{
 
     // const toggleAdd = (product) =>{
     //     for(let i in productDetails){
-    //         if(productDetails[i].product_description === product && productDetails === ''){
+    //         if(productDetails[i].product_description === product){
     //             console.log('uguale');
     //         }else{
     //             console.log('diverso');
