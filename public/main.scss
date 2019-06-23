@@ -1,9 +1,9 @@
 
   @import "../node_modules/bootstrap/scss/_functions";
   @import "../node_modules/bootstrap/scss/_variables";
-  @import "../node_modules/bootstrap/scss/tables";
+  @import "../node_modules/bootstrap/scss/_mixins";
 
-
+$main-color: #8fbdec !important;
 
 $theme-colors: (
     "secondary": #bfc0bf,
@@ -16,17 +16,25 @@ $theme-colors: (
 
   .btn-secondary {
     border-color: black !important;
-    color: #96b4d2;
+    background-color: $main-color;
+    color: black;
   }  
 
+  .btn-secondary:hover{
+    background-color:   #58a2eb !important;
+  }
+
+  .btn-outline-secondary {
+    color: $main-color;
+    border-color: #bfc0bf;
+}
+
+ 
   .table {
-    color: #9abee3;
+    color: #8fbdec !important;
 }
 
 
   
   @import "../node_modules/bootstrap/scss/bootstrap";
-
-
-
 
