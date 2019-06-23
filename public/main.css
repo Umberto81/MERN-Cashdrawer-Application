@@ -1,5 +1,6 @@
 .btn-secondary {
   border-color: black !important;
+  color: #96b4d2;
 }
 
 /*!
@@ -65,7 +66,7 @@ body {
   line-height: 1.5;
   color: #212529;
   text-align: left;
-  background-color: #eaeaea;
+  background-color: #365063;
 }
 
 [tabindex="-1"]:focus {

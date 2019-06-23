@@ -1,20 +1,29 @@
 
-  @import "../node_modules/bootstrap/scss/functions";
-  @import "../node_modules/bootstrap/scss/variables";
+  @import "../node_modules/bootstrap/scss/_functions";
+  @import "../node_modules/bootstrap/scss/_variables";
+  @import "../node_modules/bootstrap/scss/tables";
+
 
 
 $theme-colors: (
     "secondary": #bfc0bf,
     "danger": #ff4136
   );
-  $body-bg: #eaeaea;
+  $body-bg: #365063;
 
   $btn-font-size: 1.8rem;
   //$border-color: $black;
 
   .btn-secondary {
     border-color: black !important;
-  }
+    color: #96b4d2;
+  }  
+
+  .table {
+    color: #9abee3;
+}
+
+
   
   @import "../node_modules/bootstrap/scss/bootstrap";
 

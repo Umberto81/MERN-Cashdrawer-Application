@@ -11,13 +11,13 @@ const TableList = (props) =>{
       <td>{item.product_description}</td>
       <td>{item.product_price}</td>
       <td>{item.product_count}</td>
-      <td><Button color='danger' size="sm" outline onClick={() => props.deleteProduct(index)}>Delete</Button></td>
+      <td><Button color='danger' size="sm" onClick={() => props.deleteProduct(index)}>Delete</Button></td>
     </tr>
     )
   });
 
   const total = props.productsDetails.reduce((a, b) => {
-    return a + b.product_price;
+    return a + b.product_price * b.product_count;
   }, 0);
 
 
@@ -42,7 +42,7 @@ const TableList = (props) =>{
          <td>	£ {total}</td>
 
        </tbody>
-       <Button color='success' size="sm"  outline type='button' style={{display: props.productsDetails.length === 0 ? 'none' : 'block' }}>SubTotal</Button>  
+       <Button color='success' size="sm"  type='button' style={{display: props.productsDetails.length === 0 ? 'none' : 'block' }}>SubTotal</Button>  
 
       </Table>
     )

@@ -1,40 +1,43 @@
-import {useState, useEffect} from 'react';
+import {
+  useState,
+  useEffect
+} from 'react';
 import axios from 'axios';
 
 
-const useFunctions = () =>{
+const useFunctions = () => {
 
-    const initialValue = JSON.parse(localStorage.getItem('list' || 0));
+  const initialValue = JSON.parse(localStorage.getItem('list' || 0));
 
-    const [nums, setNums] = useState('');
-    const [productDetails, setproductDetails] = useState(initialValue);
-    console.log(nums);
+  const [nums, setNums] = useState('');
+  const [productDetails, setproductDetails] = useState(initialValue);
+  console.log(nums);
 
-    //keeps persistent localstorage database
-    useEffect(() =>{
-      
-      localStorage.setItem('list', JSON.stringify(productDetails));
+  //keeps persistent localstorage database
+  useEffect(() => {
 
-    }, [productDetails]);
+    localStorage.setItem('list', JSON.stringify(productDetails));
 
- 
+  }, [productDetails]);
 
-     //set the state keyboard numbers
-     const setValue = (e) =>{
-        
-        setNums(nums + e.target.value);
-      }
 
-      //resets all the numbers into the text area
-     const reset = () =>{
-       
-        setNums('');
+
+  //set the state keyboard numbers
+  const setValue = (e) => {
+
+    setNums(nums + e.target.value);
   }
 
-    //delete only the last number into the text area
-     const  back = () =>{
+  //resets all the numbers into the text area
+  const reset = () => {
 
-      setNums(nums.substr(0, nums.length-1));
+    setNums('');
+  }
+
+  //delete only the last number into the text area
+  const back = () => {
+
+    setNums(nums.substr(0, nums.length - 1));
   }
 
 
@@ -44,23 +47,24 @@ const useFunctions = () =>{
    *clear button to clear the shopping list 
    */
 
-   const clearList = () =>{
+  const clearList = () => {
     setproductDetails([]);
-   }
+  }
 
 
-   //add carrier bag to shopping list
+  //add carrier bag to shopping list
 
-   const addCarrierBag = () =>{
+  const addCarrierBag = () => {
 
-    let productJoin = [...productDetails, {product_description: 'carrierBag',
-    product_price: 0.50,
-    product_count: 1
-   }];
+    let productJoin = [...productDetails, {
+      product_description: 'carrierBag',
+      product_price: 0.50,
+      product_count: 1
+    }];
     setproductDetails(productJoin);
-   
 
-   }
+
+  }
 
   /************
    * 
@@ -70,44 +74,51 @@ const useFunctions = () =>{
    * 
    ************/
 
-//request to fetch db products
-     const requestProducts = () =>{
-       if(nums !== ""){
-          axios.get('http://localhost:4000/products/' + nums)
-            .then(response => {
-              //implementare il salvataggio in array
-              setproductDetails([...productDetails, ...response.data]);
-              setNums('');
+  //request to fetch db products
+  const requestProducts = () => {
+    if (nums !== "") {
+      axios.get('http://localhost:4000/products/' + nums)
+        .then(response => {
+          //implementare il salvataggio in array
+          setproductDetails([...productDetails, ...response.data]);
+          setNums('');
 
-            });
-       }
-  
-       
-
-}
+        });
+    }
 
 
 
+  }
 
 
-//deletes the product
-  const deleteProduct = (id) =>{
+
+
+
+  //deletes the product
+  const deleteProduct = (id) => {
     let copy = [...productDetails];
-    for(let i = 0; i < copy.length; i++){
-        if(i === id){
+    for (let i = 0; i < copy.length; i++) {
+      if (i === id) {
         copy.splice(i, 1);
         setproductDetails(copy);
         localStorage.setItem('list', JSON.stringify(productDetails));
 
-        }
+      }
     }
   }
 
   return {
-    setValue, reset, back, nums, setNums,
-     requestProducts, deleteProduct, 
-     productDetails, 
-      clearList, addCarrierBag, setproductDetails,
+    setValue,
+    reset,
+    back,
+    nums,
+    setNums,
+    requestProducts,
+    deleteProduct,
+    productDetails,
+    clearList,
+    addCarrierBag,
+    setproductDetails,
   }
 
 }
