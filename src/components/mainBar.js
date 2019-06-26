@@ -32,7 +32,7 @@ const time = () => {
 const MainBar = ()=>{
     return (
         <div>
-        <Navbar color="light" light expand="md">
+        <Navbar expand="md">
           <NavbarBrand href="/">CashDrawer - {time()}</NavbarBrand>
           <NavbarToggler  />
           <Collapse navbar>

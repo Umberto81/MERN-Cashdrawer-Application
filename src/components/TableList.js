@@ -22,7 +22,7 @@ const TableList = (props) =>{
 
 
     return(
-<Table striped bordered hover responsive>
+<Table striped hover dark responsive>
         <thead>
           <tr>
             <th>#</th>

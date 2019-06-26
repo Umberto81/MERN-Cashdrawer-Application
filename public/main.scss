@@ -2,6 +2,13 @@
   @import "../node_modules/bootstrap/scss/_functions";
   @import "../node_modules/bootstrap/scss/_variables";
   @import "../node_modules/bootstrap/scss/_mixins";
+  @import "../node_modules/bootstrap/scss/_tables";
+  @import "../node_modules/bootstrap/scss/_navbar";
+  @import "../node_modules/bootstrap/scss/_nav";
+  @import "../node_modules/bootstrap/scss/_card";
+
+
+
 
 $main-color: #8fbdec !important;
 
@@ -12,7 +19,18 @@ $theme-colors: (
   $body-bg: #365063;
 
   $btn-font-size: 1.8rem;
-  //$border-color: $black;
+  
+  .bg-light {
+    background-color: $main-color;
+}
+
+a{
+  color: $main-color;
+}
+
+a:hover{
+  color: #58a2eb !important;
+}
 
   .btn-secondary {
     border-color: black !important;
@@ -29,11 +47,18 @@ $theme-colors: (
     border-color: #bfc0bf;
 }
 
+.btn-outline-secondary:hover {
+
+  background-color: #35444e !important;
+}
  
   .table {
-    color: #8fbdec !important;
+    color: $main-color;
 }
 
+.card-img{
+  width: 50%;
+}
 
   
   @import "../node_modules/bootstrap/scss/bootstrap";

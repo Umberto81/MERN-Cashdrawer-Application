@@ -16,7 +16,7 @@ const useModal = () => {
     } = useFunctions();
     const [bakeryDetails, setBakeryDetails] = useState([]);
     const [nums, setNums] = useState('');
-    const [qty, setQty] = useState();
+    const [qty, setQty] = useState(1);
     console.log(qty);
 
 
@@ -82,7 +82,6 @@ const useModal = () => {
                 for (let i in copy) {
                     if (copy[i].product_description === response.data[0].product_description) {
                         copy[i].product_count += qty;
-                        console.log(copy);
                         setproductDetails(copy);
                         setModal(!modal);
                         return;
@@ -91,8 +90,23 @@ const useModal = () => {
                 }
 
                 // aggiornare la qty per fare in modo che alla prima chiamata sia mostrato il totale qty
-                setproductDetails([...productDetails, ...response.data]);
-                setModal(!modal);
+                if(qty  > 1){
+
+                 console.log(response.data);
+                 response.data[0].product_count += qty -1;
+                 setproductDetails([...productDetails, ...response.data]);
+                    setModal(!modal);
+                    return;
+
+
+               
+                }else{
+                    setproductDetails([...productDetails, ...response.data]);
+                    setModal(!modal);
+                }
+                    
+            
+               
 
             });
 
