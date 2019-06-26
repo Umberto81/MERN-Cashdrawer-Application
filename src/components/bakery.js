@@ -11,14 +11,14 @@ const Bakery = () => {
 
 
     const {toggle, toggleAdd, noToggleAdd, modal,
-           product, bakeryDetails, setValue, reset, back, nums, addQtyNumber} = useModal();
+           product, bakeryDetails, setValue, reset, back, nums, addQtyNumber, alphabeticCall} = useModal();
 
 
 
     const bakeryList = bakeryDetails.sort((a, b) =>{
         let nameA = a.product_description;
         let nameB = b.product_description;
-        
+
         if(nameA < nameB){
             return(-1);
         }
@@ -65,7 +65,7 @@ const Bakery = () => {
                 
                 {
                 <Col className={'col'}>
-                    <Button color='secondary' className={'mr-1 mb-1 '} type='button'>A - E</Button>
+                    <Button color='secondary' className={'mr-1 mb-1 '} value='abcde' type='button'onClick={(e) =>alphabeticCall(e)}>A - E</Button>
                     <Button color='secondary' className={'mr-1 mb-1 '} type='button'>F - L</Button>
                     <Button color='secondary' className={'mr-1 mb-1 '} type='button'>M - R</Button>
                     <Button color='secondary' className={'mr-1 mb-1 '} type='button'>S- Z</Button>

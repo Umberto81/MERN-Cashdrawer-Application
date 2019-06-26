@@ -111,20 +111,24 @@ const useModal = () => {
     }
 
 
-    // const toggleAdd = (product) =>{
-    //     for(let i in productDetails){
-    //         if(productDetails[i].product_description === product){
-    //             console.log('uguale');
-    //         }else{
-    //             console.log('diverso');
-    //         }
-    //     }
-    // }
-
     //Opposite modal call on DoNotAdd Button in modal window
     const noToggleAdd = () => {
 
         setModal(!modal);
+
+    }
+
+    //adds only the requeeted alphabetical items
+    const alphabeticCall = (e) =>{
+        let str = e.target.value.split("");
+        console.log(str);
+        for(let i in bakeryDetails){
+            for(let j in str){
+                if(bakeryDetails[i].product_description.startsWith(str[j])){
+                    console.log(bakeryDetails[i].product_description);
+                }
+            }
+        }
 
     }
 
@@ -142,7 +146,7 @@ const useModal = () => {
         reset,
         back,
         nums,
-        
+        alphabeticCall
     }
 }
 
