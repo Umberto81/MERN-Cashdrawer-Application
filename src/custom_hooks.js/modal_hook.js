@@ -17,7 +17,7 @@ const useModal = () => {
     const [bakeryDetails, setBakeryDetails] = useState([]);
     const [nums, setNums] = useState('');
     const [qty, setQty] = useState(1);
-    console.log(qty);
+    console.log(bakeryDetails);
 
 
 
@@ -52,20 +52,17 @@ const useModal = () => {
         setNums(nums.substr(0, nums.length - 1));
     }
 
-    const addQtyNumber = () => {
-        setQty(parseInt(nums));
-        setNums('');
-    }
 
 
 
-    //toggle for modal window
+    //toggle for modal window, add quantity to selection
     const toggle = (product, url) => {
 
         setModal(!modal);
         setProductDescription(product);
         setUrl(url);
-
+        setQty(parseInt(nums));
+        setNums('');
 
     }
 
@@ -145,7 +142,7 @@ const useModal = () => {
         reset,
         back,
         nums,
-        addQtyNumber
+        
     }
 }
 

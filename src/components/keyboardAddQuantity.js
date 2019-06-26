@@ -50,7 +50,6 @@ const KeyboardAddQuantity = (props) =>{
             </Row>
             <Row>
                     <Button color='secondary' type='button' className={'mr-1 mb-1'} onClick={props.back}>Back</Button>  
-                    <Button color='success' type='button' className={'mr-1 mb-1'} onClick={props.addQtyNumber}>Enter</Button>  
 
             </Row>
 

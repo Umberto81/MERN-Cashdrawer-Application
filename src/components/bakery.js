@@ -15,7 +15,19 @@ const Bakery = () => {
 
 
 
-    const bakeryList = bakeryDetails.map((item) =>{
+    const bakeryList = bakeryDetails.sort((a, b) =>{
+        let nameA = a.product_description;
+        let nameB = b.product_description;
+        
+        if(nameA < nameB){
+            return(-1);
+        }
+        if(nameA > nameB){
+            return(1);
+        }
+
+        return 0;
+    }).map((item) =>{
 
         return(
             
@@ -50,9 +62,15 @@ const Bakery = () => {
                        />            
 
              <Row >
-{/* 
+                
+                {
                 <Col className={'col'}>
-                </Col> */}
+                    <Button color='secondary' className={'mr-1 mb-1 '} type='button'>A - E</Button>
+                    <Button color='secondary' className={'mr-1 mb-1 '} type='button'>F - L</Button>
+                    <Button color='secondary' className={'mr-1 mb-1 '} type='button'>M - R</Button>
+                    <Button color='secondary' className={'mr-1 mb-1 '} type='button'>S- Z</Button>
+
+                </Col> }
 
                 <Col className={'col-8'}> 
                 <Container>
