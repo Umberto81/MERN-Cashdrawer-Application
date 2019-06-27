@@ -35,11 +35,11 @@ const Bakery = () => {
 
             <CardGroup >
             <Card className={'mb-1'}> 
-            <CardImg className={'img-thumbnail mx-auto d-block'}  style={{flexGrow: '10'}} src={item.img_path} alt="Card image cap" />
+            <CardImg className={' mx-auto d-block mt-2'}  style={{flexGrow: '1'}} src={item.img_path} alt="Card image cap" />
                 <CardBody >
                 <CardTitle>{item.product_description}</CardTitle>
                 <CardSubtitle>{item.product_price}</CardSubtitle>
-                <Button size='sm' color='success' outline onClick={() => toggle(item.product_description, 'bakery')}>Add Item</Button>
+                <Button size='sm' color='secondary'  onClick={() => toggle(item.product_description, 'bakery')}>Add Item</Button>
                 </CardBody>
             </Card>
             </CardGroup>
@@ -70,11 +70,11 @@ const Bakery = () => {
 
             <CardGroup >
             <Card className={'mb-1'}> 
-            <CardImg className={'img-thumbnail mx-auto d-block'}  style={{flexGrow: '10'}} src={item.img_path} alt="Card image cap" />
+            <CardImg className={' mx-auto d-block mt-2'}  style={{flexGrow: '1'}} src={item.img_path} alt="Card image cap" />
                 <CardBody >
                 <CardTitle>{item.product_description}</CardTitle>
                 <CardSubtitle>{item.product_price}</CardSubtitle>
-                <Button size='sm' color='success' outline onClick={() => toggle(item.product_description, 'bakery')}>Add Item</Button>
+                <Button size='sm' color='secondary'   onClick={() => toggle(item.product_description, 'bakery')}>Add Item</Button>
                 </CardBody>
             </Card>
             </CardGroup>
@@ -97,15 +97,19 @@ const Bakery = () => {
                        />            
 
              <Row >
-                
+            
+                 
                 {
-                <Col className={'col'}>
-                     <Button color='secondary' className={'mr-1 mb-1 '} value='all' type='button' onClick={callAllItems }>All</Button>
+                <Col className={'col'} style={{display: 'flex', flexDirection: 'column'}} >
+                     <Button color='secondary' className={'mr-1 mb-1 button-alphabet'} value='all' type='button' onClick={callAllItems }>All items</Button>
 
-                    <Button color='secondary' className={'mr-1 mb-1 '} value='abcde' type='button'onClick={(e) =>alphabeticCall(e)}>A - E</Button>
-                    <Button color='secondary' className={'mr-1 mb-1 '} value='fghil' type='button' onClick={(e) =>alphabeticCall(e)}>F - L</Button>
-                    <Button color='secondary' className={'mr-1 mb-1 '} value='mnropq' type='button' onClick={(e) =>alphabeticCall(e)}>M - Q</Button>
-                    <Button color='secondary' className={'mr-1 mb-1 '} value='rstuvz' type='button' onClick={(e) =>alphabeticCall(e)}>S- Z</Button>
+                    <Button color='secondary' className={'mr-1 mb-1 button-alphabet'} value='abcde' type='button'onClick={(e) =>alphabeticCall(e)}>A - E</Button>
+                    <Button color='secondary' className={'mr-1 mb-1 button-alphabet'} value='fghil' type='button' onClick={(e) =>alphabeticCall(e)}>F - L</Button>
+                    <Button color='secondary' className={'mr-1 mb-1 button-alphabet'} value='mnropq' type='button' onClick={(e) =>alphabeticCall(e)}>M - Q</Button>
+                    <Button color='secondary' className={'mr-1 mb-1 button-alphabet '} value='rstuvz' type='button' onClick={(e) =>alphabeticCall(e)}>S- Z</Button>
+                    <Link to="/">
+                    <Button  size='sm' color='primary' className={'button-alphabet'}> Shopping</Button>
+                </Link>
 
                 </Col> }
 
@@ -121,7 +125,6 @@ const Bakery = () => {
                 </Col>
 
                 <Col >
-                <h3 className={'text-left'}>Select a quantity</h3>
                 <KeyboardAddQuantity     setValue={setValue}
                                          nums={nums}
                                          reset={reset}
@@ -129,11 +132,6 @@ const Bakery = () => {
                                          addQtyNumber={addQtyNumber}
                   />  
                 </Col>
-
-
-                <Link to="/">
-                    <Button outline size='sm' color='primary' className={'mt-5'}> Shopping</Button>
-                </Link>
             </Row>
 
         </Container>

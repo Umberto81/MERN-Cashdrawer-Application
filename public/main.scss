@@ -6,6 +6,7 @@
   @import "../node_modules/bootstrap/scss/_navbar";
   @import "../node_modules/bootstrap/scss/_nav";
   @import "../node_modules/bootstrap/scss/_card";
+  @import "../node_modules/bootstrap/scss/_modal";
 
 
 
@@ -57,9 +58,38 @@ a:hover{
 }
 
 .card-img{
-  width: 50%;
+  width: 50% !important;
 }
 
+.card-title{
+  margin-top: -20px;
+  color: $main-color;
+}
+.card-subtitle{
+  color: $main-color;
+}
+
+.card-body{
+  color: $main-color;
+}
+
+.modal-body, .modal-footer{
+  background-color: $main-color;
+}
+
+
+$card-bg: #343a40;
+$card-spacer-y:                     .5rem ;
+
+.keyboard-flex{
+  flex: 2;
+   white-space: nowrap; 
+}
+
+.button-alphabet{
+  width: 100%;
+  white-space: nowrap;
+}
   
   @import "../node_modules/bootstrap/scss/bootstrap";
 
