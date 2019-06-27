@@ -15,6 +15,8 @@ const useModal = () => {
         productDetails
     } = useFunctions();
     const [bakeryDetails, setBakeryDetails] = useState([]);
+    const [newlist, setNewList] = useState([]);
+    const [listTrue, setListTrue] = useState(false);
     const [nums, setNums] = useState('');
     const [qty, setQty] = useState(1);
     console.log(bakeryDetails);
@@ -121,14 +123,30 @@ const useModal = () => {
     //adds only the requeeted alphabetical items
     const alphabeticCall = (e) =>{
         let str = e.target.value.split("");
-        console.log(str);
-        for(let i in bakeryDetails){
+        let list = [];
+        let copy = [...bakeryDetails]
+        for(let i in copy){
             for(let j in str){
-                if(bakeryDetails[i].product_description.startsWith(str[j])){
-                    console.log(bakeryDetails[i].product_description);
+                if(copy[i].product_description.startsWith(str[j])){
+                    list.push(copy[i]);
+                    
+                
                 }
+                
             }
         }
+        setNewList(list);
+        setListTrue(true);
+        
+    }
+
+    const callAllItems = () =>{
+        axios.get('http://localhost:4000/bakery')
+            .then(response => {
+                //implementare il salvataggio in array
+                setBakeryDetails(response.data);
+            });
+            setListTrue(false);
 
     }
 
@@ -146,7 +164,10 @@ const useModal = () => {
         reset,
         back,
         nums,
-        alphabeticCall
+        alphabeticCall,
+        newlist,
+        listTrue,
+        callAllItems
     }
 }
 

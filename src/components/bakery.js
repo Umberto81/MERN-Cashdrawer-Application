@@ -11,11 +11,46 @@ const Bakery = () => {
 
 
     const {toggle, toggleAdd, noToggleAdd, modal,
-           product, bakeryDetails, setValue, reset, back, nums, addQtyNumber, alphabeticCall} = useModal();
+           product, bakeryDetails, setValue, reset, back, nums, addQtyNumber, alphabeticCall, newlist, listTrue, callAllItems} = useModal();
 
 
 
     const bakeryList = bakeryDetails.sort((a, b) =>{
+        let nameA = a.product_description;
+        let nameB = b.product_description;
+
+        if(nameA < nameB){
+            return(-1);
+        }
+        if(nameA > nameB){
+            return(1);
+        }
+
+        return 0;
+    }).map((item) =>{
+
+        return(
+            
+            <Col className={'col-3'} style={{display: 'flex'}}>
+
+            <CardGroup >
+            <Card className={'mb-1'}> 
+            <CardImg className={'img-thumbnail mx-auto d-block'}  style={{flexGrow: '10'}} src={item.img_path} alt="Card image cap" />
+                <CardBody >
+                <CardTitle>{item.product_description}</CardTitle>
+                <CardSubtitle>{item.product_price}</CardSubtitle>
+                <Button size='sm' color='success' outline onClick={() => toggle(item.product_description, 'bakery')}>Add Item</Button>
+                </CardBody>
+            </Card>
+            </CardGroup>
+            </Col>
+            
+        ); 
+           
+    });
+
+
+    const List = newlist.sort((a, b) =>{
         let nameA = a.product_description;
         let nameB = b.product_description;
 
@@ -65,17 +100,20 @@ const Bakery = () => {
                 
                 {
                 <Col className={'col'}>
+                     <Button color='secondary' className={'mr-1 mb-1 '} value='all' type='button' onClick={callAllItems }>All</Button>
+
                     <Button color='secondary' className={'mr-1 mb-1 '} value='abcde' type='button'onClick={(e) =>alphabeticCall(e)}>A - E</Button>
-                    <Button color='secondary' className={'mr-1 mb-1 '} type='button'>F - L</Button>
-                    <Button color='secondary' className={'mr-1 mb-1 '} type='button'>M - R</Button>
-                    <Button color='secondary' className={'mr-1 mb-1 '} type='button'>S- Z</Button>
+                    <Button color='secondary' className={'mr-1 mb-1 '} value='fghil' type='button' onClick={(e) =>alphabeticCall(e)}>F - L</Button>
+                    <Button color='secondary' className={'mr-1 mb-1 '} value='mnropq' type='button' onClick={(e) =>alphabeticCall(e)}>M - Q</Button>
+                    <Button color='secondary' className={'mr-1 mb-1 '} value='rstuvz' type='button' onClick={(e) =>alphabeticCall(e)}>S- Z</Button>
 
                 </Col> }
 
                 <Col className={'col-8'}> 
                 <Container>
                 <Row>
-                    {bakeryList}
+                    {listTrue === true ? List: bakeryList }
+                    {/* {bakeryList} */}
                     
                 </Row>
                   
