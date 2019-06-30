@@ -8,7 +8,7 @@ const KeyboardAddQuantity = (props) =>{
         <div>
 
 
-          <Row className={'pt-2 pb-2'}>
+          <Row className={'pt-2 pb-2'} style={{justifyContent: 'center'}}>
           <Card style={{minWidth: '125px'}}>
             <CardBody>
 

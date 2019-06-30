@@ -31,9 +31,8 @@ const Bakery = () => {
 
         return(
             
-            <Col className={'col-3'} style={{display: 'flex'}}>
+            <Col className={'col-3'} style={{display: 'flex', justifyContent: 'center'}}>
 
-            <CardGroup >
             <Card className={'mb-1'}> 
             <CardImg className={' mx-auto d-block mt-2'}  style={{flexGrow: '1'}} src={item.img_path} alt="Card image cap" />
                 <CardBody >
@@ -42,7 +41,7 @@ const Bakery = () => {
                 <Button size='sm' color='secondary'  onClick={() => toggle(item.product_description, 'bakery')}>Add Item</Button>
                 </CardBody>
             </Card>
-            </CardGroup>
+        
             </Col>
             
         ); 
@@ -66,9 +65,9 @@ const Bakery = () => {
 
         return(
             
-            <Col className={'col-3'} style={{display: 'flex'}}>
+            <Col className={'col-3'} style={{display: 'flex', justifyContent: 'center'}}>
 
-            <CardGroup >
+            
             <Card className={'mb-1'}> 
             <CardImg className={' mx-auto d-block mt-2'}  style={{flexGrow: '1'}} src={item.img_path} alt="Card image cap" />
                 <CardBody >
@@ -77,7 +76,7 @@ const Bakery = () => {
                 <Button size='sm' color='secondary'   onClick={() => toggle(item.product_description, 'bakery')}>Add Item</Button>
                 </CardBody>
             </Card>
-            </CardGroup>
+    
             </Col>
             
         ); 
