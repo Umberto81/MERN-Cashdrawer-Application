@@ -6,19 +6,6 @@ const KeyboardAddQuantity = (props) =>{
 
     return(
         <div>
-
-
-          <Row className={'pt-2 pb-2'} style={{justifyContent: 'center'}}>
-          <Card style={{minWidth: '125px'}}>
-            <CardBody>
-
-            {props.nums === '' ? 'insert qty' : props.nums}
-
-            </CardBody>
-
-          </Card>
-
-          </Row>
           
         
           <Row >
@@ -51,6 +38,17 @@ const KeyboardAddQuantity = (props) =>{
                     <Button color='secondary' type='button' className={'mr-1 mb-1 keyboard-flex'} onClick={props.back}>Back</Button>  
 
             </Row>
+            <Row className={'pt-2 pb-2'} style={{justifyContent: 'center'}}>
+          <Card style={{minWidth: '125px'}}>
+            <CardBody>
+
+            {props.nums === '' ? 'insert qty' : props.nums}
+
+            </CardBody>
+
+          </Card>
+
+          </Row>
 
         </div>
     )

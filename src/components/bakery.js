@@ -101,13 +101,11 @@ const Bakery = () => {
                 <Col className={'col'} style={{display: 'flex', flexDirection: 'column'}} >
                      <Button color='secondary' className={'mr-1 mb-1 button-alphabet'} value='all' type='button' onClick={callAllItems }>All items</Button>
 
-                    <Button color='secondary' className={'mr-1 mb-1 button-alphabet'} value='abcde' type='button'onClick={(e) =>alphabeticCall(e)}>A - E</Button>
-                    <Button color='secondary' className={'mr-1 mb-1 button-alphabet'} value='fghil' type='button' onClick={(e) =>alphabeticCall(e)}>F - L</Button>
-                    <Button color='secondary' className={'mr-1 mb-1 button-alphabet'} value='mnropq' type='button' onClick={(e) =>alphabeticCall(e)}>M - Q</Button>
-                    <Button color='secondary' className={'mr-1 mb-1 button-alphabet '} value='rstuvz' type='button' onClick={(e) =>alphabeticCall(e)}>S- Z</Button>
-                    <Link to="/">
-                    <Button  size='sm' color='primary' className={'button-alphabet'}> Shopping</Button>
-                </Link>
+                    <Button color='secondary' className={'mb-1 button-alphabet'} value='abcde' type='button'onClick={(e) =>alphabeticCall(e)}>A - E</Button>
+                    <Button color='secondary' className={'mb-1 button-alphabet'} value='fghil' type='button' onClick={(e) =>alphabeticCall(e)}>F - L</Button>
+                    <Button color='secondary' className={'mb-1 button-alphabet'} value='mnropq' type='button' onClick={(e) =>alphabeticCall(e)}>M - Q</Button>
+                    <Button color='secondary' className={'mb-1 button-alphabet '} value='rstuvz' type='button' onClick={(e) =>alphabeticCall(e)}>S- Z</Button>
+                    <Button  tag={Link} to='/' color='secondary' type='button' outline className={'mt-1 button-alphabet'}> Shopping</Button>
 
                 </Col> }
 
