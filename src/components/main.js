@@ -34,24 +34,25 @@ import { Link } from 'react-router-dom'
           </Col>
           
           
-          <Col className={'col-md-3'}>
+          <Col className={'col-md-3'} style={{display: 'flex'}}>
           <Row>
             <Link to="/bakery">
-            <Button color='secondary'  size='sm'  outline   className={'mr-1 mb-1'} > Bakery </Button> 
+            <Button color='secondary'  size='sm'  outline   className={'mr-1 mb-1 keyboard-flex'} > Bakery </Button> 
             </Link>
 
             <Link to="/produce">
-            <Button color='secondary'  size='sm'  outline   className={'mr-1 mb-1'} >Produce</Button>  
+            <Button color='secondary'  size='sm'  outline   className={'mr-1 mb-1 keyboard-flex'} >Produce</Button>  
             </Link>
 
-            <Button outline color='danger' size='sm' className={'mr-1 mb-1'} onClick={clearList}>Clear</Button>
-            <Button color='warning' size='sm' className={'mr-1 mb-1'} onClick={clearList}>Customer Refusal</Button>
-          
+            <Button color='danger' size='sm' className={'mr-1 mb-1 keyboard-flex'} onClick={clearList}>Clear</Button>
+            <Button color='warning' size='sm' className={'mr-1 mb-1 keyboard-flex'} onClick={clearList}>Customer Refusal</Button>
+            <Button color='warning' size='sm' className={'mr-1 mb-1 keyboard-flex'}>Card Discount</Button>
+
             <Link to="/managerFunctions">
-            <Button  color='primary' className={'mr-1 mb-1'} size='sm'>Manager Functions</Button>
+            <Button  color='primary' className={'mr-1 mb-1 keyboard-flex'} size='sm'>Manager Functions</Button>
             </Link>
 
-            <Button color='warning' size='sm' className={'mr-1 mb-1'} onClick={addCarrierBag}>Carrier Bag</Button>
+            <Button color='warning' size='sm' className={'mr-1 mb-1 keyboard-flex'} onClick={addCarrierBag}>Carrier Bag</Button>
 
 
 
