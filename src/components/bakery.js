@@ -84,10 +84,9 @@ const Bakery = () => {
     });
 
     return (
+        <fragment className={'px-4 mt-2'}>
 
-        <Container className='container-fluid mt-2'>
-
-        < MessageModal toggle = {toggle}
+< MessageModal toggle = {toggle}
                        toggleAdd= {toggleAdd}
                        productDescription={product}
                        modal={modal} 
@@ -133,8 +132,10 @@ const Bakery = () => {
                 </Col>
             </Row>
 
-        </Container>
        
+
+        </fragment>
+
     
     )
 }

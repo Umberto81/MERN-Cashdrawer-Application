@@ -6,11 +6,16 @@ import PriceEnquiry from './components/priceEnquiry';
 import Bakery from './components/bakery';
 import Produce from './components/produce';
 import ManagerFunctions from './components/managerFunctions';
+import {Container} from 'reactstrap';
 
 function App() {
+
+
+  
   return (
-      <div className="App">
-      <Router>
+      <div className="App px-4">
+        
+        <Router>
         <Route path='/' exact component={Main}/>
         <Route path='/priceEnquiry/:id' component={PriceEnquiry}/>
         <Route path='/bakery' component={Bakery}/>
@@ -19,9 +24,15 @@ function App() {
 
 
       </Router>
+    
     </div>
+
+    
     
   );
+
+  
 }
+
 
 export default App;
