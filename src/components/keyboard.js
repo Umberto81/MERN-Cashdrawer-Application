@@ -7,17 +7,6 @@ const Keyboard = (props) =>{
         <div>
 
 
-          <Row className={'pt-2 pb-2'} style={{justifyContent: 'center'}} >
-          <Card style={{minWidth: '125px'}}>
-            <CardBody>
-
-            {props.nums === '' ? 'insert a code' : props.nums}
-
-            </CardBody>
-
-          </Card>
-
-          </Row>
           <Col className={'col'} style={{display: 'flex', flexDirection: 'column'}} >
 
         
@@ -53,6 +42,18 @@ const Keyboard = (props) =>{
                     <Button color='success' type='button' className={'mr-1 mb-1 keyboard-flex'} onClick={props.requestProducts}>Enter</Button>  
 
             </Row>
+
+            <Row className={'pt-2 pb-2'} style={{justifyContent: 'center'}} >
+          <Card style={{minWidth: '125px'}}>
+            <CardBody>
+
+            {props.nums === '' ? 'insert a code' : props.nums}
+
+            </CardBody>
+
+          </Card>
+
+          </Row>
         </Col>
 
         </div>
