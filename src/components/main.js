@@ -55,9 +55,9 @@ import { Link } from 'react-router-dom'
             <Button  color='secondary' outline className={'mr-1 mb-1 '} size='sm' tag={Link}  to="/managerFunctions">Manager Functions</Button>
 
             <Button color='danger' size='sm' className={'mr-1 mb-1 keyboard-flex'}>Log</Button>
+      
 
-
-
+      
 
           </Row>
           

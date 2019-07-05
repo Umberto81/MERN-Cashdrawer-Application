@@ -62,6 +62,7 @@ const useFunctions = () => {
       product_count: 1
     }];
     setproductDetails(productJoin);
+   
 
 
   }

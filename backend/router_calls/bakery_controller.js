@@ -59,11 +59,10 @@ exports.updateBakeryItemById = (req, res) => {
 
 exports.saveNewBakery = (req, res) => {
     let bakeryProducts = new BakeryProducts(req.body);
-
     bakeryProducts.save()
         .then(todo => {
             res.status(200).json({
-                'img': 'img added successfully'
+                'product': 'product added successfully'
             });
         })
         .catch(err => {

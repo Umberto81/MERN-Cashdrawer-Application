@@ -44,7 +44,7 @@ exports.addProduct = (req, res) => {
         products.save()
             .then(todo => {
                 res.status(200).json({
-                    'todo': 'todo added successfully'
+                    'product': 'product added successfully'
                 });
             })
             .catch(err => {

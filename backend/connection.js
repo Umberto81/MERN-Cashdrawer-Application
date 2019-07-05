@@ -11,13 +11,15 @@ const product_controller = require('./router_calls/products_controller');
 const bakery_controller = require('./router_calls/bakery_controller');
 const produce_controller = require('./router_calls/produce_controller');
 
-
 app.use(cors());
 app.use(bodyParser.json());
 
 
-mongoose.connect('mongodb://127.0.0.1:27017/cashdrawer', { useNewUrlParser: true});
+// mongoose.connect('mongodb://127.0.0.1:27017/cashdrawer', { useNewUrlParser: true});
+ mongoose.connect('mongodb+srv://goffredo:mongodatabase@cluster0-b5oxy.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true});
 const connection = mongoose.connection;
+
+
 
 connection.once('open', () =>{
     console.log('connected to cashdrawer');
