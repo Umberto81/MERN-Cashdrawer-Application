@@ -10,10 +10,12 @@ const mongoose = require('mongoose');
 const productsRoute = express.Router();
 const bakeryRoute = express.Router();
 const produceRoute = express.Router();
+const loginRoute = express.Router();
 const PORT = 4000;
 const product_controller = require('./router_calls/products_controller');
 const bakery_controller = require('./router_calls/bakery_controller');
 const produce_controller = require('./router_calls/produce_controller');
+const login_controller = require('./router_calls/login_controller');
 const pwd = process.env.MONGO_PASSWORD;
 app.use(cors());
 app.use(bodyParser.json());
@@ -91,9 +93,22 @@ produceRoute.route('/delete/:id').delete(produce_controller.deleteProduceById);
 //find produceProduct by description
 produceRoute.route('/:produceProductName').get(produce_controller.findProduceByDescription);
 
+
+/*****
+ * 
+ * LOGIN SECTION
+ * 
+ *****/
+
+ loginRoute.route('/addLogin').post(login_controller.saveLogin);
+ loginRoute.route('/').get(login_controller.getLoginCredentials);
+
+
 app.use('/products', productsRoute);
 app.use('/bakery', bakeryRoute);
 app.use('/produce', produceRoute);
+app.use('/login', loginRoute);
+
 
 
 app.listen(PORT, () =>{

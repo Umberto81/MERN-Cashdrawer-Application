@@ -118,6 +118,7 @@ const useFunctions = () => {
     clearList,
     addCarrierBag,
     setproductDetails,
+    
   }
 
 }

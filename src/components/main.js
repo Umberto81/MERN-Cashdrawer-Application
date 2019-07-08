@@ -1,13 +1,13 @@
 
 import React from 'react';
 import Keyboard from './keyboard';
-import {Container, Row, Col, Button} from 'reactstrap';
+import {Row, Col, Button} from 'reactstrap';
 import MainBar from './mainBar';
 import TableList from './TableList';
 import useFunctions from '../custom_hooks.js/hooks';
 import { Link } from 'react-router-dom'
-
-
+import Login from './login'
+import useLogin from '../custom_hooks.js/login_hook'
 
   const Main = () => {
 
@@ -20,12 +20,18 @@ import { Link } from 'react-router-dom'
       
       } = useFunctions('');
 
+      const {
+        logged
+      } = useLogin();
 
       
 
     return (
       <div>
+
+      
       <MainBar />
+      
         
       <Row className={'mt-1'}>
           <Col >
