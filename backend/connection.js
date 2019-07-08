@@ -14,7 +14,7 @@ const PORT = 4000;
 const product_controller = require('./router_calls/products_controller');
 const bakery_controller = require('./router_calls/bakery_controller');
 const produce_controller = require('./router_calls/produce_controller');
-const pwd = process.env.MONGO_PASSWORD;
+const pwd = ../process.env.MONGO_PASSWORD;
 app.use(cors());
 app.use(bodyParser.json());
 
