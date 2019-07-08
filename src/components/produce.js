@@ -1,125 +1,140 @@
-import React, {useState, useEffect} from 'react';
-import axios from 'axios';
-import {Container, Button, Col, Row, Card, CardImg, CardBody,CardTitle, CardSubtitle, CardGroup } from 'reactstrap';
+import React from 'react';
+import {Container, Button, Col, Row, Card, CardImg, CardBody,CardTitle, CardSubtitle } from 'reactstrap';
 import { Link } from 'react-router-dom'
-import useFunctions from '../custom_hooks.js/hooks';
+import useModal from '../custom_hooks.js/modalProduce_hook';
+import KeyboardAddQuantity from './keyboardAddQuantity';
 import MessageModal from './messageModal';
 
-const Produce = () => {
 
-    const [produceDetails, setProduceDetails] = useState([]);
-    const [modal, setModal] = useState(false);
-
-    const {
-        setproductDetails,
-        productDetails,
-    } = useFunctions();
-
-    //toggle for modal window
-    const toggle = () => {
-
-        setModal(!modal);
-
-    }
-
-    //shows bakery products in database
-    useEffect(() =>{
-    
-        //request to fetch db products
-
-    axios.get('http://localhost:4000/produce/')
-    .then(response =>{
-        //implementare il salvataggio in array
-        setProduceDetails(response.data);
-    });
-  
-    }, []);
-
-    // adds item to shoppimg list
-    const addItemToState = (e, url) => {
-        e.preventDefault();
-        axios.get('http://localhost:4000/' + url + '/' + e.target.value)
-            .then(response => {
-                setproductDetails(productDetails.concat(response.data));
-                toggle();
-            });
+const Bakery = () => {
 
 
-    }
 
+    const {toggle, toggleAdd, noToggleAdd, modal,
+           product, produceDetails, setValue, reset, back, nums, addQtyNumber, alphabeticCall, newlist, listTrue, callAllItems} = useModal();
 
-    const produceList = produceDetails.map((item) =>{
-        return(
-        	
+    const produceList = produceDetails.sort((a, b) =>{
+        let nameA = a.product_description;
+        let nameB = b.product_description;
 
-    < Col className = {
-        'col-4'
-    }
-    style = {
-        {
-            display: 'flex'
+        if(nameA < nameB){
+            return(-1);
         }
-    } >
+        if(nameA > nameB){
+            return(1);
+        }
+
+        return 0;
         
-      <CardGroup >
-      <Card > 
-      <CardImg className={'img-thumbnail mx-auto d-block'}  style={{flexGrow: '10'}}S src={item.img_path} alt="Card image cap" />
-        <CardBody >
-        <CardTitle>{item.product_description}</CardTitle>
-        <CardSubtitle>{item.product_price}</CardSubtitle>
-        <Button size='sm' color='success' outline onClick={(e) => addItemToState(e, 'produce')} value={item.product_description}>Add Item</Button>
-        </CardBody>
-      </Card>
-     </CardGroup>
-    </Col>
+            }).map((item) =>{
+
+        return(
+            
+            <Col className={'col-3'} style={{display: 'flex', justifyContent: 'center'}}>
+
+            <Card className={'mb-1'}> 
+            <CardImg className={' mx-auto d-block mt-2'}  style={{flexGrow: '1'}} src={item.img_path} alt="Card image cap" />
+                <CardBody >
+                <CardTitle>{item.product_description}</CardTitle>
+                <CardSubtitle>{item.product_price}</CardSubtitle>
+                <Button size='sm' color='secondary'  onClick={() => toggle(item.product_description, 'produce')}>Add Item</Button>
+                </CardBody>
+            </Card>
         
+            </Col>
+            
+        ); 
+           
+    });
+
+
+    const List = newlist.sort((a, b) =>{
+        let nameA = a.product_description;
+        let nameB = b.product_description;
+
+        if(nameA < nameB){
+            return(-1);
+        }
+        if(nameA > nameB){
+            return(1);
+        }
+
+        return 0;
+    }).map((item) =>{
+
+        return(
+            
+            <Col className={'col-3'} style={{display: 'flex', justifyContent: 'center'}}>
+
+            
+            <Card className={'mb-1'}> 
+            <CardImg className={' mx-auto d-block mt-2'}  style={{flexGrow: '1'}} src={item.img_path} alt="Card image cap" />
+                <CardBody >
+                <CardTitle>{item.product_description}</CardTitle>
+                <CardSubtitle>{item.product_price}</CardSubtitle>
+                <Button size='sm' color='secondary'   onClick={() => toggle(item.product_description, 'produce')}>Add Item</Button>
+                </CardBody>
+            </Card>
+    
+            </Col>
             
         ); 
            
     });
 
     return (
-        <Container className='container-fluid mt-2'>
+        <fragment className={'px-4 mt-2'}>
 
-        < MessageModal toggle = {toggle}
+< MessageModal toggle = {toggle}
+                       toggleAdd= {toggleAdd}
+                       productDescription={product}
                        modal={modal} 
+                       noToggleAdd={noToggleAdd}
+                       product={product}
                        />            
 
              <Row >
+            
+                 
+                {
+                <Col className={'col'} style={{display: 'flex', flexDirection: 'column'}} >
+                     <Button color='secondary' className={'mr-1 mb-1 button-alphabet'} value='all' type='button' onClick={callAllItems }>All items</Button>
 
-                <Col className={'col'}>
-                </Col>
+                    <Button color='secondary' className={'mb-1 button-alphabet'} value='abcde' type='button'onClick={(e) =>alphabeticCall(e)}>A - E</Button>
+                    <Button color='secondary' className={'mb-1 button-alphabet'} value='fghil' type='button' onClick={(e) =>alphabeticCall(e)}>F - L</Button>
+                    <Button color='secondary' className={'mb-1 button-alphabet'} value='mnropq' type='button' onClick={(e) =>alphabeticCall(e)}>M - Q</Button>
+                    <Button color='secondary' className={'mb-1 button-alphabet '} value='rstuvz' type='button' onClick={(e) =>alphabeticCall(e)}>S- Z</Button>
+                    <Button  tag={Link} to='/' color='secondary' type='button' outline className={'mt-1 button-alphabet'}> Shopping</Button>
 
-                <Col className={'col-6'}> 
+                </Col> }
+
+                <Col className={'col-8'}> 
                 <Container>
                 <Row>
-                    {produceList}
+                    {listTrue === true ? List: produceList }
+                
                     
                 </Row>
                   
                 </Container>
                 </Col>
 
-                <Col>
-                {/* <Keyboard setValue={setValue}
-                            nums={nums}
-                            reset={reset}
-                            back={back}
-                  />   */}
+                <Col >
+                <KeyboardAddQuantity     setValue={setValue}
+                                         nums={nums}
+                                         reset={reset}
+                                         back={back}
+                                         addQtyNumber={addQtyNumber}
+                  />  
                 </Col>
-
-
-            <Link to="/">
-                <Button outline size='sm' color='primary' className={'mt-5'}> Shopping</Button>
-                </Link>
             </Row>
 
-        </Container>
        
+
+        </fragment>
+
     
     )
 }
 
-export default Produce;
-
-
+export default Bakery;

@@ -83,7 +83,7 @@ bakeryRoute.route('/:bakeryProductName').get(bakery_controller.findBakeryItemByD
 produceRoute.route('/addProduceProduct').post(produce_controller.saveNewProduce);
 
 //retrieve produce items
-produceRoute.route('/').get(produce_controller.getProduceIten);
+produceRoute.route('/').get(produce_controller.getProduceItem);
 
 //delete produceProduct by id
 produceRoute.route('/delete/:id').delete(produce_controller.deleteProduceById);

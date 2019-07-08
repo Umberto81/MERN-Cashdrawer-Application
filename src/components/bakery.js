@@ -1,7 +1,7 @@
 import React from 'react';
 import {Container, Button, Col, Row, Card, CardImg, CardBody,CardTitle, CardSubtitle } from 'reactstrap';
 import { Link } from 'react-router-dom'
-import useModal from '../custom_hooks.js/modal_hook';
+import useModal from '../custom_hooks.js/modalBakery_hook';
 import KeyboardAddQuantity from './keyboardAddQuantity';
 import MessageModal from './messageModal';
 
@@ -12,8 +12,6 @@ const Bakery = () => {
 
     const {toggle, toggleAdd, noToggleAdd, modal,
            product, bakeryDetails, setValue, reset, back, nums, addQtyNumber, alphabeticCall, newlist, listTrue, callAllItems} = useModal();
-
-
 
     const bakeryList = bakeryDetails.sort((a, b) =>{
         let nameA = a.product_description;
@@ -27,7 +25,8 @@ const Bakery = () => {
         }
 
         return 0;
-    }).map((item) =>{
+        
+            }).map((item) =>{
 
         return(
             
@@ -113,7 +112,7 @@ const Bakery = () => {
                 <Container>
                 <Row>
                     {listTrue === true ? List: bakeryList }
-                    {/* {bakeryList} */}
+                
                     
                 </Row>
                   

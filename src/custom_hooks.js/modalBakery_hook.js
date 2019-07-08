@@ -3,34 +3,44 @@ import {
     useEffect
 } from 'react';
 import axios from 'axios';
-import useFunctions from '../custom_hooks.js/hooks';
+import useFunctions from './hooks';
 
 const useModal = () => {
-
+    //triggers the modal window
     const [modal, setModal] = useState(false);
+
+    //grabs the product types
     const [product, setProductDescription] = useState();
+
+    //set the url to call the right product kind
     const [url, setUrl] = useState('');
+
     const {
         setproductDetails,
         productDetails
     } = useFunctions();
-    
+
+    //sets the list based on the kind of product selectioned
     const [bakeryDetails, setBakeryDetails] = useState([]);
+
+    //sets a new list to call the prducts based on alphabet
     const [newlist, setNewList] = useState([]);
+
     const [listTrue, setListTrue] = useState(false);
+
+    //keyboards variables
     const [nums, setNums] = useState('');
     const [qty, setQty] = useState(1);
 
 
 
-    //shows bakery products in database
+    //shows bakery products stored in database
     useEffect(() => {
 
         //request to fetch db products
 
         axios.get('http://localhost:4000/bakery')
             .then(response => {
-                //implementare il salvataggio in array
                 setBakeryDetails(response.data);
             });
 

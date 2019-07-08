@@ -11,7 +11,6 @@ const useFunctions = () => {
 
   const [nums, setNums] = useState('');
   const [productDetails, setproductDetails] = useState(initialValue);
-  console.log(nums);
 
   //keeps persistent localstorage database
   useEffect(() => {
@@ -80,7 +79,6 @@ const useFunctions = () => {
     if (nums !== "") {
       axios.get('http://localhost:4000/products/' + nums)
         .then(response => {
-          //implementare il salvataggio in array
           setproductDetails([...productDetails, ...response.data]);
           setNums('');
 

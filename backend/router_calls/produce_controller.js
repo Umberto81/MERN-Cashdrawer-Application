@@ -8,20 +8,20 @@ exports.saveNewProduce = (req, res) => {
     produceProducts.save()
         .then(todo => {
             res.status(200).json({
-                'img': 'img added successfully'
+                'product': 'product added successfully'
             });
         })
         .catch(err => {
-            res.status(400).send('adding new img failed');
+            res.status(400).send('adding product failed');
         });
 }
 
-exports.getProduceIten = (req, res) => {
-    ProduceProducts.find((err, bakery) => {
+exports.getProduceItem = (req, res) => {
+    ProduceProducts.find((err, produce) => {
         if (err) {
             console.log(err);
         } else {
-            res.json(bakery);
+            res.json(produce);
         }
     });
 }
