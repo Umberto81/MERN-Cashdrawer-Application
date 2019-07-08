@@ -104,7 +104,7 @@ const Bakery = () => {
                     <Button color='secondary' className={'mb-1 button-alphabet'} value='fghil' type='button' onClick={(e) =>alphabeticCall(e)}>F - L</Button>
                     <Button color='secondary' className={'mb-1 button-alphabet'} value='mnropq' type='button' onClick={(e) =>alphabeticCall(e)}>M - Q</Button>
                     <Button color='secondary' className={'mb-1 button-alphabet '} value='rstuvz' type='button' onClick={(e) =>alphabeticCall(e)}>S- Z</Button>
-                    <Button  tag={Link} to='/' color='secondary' type='button' outline className={'mt-1 button-alphabet'}> Shopping</Button>
+                    <Button  tag={Link} to='/main' color='secondary' type='button' outline className={'mt-1 button-alphabet'}> Shopping</Button>
 
                 </Col> }
 

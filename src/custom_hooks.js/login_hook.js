@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import axios from 'axios';
 
 const useLogin = (initialState) =>{
@@ -15,12 +15,14 @@ const useLogin = (initialState) =>{
     }
 
     const handleSubmit = (e) =>{
-        e.preventDefault();
+        
         axios.get('http://localhost:4000/login')
         .then(response =>{
             //console.log(response.data);
             if(value.password === response.data[0].password && value.username === response.data[0].userName){
                 setLogged(true);
+                console.log('done');
+                 
             }
         })
       }

@@ -6,6 +6,7 @@ import PriceEnquiry from './components/priceEnquiry';
 import Bakery from './components/bakery';
 import Produce from './components/produce';
 import ManagerFunctions from './components/managerFunctions';
+import Login from './components/login';
 
 function App() {
 
@@ -15,8 +16,8 @@ function App() {
       <div className="App px-4">
         
         <Router>
-
-        <Route path='/' exact component={Main}/>
+        <Route path='/' exact component={Login}/>
+        <Route path='/main' component={Main}/>
         <Route path='/priceEnquiry/:id' component={PriceEnquiry}/>
         <Route path='/bakery' component={Bakery}/>
         <Route path='/produce' component={Produce}/>
