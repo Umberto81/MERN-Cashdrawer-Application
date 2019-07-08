@@ -1,3 +1,7 @@
+
+//the .env file should be inside the src folder with all the backend folder
+require('dotenv').config();
+
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -10,13 +14,13 @@ const PORT = 4000;
 const product_controller = require('./router_calls/products_controller');
 const bakery_controller = require('./router_calls/bakery_controller');
 const produce_controller = require('./router_calls/produce_controller');
-
+const pwd = process.env.MONGO_PASSWORD;
 app.use(cors());
 app.use(bodyParser.json());
 
 
 // mongoose.connect('mongodb://127.0.0.1:27017/cashdrawer', { useNewUrlParser: true});
- mongoose.connect('mongodb+srv://goffredo:mongodatabase@cluster0-b5oxy.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true});
+ mongoose.connect(`mongodb+srv://goffredo:${pwd}@cluster0-b5oxy.mongodb.net/test?retryWrites=true&w=majority`, {useNewUrlParser: true});
 const connection = mongoose.connection;
 
 
@@ -37,7 +41,6 @@ productsRoute.route('/add').post(product_controller.addProduct);
 
 
 // show all the products
-//the regex doesn't allow call with numbers in url....MUST BE FIXED THE SUBMIT BUTTON ON KEYBOARD
 productsRoute.route('/').get(product_controller.showProducts);
 
 //delete product by id
