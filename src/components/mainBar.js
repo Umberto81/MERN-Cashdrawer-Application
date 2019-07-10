@@ -10,7 +10,10 @@ import {
     UncontrolledDropdown,
     DropdownToggle,
     DropdownMenu,
-    DropdownItem } from 'reactstrap';
+    DropdownItem, Button } from 'reactstrap';
+    import useLogin from '../custom_hooks.js/login_hook'
+
+
 
     //calculate date and time
 const time = () => {
@@ -29,7 +32,12 @@ const time = () => {
     + month + '-' + year;
 }
 
-const MainBar = ()=>{
+const MainBar = (props)=>{
+
+  const {
+    setLogged, logged, logout
+ } = useLogin();
+
     return (
         <div>
         <Navbar expand="md">
@@ -49,7 +57,7 @@ const MainBar = ()=>{
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>
-                    Log In
+                   <Button onClick={logout}>{logged? 'Logout' : 'Login'}</Button> 
                   </DropdownItem>
                   <DropdownItem>
                     Option 2

@@ -1,9 +1,12 @@
 import React from 'react'
-import { Button, Form, FormGroup, Label, Input, Row, Col } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Row, Col, Container } from 'reactstrap';
 import useLogin from '../custom_hooks.js/login_hook'
-import { Redirect } from 'react-router-dom';
+import {
+  withRouter
+} from "react-router-dom";
+import ProtectedRoute from './protectedRoute';
 
-const Login = () => {
+const Login = (props) => {
 
 
 
@@ -15,17 +18,17 @@ const Login = () => {
 
   const {
     handleChange, value, handleSubmit, logged
- } = useLogin(INITIAL_STATE);
+ } = useLogin(INITIAL_STATE, props);
 
- if(logged){
-   return <Redirect to='/main' />
- }else{
   return (
-
+    
+    <Container>
+     
     <Row>
-        <Col className={'col-md-3'}>
+      <Col></Col>
+        <Col className={'col-md-3 pt-5'}>
         <Form>
-    <FormGroup>
+    <FormGroup >
       <Label for="username">Username</Label>
       <Input type="text" name="username" value={value.username} id="username" placeholder="Username" 
         onChange={handleChange}
@@ -38,18 +41,22 @@ const Login = () => {
                   />
     </FormGroup>
 
-    <Button size='sm'color='primary' onClick={handleSubmit}>Submit</Button>
+    <Button size='sm' type='button' onClick={(e) => handleSubmit(e, props)}>Submit</Button>
     </Form>
         </Col>
 
+    <Col>
+    </Col>
+
     </Row>
+    </Container>
 
     
 )
- }
+ 
 
    
 }
 
-export default Login;
+export default withRouter(Login);
 

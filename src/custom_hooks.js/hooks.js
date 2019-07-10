@@ -11,6 +11,7 @@ const useFunctions = () => {
 
   const [nums, setNums] = useState('');
   const [productDetails, setproductDetails] = useState(initialValue);
+  console.log(nums);
 
   //keeps persistent localstorage database
   useEffect(() => {
@@ -18,6 +19,7 @@ const useFunctions = () => {
     localStorage.setItem('list', JSON.stringify(productDetails));
 
   }, [productDetails]);
+
 
 
 

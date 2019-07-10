@@ -1,12 +1,25 @@
-import React, {useState} from 'react';
+import {useState, useEffect} from 'react';
 import axios from 'axios';
 
-const useLogin = (initialState) =>{
+const useLogin = (initialState, props) =>{
+    const initialValue = JSON.parse(localStorage.getItem('logged' || 0));
 
-    const [logged, setLogged] = useState(false);
-    console.log(logged);
+    //chiarire il re-rendering.....
+    const [logged, setLogged] = useState(initialValue);
+    const [details, setDetails] = useState();
     const [value, setvalue] = useState(initialState);
 
+
+
+    useEffect(() => {
+
+        localStorage.setItem('logged', JSON.stringify(logged));
+    
+      }, [logged]);
+    
+ 
+
+  
     const handleChange = (e) =>{
         setvalue({
             ...value, [e.target.name]: e.target.value
@@ -14,22 +27,34 @@ const useLogin = (initialState) =>{
         
     }
 
-    const handleSubmit = (e) =>{
-        
+    const handleSubmit = (e, props, cb) =>{
+        e.preventDefault();
+     
         axios.get('http://localhost:4000/login')
         .then(response =>{
             //console.log(response.data);
             if(value.password === response.data[0].password && value.username === response.data[0].userName){
                 setLogged(true);
-                console.log('done');
+                props.history.push('/main');
+
+                console.log('press')
+             
                  
             }
         })
+
+        
+      }
+
+      const logout = () =>{
+        setLogged(false);
+        localStorage.setItem('logged', logged);
+        console.log('logout');
       }
 
     return{
 
-        handleChange, logged, value, handleSubmit
+        handleChange, logged, value, handleSubmit, setLogged, logout
     }
 
 }
