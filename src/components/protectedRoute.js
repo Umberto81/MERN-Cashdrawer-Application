@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import {
     Route,
     Redirect,
@@ -10,8 +10,9 @@ const  ProtectedRoute = ({ component: Component, ...rest }) => {
 
     const value = JSON.parse(localStorage.getItem('logged' || 0));
 
-  console.log(value);
- 
+  //   const {
+  //     logged
+  //  } = useLogin(); 
  
       return (
         <Route

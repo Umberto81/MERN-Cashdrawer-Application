@@ -12,7 +12,7 @@ import {
     DropdownMenu,
     DropdownItem, Button } from 'reactstrap';
     import useLogin from '../custom_hooks.js/login_hook'
-
+import {Redirect, withRouter} from 'react-router-dom'
 
 
     //calculate date and time
@@ -35,44 +35,51 @@ const time = () => {
 const MainBar = (props)=>{
 
   const {
-    setLogged, logged, logout
+    logged, logout
  } = useLogin();
 
-    return (
-        <div>
-        <Navbar expand="md">
-          <NavbarBrand href="/">CashDrawer - {time()}</NavbarBrand>
-          <NavbarToggler  />
-          <Collapse navbar>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink href="#">Components</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="#">GitHub</NavLink>
-              </NavItem>
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  Options
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem>
-                   <Button onClick={logout}>{logged? 'Logout' : 'Login'}</Button> 
-                  </DropdownItem>
-                  <DropdownItem>
-                    Option 2
-                  </DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>
-                    Reset
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-            </Nav>
-          </Collapse>
-        </Navbar>
-      </div>
-    )
+ if(!logged){
+   return <Redirect to='/login' />
+ }else{
+  return (
+    <div>
+    <Navbar expand="md">
+      <NavbarBrand href="/">CashDrawer - {time()}</NavbarBrand>
+      <NavbarToggler  />
+      <Collapse navbar>
+        <Nav className="ml-auto" navbar>
+          <NavItem>
+            <NavLink href="#">Components</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="#">GitHub</NavLink>
+          </NavItem>
+          <UncontrolledDropdown nav inNavbar>
+            <DropdownToggle nav caret>
+              Options
+            </DropdownToggle>
+            <DropdownMenu right>
+              <DropdownItem>
+               <Button size='sm' onClick={logout}>{logged? 'Logout' : 'Login'}</Button> 
+              </DropdownItem>
+              <DropdownItem>
+                Option 2
+              </DropdownItem>
+              <DropdownItem divider />
+              <DropdownItem>
+                Reset
+              </DropdownItem>
+            </DropdownMenu>
+          </UncontrolledDropdown>
+        </Nav>
+      </Collapse>
+    </Navbar>
+  </div>
+)
+
+
+ }
+   
 }
 
-export default MainBar;
+export default withRouter(MainBar);

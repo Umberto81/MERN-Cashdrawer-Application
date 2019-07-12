@@ -3,6 +3,7 @@ import {
   useEffect
 } from 'react';
 import axios from 'axios';
+import useLogin from '../custom_hooks.js/login_hook'
 
 
 const useFunctions = () => {
@@ -11,17 +12,15 @@ const useFunctions = () => {
 
   const [nums, setNums] = useState('');
   const [productDetails, setproductDetails] = useState(initialValue);
-  console.log(nums);
+  const { logged
+ } = useLogin();
 
   //keeps persistent localstorage database
   useEffect(() => {
 
     localStorage.setItem('list', JSON.stringify(productDetails));
 
-  }, [productDetails]);
-
-
-
+  }, [productDetails, logged]);
 
   //set the state keyboard numbers
   const setValue = (e) => {

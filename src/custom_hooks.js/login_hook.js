@@ -1,6 +1,8 @@
-import {useState, useEffect} from 'react';
+import React,  {useState, useEffect} from 'react';
 import axios from 'axios';
-
+import {
+    Redirect,
+  } from "react-router-dom";
 const useLogin = (initialState, props) =>{
     const initialValue = JSON.parse(localStorage.getItem('logged' || 0));
 
@@ -36,20 +38,15 @@ const useLogin = (initialState, props) =>{
             if(value.password === response.data[0].password && value.username === response.data[0].userName){
                 setLogged(true);
                 props.history.push('/main');
-
-                console.log('press')
-             
-                 
+                              
             }
-        })
+        });
 
-        
       }
 
       const logout = () =>{
         setLogged(false);
-        localStorage.setItem('logged', logged);
-        console.log('logout');
+       // console.log('logout');
       }
 
     return{

@@ -4,11 +4,8 @@ import useLogin from '../custom_hooks.js/login_hook'
 import {
   withRouter
 } from "react-router-dom";
-import ProtectedRoute from './protectedRoute';
 
 const Login = (props) => {
-
-
 
   const INITIAL_STATE = {
     username: '',

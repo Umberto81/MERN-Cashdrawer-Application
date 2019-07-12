@@ -1,6 +1,6 @@
 import React from 'react';
 import {Container, Button, Col, Row, Card, CardImg, CardBody,CardTitle, CardSubtitle } from 'reactstrap';
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import useModal from '../custom_hooks.js/modalBakery_hook';
 import KeyboardAddQuantity from './keyboardAddQuantity';
 import MessageModal from './messageModal';
@@ -137,4 +137,4 @@ const Bakery = () => {
     )
 }
 
-export default Bakery;
+export default withRouter(Bakery);

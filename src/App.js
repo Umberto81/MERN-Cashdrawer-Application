@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Main from './components/main';
 import PriceEnquiry from './components/priceEnquiry';
 import Bakery from './components/bakery';
@@ -17,15 +17,17 @@ function App() {
       <div className="App px-4">
         
         <Router>
-        <ProtectedRoute path="/main" component={Main}/>
+          <Switch>
 
-        <Route path='/login' component={Login}/>
-        {/* <Route path='/main' component={Main}/> */}
-        <Route path='/priceEnquiry/:id' component={PriceEnquiry}/>
-        <ProtectedRoute path='/bakery' component={Bakery}/>
-        <Route path='/produce' component={Produce}/>
-        <Route path='/managerFunctions' component={ManagerFunctions}/>
-
+          <ProtectedRoute path="/main" component={Main}/>
+          <Route path='/login' component={Login}/>
+          {/* <Route path='/main' component={Main}/> */}
+          <Route path='/priceEnquiry/:id' component={PriceEnquiry}/>
+          <ProtectedRoute path='/bakery' component={Bakery}/>
+          <ProtectedRoute path='/produce' component={Produce}/>
+          <ProtectedRoute path='/managerFunctions' component={ManagerFunctions}/>
+          <Route path='*' component={() => "404 NOT FOUND"}/>
+          </Switch>
         </Router>
     
     </div>
