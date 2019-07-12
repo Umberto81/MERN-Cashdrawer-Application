@@ -1,9 +1,7 @@
 import React from 'react'
 import { Button, Form, FormGroup, Label, Input, Row, Col, Container } from 'reactstrap';
 import useLogin from '../custom_hooks.js/login_hook'
-import {
-  withRouter
-} from "react-router-dom";
+
 
 const Login = (props) => {
 
@@ -55,5 +53,5 @@ const Login = (props) => {
    
 }
 
-export default withRouter(Login);
+export default Login;
 

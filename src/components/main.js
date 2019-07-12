@@ -5,7 +5,7 @@ import {Row, Col, Button} from 'reactstrap';
 import MainBar from './mainBar';
 import TableList from './TableList';
 import useFunctions from '../custom_hooks.js/hooks';
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 const Main = () => {
 
@@ -53,7 +53,7 @@ const Main = () => {
               <Row>
                 <Button  color='secondary' outline className={'mr-1 mb-1 keyboard-flex'} size='sm' tag={Link}  to="/managerFunctions">Manager Functions</Button>
     
-                <Button color='danger' size='sm' className={'mr-1 mb-1 keyboard-flex'}>Log</Button>
+                <Button color='danger' size='sm' className={'mr-1 mb-1 keyboard-flex'} tag={Link} to='productEnquiry'>Product Enquiry</Button>
           
     
           
@@ -85,4 +85,4 @@ const Main = () => {
 
 
 
-export default Main;
+export default withRouter(Main);

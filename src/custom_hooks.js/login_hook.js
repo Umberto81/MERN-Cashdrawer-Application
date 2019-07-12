@@ -1,17 +1,11 @@
-import React,  {useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import axios from 'axios';
-import {
-    Redirect,
-  } from "react-router-dom";
 const useLogin = (initialState, props) =>{
     const initialValue = JSON.parse(localStorage.getItem('logged' || 0));
 
     //chiarire il re-rendering.....
     const [logged, setLogged] = useState(initialValue);
-    const [details, setDetails] = useState();
     const [value, setvalue] = useState(initialState);
-
-
 
     useEffect(() => {
 

@@ -39,7 +39,7 @@ const MainBar = (props)=>{
  } = useLogin();
 
  if(!logged){
-   return <Redirect to='/login' />
+   return <Redirect to='/' />
  }else{
   return (
     <div>

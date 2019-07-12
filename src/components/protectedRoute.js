@@ -1,19 +1,14 @@
 import React from 'react'
 import {
     Route,
-    Redirect,
+    Redirect
   } from "react-router-dom";
-  import useLogin from '../custom_hooks.js/login_hook';
 
 
 const  ProtectedRoute = ({ component: Component, ...rest }) => {
 
     const value = JSON.parse(localStorage.getItem('logged' || 0));
 
-  //   const {
-  //     logged
-  //  } = useLogin(); 
- 
       return (
         <Route
           {...rest}
@@ -24,7 +19,7 @@ const  ProtectedRoute = ({ component: Component, ...rest }) => {
             ) : (
               <Redirect
                 to={{
-                  pathname: "/login",
+                  pathname: "/",
                   state: { from: props.location }
                 }}
               />

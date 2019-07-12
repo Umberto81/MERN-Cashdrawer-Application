@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Main from './components/main';
-import PriceEnquiry from './components/priceEnquiry';
+import ProductEnquiry from './components/productEnquiry';
 import Bakery from './components/bakery';
 import Produce from './components/produce';
 import ManagerFunctions from './components/managerFunctions';
@@ -20,9 +20,8 @@ function App() {
           <Switch>
 
           <ProtectedRoute path="/main" component={Main}/>
-          <Route path='/login' component={Login}/>
-          {/* <Route path='/main' component={Main}/> */}
-          <Route path='/priceEnquiry/:id' component={PriceEnquiry}/>
+          <Route path='/' exact component={Login}/>
+          <Route path='/productEnquiry' component={ProductEnquiry}/>
           <ProtectedRoute path='/bakery' component={Bakery}/>
           <ProtectedRoute path='/produce' component={Produce}/>
           <ProtectedRoute path='/managerFunctions' component={ManagerFunctions}/>
