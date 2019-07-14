@@ -39,7 +39,7 @@ const useModal = () => {
 
         //request to fetch db products
 
-        axios.get('http://localhost:4000/bakery')
+        axios.get('http://localhost:4000/products/section/bakery')
             .then(response => {
                 setBakeryDetails(response.data);
             });

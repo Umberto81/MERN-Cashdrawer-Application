@@ -39,7 +39,7 @@ const useModal = () => {
 
         //request to fetch db products
 
-        axios.get('http://localhost:4000/produce')
+        axios.get('http://localhost:4000/products/section/produce')
             .then(response => {
                 setProduceDetails(response.data);
             });

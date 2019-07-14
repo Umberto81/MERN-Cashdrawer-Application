@@ -12,6 +12,7 @@ const useFunctions = () => {
 
   const [nums, setNums] = useState('');
   const [productDetails, setproductDetails] = useState(initialValue);
+  console.log(productDetails);
   const { logged
  } = useLogin();
 

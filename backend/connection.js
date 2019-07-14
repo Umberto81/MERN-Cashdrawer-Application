@@ -39,17 +39,17 @@ connection.once('open', () =>{
  *****/
 
 //save new product
-productsRoute.route('/add').post(product_controller.addProduct);
+productsRoute.route('/add').post(product_controller.saveProduct);
 
 
 // show all the products
 productsRoute.route('/').get(product_controller.showProducts);
 
 //delete product by id
-productsRoute.route('/delete/:id').delete(product_controller.deleteProduct);
+productsRoute.route('/delete/:id').delete(product_controller.deleteProductById);
 
 //find product by number
-productsRoute.route('/:nums').get(product_controller.findProductByNumber);
+productsRoute.route('/:nums').get(product_controller.findProductByCode);
 
 
 /*****
@@ -60,16 +60,10 @@ productsRoute.route('/:nums').get(product_controller.findProductByNumber);
 
 
 //save new bakery
-bakeryRoute.route('/addBakeryProduct').post(bakery_controller.saveNewBakery);
-
 //retrieve bakery items
-bakeryRoute.route('/').get(bakery_controller.getBakeryItem);
+productsRoute.route('/section/:section').get(product_controller.getProductsBySection);
 
-//delete bakeryProduct by id
-bakeryRoute.route('/delete/:id').delete(bakery_controller.deleteBakeryItemById);
 
-//update bakeryProduct by id
-bakeryRoute.route('/update/:id').post(bakery_controller.updateBakeryItemById);
 
 //find bakeryProduct by description
 bakeryRoute.route('/:bakeryProductName').get(bakery_controller.findBakeryItemByDescription);
@@ -81,20 +75,14 @@ bakeryRoute.route('/:bakeryProductName').get(bakery_controller.findBakeryItemByD
  * 
  *****/
 
-//save new produce
-produceRoute.route('/addProduceProduct').post(produce_controller.saveNewProduce);
 
 //retrieve produce items
-produceRoute.route('/').get(produce_controller.getProduceItem);
+productsRoute.route('/section/:section').get(product_controller.getProductsBySection);
 
-//delete produceProduct by id
-produceRoute.route('/delete/:id').delete(produce_controller.deleteProduceById);
 
 //find produceProduct by description
 produceRoute.route('/:produceProductName').get(produce_controller.findProduceByDescription);
 
-//update produceProduct by id
-produceRoute.route('/update/:id').post(produce_controller.updateProduceItemById);
 
 
 /*****
