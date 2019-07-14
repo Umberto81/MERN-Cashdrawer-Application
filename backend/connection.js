@@ -11,7 +11,7 @@ const productsRoute = express.Router();
 const bakeryRoute = express.Router();
 const produceRoute = express.Router();
 const loginRoute = express.Router();
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 const product_controller = require('./router_calls/products_controller');
 const bakery_controller = require('./router_calls/bakery_controller');
 const produce_controller = require('./router_calls/produce_controller');
@@ -92,6 +92,9 @@ produceRoute.route('/delete/:id').delete(produce_controller.deleteProduceById);
 
 //find produceProduct by description
 produceRoute.route('/:produceProductName').get(produce_controller.findProduceByDescription);
+
+//update produceProduct by id
+produceRoute.route('/update/:id').post(produce_controller.updateProduceItemById);
 
 
 /*****

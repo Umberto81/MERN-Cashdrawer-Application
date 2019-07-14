@@ -1,38 +1,102 @@
-import {useState} from 'react'
+import {
+    useState,
+} from 'react';
+import axios from 'axios';
+import useFunctions from './hooks';
 
-const  useProductEnquiry = (initilaState) => {
+const useModal = () => {
+    //triggers the modal window
+    const [modal, setModal] = useState(false);
+    
+    //grabs the product types
+    const [product, setProductDescription] = useState();
 
-    const [value, setvalue] = useState(initilaState);
-  
-    const handleChange = (e) =>{
-        setvalue({
-            ...value, [e.target.name]: e.target.value
-        });
-        
+    //set the url to call the right product kind
+    const [url, setUrl] = useState('');
+
+    const {
+        setproductDetails,
+        productDetails
+    } = useFunctions();
+
+    //sets the list based on the kind of product selectioned
+    const [bakeryDetails, setBakeryDetails] = useState([]);
+
+ 
+    //keyboards variables
+    const [nums, setNums] = useState('');
+    const [qty, setQty] = useState(1);
+
+
+
+    //set the state keyboard numbers
+    const setValue = (e) => {
+
+        setNums(nums + e.target.value);
     }
 
-    //checks if only numbers are inserted into the input field
-    const numValidator = (value) =>{
-        let num = /^[0-9]+$/;
-        if(value.match(num)){
-            return true;
-        }
+    //resets all the numbers into the text area
+    const reset = () => {
+
+        setNums('');
     }
 
-    const handleSubmit = () =>{
-        
-        if(numValidator(value.productCode)){
-            console.log('ok');
-        }else{
-            console.log('nooooooooooooo');
-        }
-       
-     
+    //delete only the last number into the text area
+    const back = () => {
+
+        setNums(nums.substr(0, nums.length - 1));
     }
 
+
+
+
+    //toggle for modal window, add quantity to selection
+    const toggle = (product, url) => {
+
+        setModal(!modal);
+        setProductDescription(product);
+        setUrl(url);
+        setQty(parseInt(nums));
+        setNums('');
+
+    }
+
+
+
+
+    //add bakeryitem to shopping list in modal window
+    const toggleAdd = (product) => {
+
+        //axios call
+
+
+    }
+
+
+    //Opposite modal call on DoNotAdd Button in modal window
+    const noToggleAdd = () => {
+
+        setModal(!modal);
+
+    }
+
+    
     return {
-        handleChange, value, handleSubmit
+        toggleAdd,
+        noToggleAdd,
+        toggle,
+        modal,
+        setModal,
+        url,
+        setUrl,
+        product,
+        bakeryDetails,
+        setValue,
+        reset,
+        back,
+        nums,
+      
     }
 }
 
-export default useProductEnquiry;
+export default useModal;

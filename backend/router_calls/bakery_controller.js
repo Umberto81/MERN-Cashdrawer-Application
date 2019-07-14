@@ -3,7 +3,7 @@ let BakeryProducts = require('../bakery.model');
 
 
 exports.getBakeryItem = (req, res) => {
-    BakeryProducts.find((err, bakery) => {
+    BakeryProducts.find({product_section: 'bakery'},(err, bakery) => {
         if (err) {
             console.log(err);
         } else {

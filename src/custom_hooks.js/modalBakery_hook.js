@@ -8,7 +8,7 @@ import useFunctions from './hooks';
 const useModal = () => {
     //triggers the modal window
     const [modal, setModal] = useState(false);
-    console.log(modal);
+    
     //grabs the product types
     const [product, setProductDescription] = useState();
 

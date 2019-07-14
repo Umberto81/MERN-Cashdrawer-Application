@@ -17,7 +17,7 @@ exports.saveNewProduce = (req, res) => {
 }
 
 exports.getProduceItem = (req, res) => {
-    ProduceProducts.find((err, produce) => {
+    ProduceProducts.find({product_section: 'produce'},(err, produce) => {
         if (err) {
             console.log(err);
         } else {
@@ -49,3 +49,23 @@ exports.findProduceByDescription = (req, res) =>{
         }
     });
 }
+
+exports.updateProduceItemById = (req, res) => {
+    ProduceProducts.findById(req.params.id, (err, item) =>{
+        if(!item){
+            res.status(404).send('item not found');
+        }else{
+            item.product_description = req.body.product_description;
+            item.img_path = req.body.img_path;
+            item.product_price = req.body.product_price;
+            item.product_count = req.body.product_count;
+
+            item.save().then(item => {
+                res.json('item updated');
+            }).catch(err =>{
+                res.status(400).send('update not possible');
+            });
+        }
+    });
+}
+

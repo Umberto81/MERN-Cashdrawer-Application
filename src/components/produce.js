@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import useModal from '../custom_hooks.js/modalProduce_hook';
 import KeyboardAddQuantity from './keyboardAddQuantity';
 import MessageModal from './messageModal';
-
+import MainBar from './mainBar'
 
 const Bakery = () => {
 
@@ -83,7 +83,9 @@ const Bakery = () => {
     });
 
     return (
-        <fragment className={'px-4 mt-2'}>
+        <fragment >
+          <MainBar />
+
 
 < MessageModal toggle = {toggle}
                        toggleAdd= {toggleAdd}

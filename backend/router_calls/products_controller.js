@@ -50,3 +50,7 @@ exports.addProduct = (req, res) => {
             .catch(err => {
                     res.status(400).send('adding new todo failed');
                 })}
+
+exports.searchProductByCode = (req, res) =>{
+    
+}
