@@ -73,7 +73,7 @@ const Bakery = () => {
                 <CardBody >
                 <CardTitle>{item.product_description}</CardTitle>
                 <CardSubtitle>{item.product_price}</CardSubtitle>
-                <Button size='sm' color='secondary'   onClick={() => toggle(item.product_description, 'bakery')}>Add Item</Button>
+                <Button size='sm' color='secondary'   onClick={() => toggle(item.product_description)}>Add Item</Button>
                 </CardBody>
             </Card>
     

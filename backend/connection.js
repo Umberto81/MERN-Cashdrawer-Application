@@ -51,6 +51,8 @@ productsRoute.route('/delete/:id').delete(product_controller.deleteProductById);
 //find product by number
 productsRoute.route('/:nums').get(product_controller.findProductByCode);
 
+//retrieve items by section
+productsRoute.route('/section/:section').get(product_controller.getProductsBySection);
 
 /*****
  * 
@@ -59,14 +61,8 @@ productsRoute.route('/:nums').get(product_controller.findProductByCode);
  *****/
 
 
-//save new bakery
-//retrieve bakery items
-productsRoute.route('/section/:section').get(product_controller.getProductsBySection);
-
-
-
 //find bakeryProduct by description
-bakeryRoute.route('/:bakeryProductName').get(bakery_controller.findBakeryItemByDescription);
+productsRoute.route('/bakery/:bakeryProductName').get(bakery_controller.findBakeryItemByDescription);
 
 
 /*****
@@ -75,14 +71,8 @@ bakeryRoute.route('/:bakeryProductName').get(bakery_controller.findBakeryItemByD
  * 
  *****/
 
-
-//retrieve produce items
-productsRoute.route('/section/:section').get(product_controller.getProductsBySection);
-
-
 //find produceProduct by description
-produceRoute.route('/:produceProductName').get(produce_controller.findProduceByDescription);
-
+productsRoute.route('/produce/:produceProductName').get(produce_controller.findProduceByDescription);
 
 
 /*****
