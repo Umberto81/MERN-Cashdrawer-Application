@@ -84,7 +84,7 @@ const useModal = () => {
     //add bakeryitem to shopping list in modal window
     const toggleAdd = (product) => {
 
-        axios.get('http://localhost:4000/products/bakery/' + product)
+        axios.get('http://localhost:4000/products/description/' + product)
             .then(response => {
                 let copy = [...productDetails];
 

@@ -13,8 +13,8 @@ const produceRoute = express.Router();
 const loginRoute = express.Router();
 const PORT = process.env.PORT || 4000;
 const product_controller = require('./router_calls/products_controller');
-const bakery_controller = require('./router_calls/bakery_controller');
-const produce_controller = require('./router_calls/produce_controller');
+// const bakery_controller = require('./router_calls/bakery_controller');
+// const produce_controller = require('./router_calls/produce_controller');
 const login_controller = require('./router_calls/login_controller');
 const pwd = process.env.MONGO_PASSWORD;
 app.use(cors());
@@ -54,26 +54,8 @@ productsRoute.route('/:nums').get(product_controller.findProductByCode);
 //retrieve items by section
 productsRoute.route('/section/:section').get(product_controller.getProductsBySection);
 
-/*****
- * 
- * BAKERY SECTION
- * 
- *****/
-
-
-//find bakeryProduct by description
-productsRoute.route('/bakery/:bakeryProductName').get(bakery_controller.findBakeryItemByDescription);
-
-
-/*****
- * 
- * PRODUCE SECTION
- * 
- *****/
-
-//find produceProduct by description
-productsRoute.route('/produce/:produceProductName').get(produce_controller.findProduceByDescription);
-
+//find Product by description
+productsRoute.route('/description/:description').get(product_controller.findProductByDescription);
 
 /*****
  * 
@@ -86,8 +68,8 @@ productsRoute.route('/produce/:produceProductName').get(produce_controller.findP
 
 
 app.use('/products', productsRoute);
-app.use('/bakery', bakeryRoute);
-app.use('/produce', produceRoute);
+// app.use('/bakery', bakeryRoute);
+// app.use('/produce', produceRoute);
 app.use('/login', loginRoute);
 
 

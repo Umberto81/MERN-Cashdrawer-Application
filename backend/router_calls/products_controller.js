@@ -27,7 +27,7 @@ exports.deleteProductById = (req, res) => {
 }
 
 exports.findProductByDescription = (req, res) => {
-    let description = req.params.ProductName;
+    let description = req.params.description;
     Products.find({
         product_description: description
     }, (err, product) => {
