@@ -4,12 +4,13 @@ import KeyboardSearchProduct  from './keyboardSearchProduct';
 import {Link} from 'react-router-dom';
 import MainBar from './mainBar';
 import useProduct from '../custom_hooks.js/productEnquiry_hook';
+import CardProductEnquiry from './cardProductEnquiry';
 
 
 const ProductEnquiry = () =>{
 
  
-  const {requestProduct, setValue, reset, back, nums, addQtyNumber} = useProduct();
+  const {requestProduct, product, setValue, reset, back, nums, addQtyNumber} = useProduct();
 
     return(
       <div>
@@ -18,11 +19,13 @@ const ProductEnquiry = () =>{
             
            <Col className={'col-md-6'}>
 
-      <Button color='secondary'  size='sm'  outline   className={'mr-1 mb-1'} to='/main' tag={Link}> Shopping </Button> 
+      <Button color='secondary'  size='sm'  outline   className={'mr-1 mb-1'} to='/main' tag={Link}> Shopping </Button>
+       
+      <CardProductEnquiry product={product}/>
       </Col>
 
     <Col className={'pt-5'}>
-      
+
         <KeyboardSearchProduct setValue={setValue}
                                nums={nums}
                                reset={reset}

@@ -2,22 +2,14 @@ import {
     useState,
 } from 'react';
 import axios from 'axios';
-import useFunctions from './hooks';
+import {addProductEnquiry} from '../actions/productAction';
+import {  useDispatch } from "react-redux";
 
 const useProduct = () => {
    
     //grabs the product types
     const [product, setProduct] = useState();
-    console.log(product);
-
-    
-    const {
-        setproductDetails,
-        productDetails
-    } = useFunctions();
-
-   
-
+    const dispatch = useDispatch();
  
     //keyboards variables
     const [nums, setNums] = useState('');
@@ -47,12 +39,19 @@ const useProduct = () => {
      //request to fetch db products
   const requestProduct = () => {
     if (nums !== "") {
-      axios.get('http://localhost:4000/products/' + nums)
+        axios.get('http://localhost:4000/products/' + nums)
         .then(response => {
-            setProduct(response.data);
-          setNums('');
+          
+        dispatch(addProductEnquiry(response.data));
+
+        setNums('');
 
         });
+
+
+
+     
+
     }
 
   }
