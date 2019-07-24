@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
     Collapse,
     Navbar,
@@ -11,8 +11,10 @@ import {
     DropdownToggle,
     DropdownMenu,
     DropdownItem, Button } from 'reactstrap';
-    import useLogin from '../custom_hooks.js/login_hook'
-import {Redirect, withRouter} from 'react-router-dom'
+import useLogin from '../custom_hooks.js/login_hook';
+import useFunctions from '../custom_hooks.js/hooks';
+     
+import {Redirect} from 'react-router-dom'
 
 
     //calculate date and time
@@ -38,6 +40,12 @@ const MainBar = (props)=>{
     logged, logout
  } = useLogin();
 
+ const {member} = useFunctions();
+console.log(member);
+ useEffect(() => {
+   
+ }, [member]);
+
  if(!logged){
    return <Redirect to='/' />
  }else{
@@ -52,7 +60,7 @@ const MainBar = (props)=>{
             <NavLink href="#">Components</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="#">GitHub</NavLink>
+            <NavLink href="#">{member ? 'Member' : 'Not a member'}</NavLink>
           </NavItem>
           <UncontrolledDropdown nav inNavbar>
             <DropdownToggle nav caret>
@@ -82,4 +90,4 @@ const MainBar = (props)=>{
    
 }
 
-export default withRouter(MainBar);
+export default MainBar;

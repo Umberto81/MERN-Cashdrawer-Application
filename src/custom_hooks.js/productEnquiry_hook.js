@@ -4,23 +4,19 @@ import {
 import axios from 'axios';
 import useFunctions from './hooks';
 
-const useModal = () => {
-    //triggers the modal window
-    const [modal, setModal] = useState(false);
-    
+const useProduct = () => {
+   
     //grabs the product types
-    const [product, setProductDescription] = useState();
+    const [product, setProduct] = useState();
+    console.log(product);
 
-    //set the url to call the right product kind
-    const [url, setUrl] = useState('');
-
+    
     const {
         setproductDetails,
         productDetails
     } = useFunctions();
 
-    //sets the list based on the kind of product selectioned
-    const [bakeryDetails, setBakeryDetails] = useState([]);
+   
 
  
     //keyboards variables
@@ -48,55 +44,27 @@ const useModal = () => {
     }
 
 
+     //request to fetch db products
+  const requestProduct = () => {
+    if (nums !== "") {
+      axios.get('http://localhost:4000/products/' + nums)
+        .then(response => {
+            setProduct(response.data);
+          setNums('');
 
-
-    //toggle for modal window, add quantity to selection
-    const toggle = (product, url) => {
-
-        setModal(!modal);
-        setProductDescription(product);
-        setUrl(url);
-        setQty(parseInt(nums));
-        setNums('');
-
+        });
     }
 
-
-
-
-    //add bakeryitem to shopping list in modal window
-    const toggleAdd = (product) => {
-
-        //axios call
-
-
-    }
-
-
-    //Opposite modal call on DoNotAdd Button in modal window
-    const noToggleAdd = () => {
-
-        setModal(!modal);
-
-    }
+  }
 
     
     return {
-        toggleAdd,
-        noToggleAdd,
-        toggle,
-        modal,
-        setModal,
-        url,
-        setUrl,
-        product,
-        bakeryDetails,
         setValue,
         reset,
         back,
         nums,
-      
+        requestProduct
     }
 }
 
-export default useModal;
+export default useProduct;

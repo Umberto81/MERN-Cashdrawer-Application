@@ -14,7 +14,7 @@ const Main = () => {
       
       nums, setValue, reset, back, requestProducts,
       deleteProduct, productDetails, clearList,
-      addCarrierBag
+      addCarrierBag, discount, member, setMember
       
       } = useFunctions('');
 
@@ -22,7 +22,8 @@ const Main = () => {
   
         return (
           <div>
-          <MainBar  
+          <MainBar member={member}
+          setMember={setMember}
             />
           
             
@@ -45,7 +46,7 @@ const Main = () => {
     
               <Row>
                 <Button color='warning' size='sm' className={'mr-1 mb-1 keyboard-flex'} onClick={clearList}>Customer Refusal</Button>
-                <Button color='warning' size='sm' className={'mr-1 mb-1 keyboard-flex'}>Card Discount</Button>
+                <Button color='warning' size='sm' className={'mr-1 mb-1 keyboard-flex'} onClick={discount}>Card Discount</Button>
     
                 <Button color='warning' size='sm' className={'mr-1 mb-1 keyboard-flex'} onClick={addCarrierBag}>Carrier Bag</Button>
                 </Row>    

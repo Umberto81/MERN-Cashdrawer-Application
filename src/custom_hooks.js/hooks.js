@@ -12,7 +12,8 @@ const useFunctions = () => {
 
   const [nums, setNums] = useState('');
   const [productDetails, setproductDetails] = useState(initialValue);
-  console.log(productDetails);
+  const [member, setMember] = useState(false);
+
   const { logged
  } = useLogin();
 
@@ -87,10 +88,12 @@ const useFunctions = () => {
         });
     }
 
-
-
   }
 
+  //card discount function
+  const discount = () =>{
+    setMember(true);
+  }
 
 
 
@@ -120,7 +123,7 @@ const useFunctions = () => {
     clearList,
     addCarrierBag,
     setproductDetails,
-    
+    discount, member, setMember
   }
 
 }
