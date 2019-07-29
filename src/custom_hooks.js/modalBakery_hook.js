@@ -42,6 +42,8 @@ const useModal = () => {
         axios.get('http://localhost:4000/products/section/bakery')
             .then(response => {
                 setBakeryDetails(response.data);
+            }).catch(error => {
+                console.log(error.response)
             });
 
     }, []);
@@ -116,6 +118,8 @@ const useModal = () => {
             
                
 
+            }).catch(error => {
+                console.log(error.response)
             });
 
 
@@ -152,6 +156,8 @@ const useModal = () => {
             .then(response => {
                 //implementare il salvataggio in array
                 setBakeryDetails(response.data);
+            }).catch(error => {
+                console.log(error.response)
             });
             setListTrue(false);
 

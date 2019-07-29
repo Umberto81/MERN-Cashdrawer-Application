@@ -8,7 +8,6 @@ import {  useDispatch } from "react-redux";
 const useProduct = () => {
    
     //grabs the product types
-    const [product, setProduct] = useState();
     const dispatch = useDispatch();
  
     //keyboards variables
@@ -46,6 +45,8 @@ const useProduct = () => {
 
         setNums('');
 
+        }).catch(error => {
+            console.log(error.response)
         });
 
 

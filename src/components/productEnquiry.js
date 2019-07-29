@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Form, FormGroup, Label, Input, Row, Col, Container } from 'reactstrap';
+import { Button, Row, Col } from 'reactstrap';
 import KeyboardSearchProduct  from './keyboardSearchProduct';
 import {Link} from 'react-router-dom';
 import MainBar from './mainBar';
@@ -13,18 +13,22 @@ const ProductEnquiry = () =>{
   const {requestProduct, product, setValue, reset, back, nums, addQtyNumber} = useProduct();
 
     return(
-      <div>
+      <fragment>
+
              <MainBar />
              <Row className={'mt-1'}>
+               <Col className={'col-2'}></Col>
             
-           <Col className={'col-md-6'}>
-
-      <Button color='secondary'  size='sm'  outline   className={'mr-1 mb-1'} to='/main' tag={Link}> Shopping </Button>
+           <Col className={'col-4'} >
        
-      <CardProductEnquiry product={product}/>
-      </Col>
+              <CardProductEnquiry product={product}/>
+              <br></br>
 
-    <Col className={'pt-5'}>
+              <Button color='secondary'  size='sm'  outline   className={'mr-1 mb-1 button-alphabet'} to='/main' tag={Link}> Shopping </Button>
+
+             </Col>
+
+    <Col className={'col-4'}>
 
         <KeyboardSearchProduct setValue={setValue}
                                nums={nums}
@@ -41,7 +45,7 @@ const ProductEnquiry = () =>{
     </Row>
 
 
-      </div>
+    </fragment>
    
     )
 }

@@ -116,6 +116,8 @@ const useModal = () => {
             
                
 
+            }).catch(error => {
+                console.log(error.response)
             });
 
 
@@ -152,6 +154,8 @@ const useModal = () => {
             .then(response => {
                 //implementare il salvataggio in array
                 setProduceDetails(response.data);
+            }).catch(error => {
+                console.log(error.response)
             });
             setListTrue(false);
 

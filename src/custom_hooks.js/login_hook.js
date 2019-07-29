@@ -1,5 +1,7 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
+
+
 const useLogin = (initialState, props) =>{
     const initialValue = JSON.parse(localStorage.getItem('logged' || 0));
 
@@ -34,7 +36,9 @@ const useLogin = (initialState, props) =>{
                 props.history.push('/main');
                               
             }
-        });
+        }).catch(error => {
+            console.log(error.response)
+        });;
 
       }
 

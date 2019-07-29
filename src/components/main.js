@@ -23,7 +23,7 @@ const Main = () => {
         return (
           <div>
           <MainBar member={member}
-          setMember={setMember}
+                    setMember={setMember}
             />
           
             
@@ -35,26 +35,25 @@ const Main = () => {
               </Col>
               
               
-              <Col className={'col-md-3'} style={{display: 'flex', flexDirection: 'column'}}>
+              <Col className={'col-4'} style={{display: 'flex', flexDirection: 'column'}}>
               <Row >
-                <Button color='secondary'  size='sm'  outline   className={'mr-1 mb-1 keyboard-flex'} to='/bakery' tag={Link}> Bakery </Button> 
+                <Button color='secondary'  size='lg'  outline   className={'mr-1 mb-1 keyboard-flex'} to='/bakery' tag={Link}>In store  Bakery </Button> 
     
-                <Button color='secondary'  size='sm'  outline   className={'mr-1 mb-1 keyboard-flex'} tag={Link} to='/produce'>Produce</Button>  
+                <Button color='secondary'  size='lg'  outline   className={'mr-1 mb-1 keyboard-flex'} tag={Link} to='/produce'>Produce</Button>  
     
-                <Button color='danger' size='sm' className={'mr-1 mb-1 keyboard-flex'} onClick={clearList}>Clear</Button>
+                <Button color='danger' size='lg' className={'mr-1 mb-1 keyboard-flex'} onClick={clearList}>Clear</Button>
               </Row>
     
               <Row>
-                <Button color='warning' size='sm' className={'mr-1 mb-1 keyboard-flex'} onClick={clearList}>Customer Refusal</Button>
-                <Button color='warning' size='sm' className={'mr-1 mb-1 keyboard-flex'} onClick={discount}>Card Discount</Button>
-    
-                <Button color='warning' size='sm' className={'mr-1 mb-1 keyboard-flex'} onClick={addCarrierBag}>Carrier Bag</Button>
+                <Button color='warning' size='lg' className={'mr-1 mb-1 keyboard-flex'} onClick={clearList}>Customer Refusal</Button>
+                <Button color='warning' size='lg' className={'mr-1 mb-1 keyboard-flex'} onClick={discount}>Card Discount</Button>
+                <Button color='warning' size='lg' className={'mr-1 mb-1 keyboard-flex'} onClick={addCarrierBag}>Carrier Bag</Button>
                 </Row>    
     
               <Row>
-                <Button  color='secondary' outline className={'mr-1 mb-1 keyboard-flex'} size='sm' tag={Link}  to="/managerFunctions">Manager Functions</Button>
+                <Button  color='secondary' outline className={'mr-1 mb-1 keyboard-flex'} size='lg' tag={Link}  to="/managerFunctions">Manager Functions</Button>
     
-                <Button color='danger' size='sm' className={'mr-1 mb-1 keyboard-flex'} tag={Link} to='productEnquiry'>Product Enquiry</Button>
+                <Button color='secondary' outline size='lg' className={'mr-1 mb-1 keyboard-flex'} tag={Link} to='productEnquiry'>Product Enquiry</Button>
           
     
           
@@ -64,7 +63,7 @@ const Main = () => {
               </Col>
     
               
-              <Col>
+              <Col className={'col-4'}>
               <Keyboard         setValue={setValue}
                                 nums={nums}
                                 reset={reset}

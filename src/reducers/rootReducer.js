@@ -1,6 +1,6 @@
 
 const initState = {
-    logged: false,
+    member: false,
     product: []
 };
 
@@ -15,6 +15,14 @@ const rootReducer = (state = initState, action) => {
                 ...state,
                 product: action.payload
             };
+        
+            case 'APPLY_DISCOUNT':  
+             return{
+                 ...state,
+                 member: action.member
+             }
+        
+
 
         default:
             return state;

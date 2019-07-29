@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {
     Collapse,
     Navbar,
@@ -13,7 +13,8 @@ import {
     DropdownItem, Button } from 'reactstrap';
 import useLogin from '../custom_hooks.js/login_hook';
 import useFunctions from '../custom_hooks.js/hooks';
-     
+import {connect} from 'react-redux'
+  
 import {Redirect} from 'react-router-dom'
 
 
@@ -40,11 +41,8 @@ const MainBar = (props)=>{
     logged, logout
  } = useLogin();
 
- const {member} = useFunctions();
-console.log(member);
- useEffect(() => {
-   
- }, [member]);
+console.log(props.member);
+ 
 
  if(!logged){
    return <Redirect to='/' />
@@ -60,7 +58,7 @@ console.log(member);
             <NavLink href="#">Components</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="#">{member ? 'Member' : 'Not a member'}</NavLink>
+            <NavLink href="#">{props.member ? 'Member' : 'Not a member'}</NavLink>
           </NavItem>
           <UncontrolledDropdown nav inNavbar>
             <DropdownToggle nav caret>
@@ -90,4 +88,9 @@ console.log(member);
    
 }
 
-export default MainBar;
+const mapStatetoProps = state => ({
+  member: state.member
+});
+
+
+export default connect(mapStatetoProps)(MainBar);

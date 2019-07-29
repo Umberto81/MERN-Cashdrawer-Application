@@ -4,7 +4,8 @@ import {
 } from 'react';
 import axios from 'axios';
 import useLogin from '../custom_hooks.js/login_hook'
-
+import {  useDispatch } from "react-redux";
+import {applyDiscount} from '../actions/discountAction';
 
 const useFunctions = () => {
 
@@ -13,6 +14,7 @@ const useFunctions = () => {
   const [nums, setNums] = useState('');
   const [productDetails, setproductDetails] = useState(initialValue);
   const [member, setMember] = useState(false);
+  const dispatch = useDispatch();
 
   const { logged
  } = useLogin();
@@ -85,14 +87,16 @@ const useFunctions = () => {
           setproductDetails([...productDetails, ...response.data]);
           setNums('');
 
-        });
+        }).catch(error => {
+          console.log(error.response)
+      });
     }
 
   }
 
   //card discount function
   const discount = () =>{
-    setMember(true);
+    dispatch(applyDiscount());
   }
 
 

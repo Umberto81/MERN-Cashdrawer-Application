@@ -4,6 +4,8 @@ import {
     Redirect
   } from "react-router-dom";
 
+  import {connect} from 'react-redux'
+
 
 const  ProtectedRoute = ({ component: Component, ...rest }) => {
 
@@ -31,5 +33,9 @@ const  ProtectedRoute = ({ component: Component, ...rest }) => {
    
   }
 
-export default ProtectedRoute;
+  const mapStatetoProps = state => ({
+    logged: state.logged
+  });
+
+export default connect(mapStatetoProps)(ProtectedRoute);
 

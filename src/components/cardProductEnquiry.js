@@ -1,45 +1,58 @@
 import React from 'react';
-import { Card, CardImg, CardText, CardBody,
+import { Card, CardText, CardBody,
   CardTitle, CardSubtitle, Button } from 'reactstrap';
 import {connect} from 'react-redux'
+import useModal from '../custom_hooks.js/modalBakery_hook';
+import MessageModal from './messageModal';
 
 
 const CardProductEnquiry = (props) => {
-    console.log(props);
 
-    const {product} = props;
+  const {toggle, toggleAdd, noToggleAdd, modal,
+    product, bakeryDetails, setValue, reset, back, nums, addQtyNumber, alphabeticCall, newlist, listTrue, callAllItems} = useModal();
 
-    const list = product.map((item) =>{
+    const {productEnquired} = props;
+
+    const list = productEnquired.map((item) =>{
       return(
+        
         <div>
-<CardTitle>{item.product_description}</CardTitle>
-          <CardSubtitle>{item.product_price}</CardSubtitle>
-          <CardText>{item.product_code}</CardText>
-          <Button>Button</Button>
+          <CardTitle>{item.product_description}</CardTitle>
+          <CardSubtitle>Price: {item.product_price}</CardSubtitle>
+          <CardText>Product Code: {item.product_code}</CardText>
+          <Button color='secondary' size='sm'  onClick={() => toggle(item.product_description, item.product_section)}>Add Item</Button>
 
         </div>
           
       )
     });
   return (
-    <div>
-      <Card>
+
+    <fragment>
+
+< MessageModal toggle = {toggle}
+                       toggleAdd= {toggleAdd}
+                       productDescription={product}
+                       modal={modal} 
+                       noToggleAdd={noToggleAdd}
+                       product={product}
+                       />      
+ <Card>
        
-        <CardBody>
-          {list}
-        </CardBody>
-      </Card>
-    </div>
+       <CardBody>
+         {list}
+       </CardBody>
+     </Card>
+
+    </fragment>
+     
   );
 };
 
 const mapStatetoProps = state => ({
-  product: state.product
+  productEnquired: state.product
 });
 
-const mapDispatchToProps = dipsatch =>({
 
 
-})
-
-export default connect(mapStatetoProps, mapDispatchToProps)(CardProductEnquiry);
+export default connect(mapStatetoProps)(CardProductEnquiry);
