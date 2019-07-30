@@ -6,6 +6,7 @@ import axios from 'axios';
 import useLogin from '../custom_hooks.js/login_hook'
 import {  useDispatch } from "react-redux";
 import {applyDiscount} from '../actions/discountAction';
+import {zeroTotal} from '../actions/totalActions';
 
 const useFunctions = () => {
 
@@ -53,6 +54,7 @@ const useFunctions = () => {
 
   const clearList = () => {
     setproductDetails([]);
+    dispatch(zeroTotal());
   }
 
 

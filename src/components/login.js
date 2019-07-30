@@ -12,7 +12,7 @@ const Login = (props) => {
 
 
   const {
-    handleChange, value, handleSubmit, logged
+    handleChange, value, handleSubmit
  } = useLogin(INITIAL_STATE, props);
 
   return (

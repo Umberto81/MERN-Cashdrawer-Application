@@ -1,13 +1,15 @@
 
 import React from 'react';
 import Keyboard from './keyboard';
-import {Row, Col, Button} from 'reactstrap';
+import {Row, Col, Button, Card, CardBody} from 'reactstrap';
 import MainBar from './mainBar';
 import TableList from './TableList';
 import useFunctions from '../custom_hooks.js/hooks';
-import { Link, withRouter } from 'react-router-dom'
+import useSubTotal from '../custom_hooks.js/subTotalHook';
+import { Link } from 'react-router-dom'
+import {connect} from 'react-redux'
 
-const Main = () => {
+const Main = (props) => {
 
  
      const {
@@ -17,6 +19,9 @@ const Main = () => {
       addCarrierBag, discount, member, setMember
       
       } = useFunctions('');
+
+      const {setSubtotal} = useSubTotal();
+      
 
   
   
@@ -35,7 +40,7 @@ const Main = () => {
               </Col>
               
               
-              <Col className={'col-4'} style={{display: 'flex', flexDirection: 'column'}}>
+              <Col className={'col-2'} style={{display: 'flex', flexDirection: 'column'}}>
               <Row >
                 <Button color='secondary'  size='lg'  outline   className={'mr-1 mb-1 keyboard-flex'} to='/bakery' tag={Link}>In store  Bakery </Button> 
     
@@ -54,16 +59,35 @@ const Main = () => {
                 <Button  color='secondary' outline className={'mr-1 mb-1 keyboard-flex'} size='lg' tag={Link}  to="/managerFunctions">Manager Functions</Button>
     
                 <Button color='secondary' outline size='lg' className={'mr-1 mb-1 keyboard-flex'} tag={Link} to='productEnquiry'>Product Enquiry</Button>
-          
-    
-          
-    
               </Row>
               
               </Col>
+
+              <Col className={'col-2'} style={{display: 'flex', flexDirection: 'column'}}>
+                {props.total !== null ? 
+               <div> 
+
+              <Button color='secondary' size='lg' value='1.00' className={'mr-1 mb-1 keyboard-flex'} onClick={e => setSubtotal(e)}>£ 1 </Button> 
+              <Button color='secondary' size='lg' value='2.00' className={'mr-1 mb-1 keyboard-flex'} onClick={e => setSubtotal(e)}>£ 2 
+              </Button> 
+              <Button color='secondary' size='lg' value='10.00' className={'mr-1 mb-1 keyboard-flex'} onClick={e => setSubtotal(e)}>£ 10 </Button> 
+              <Button color='secondary' size='lg' value='20.00' className={'mr-1 mb-1 keyboard-flex'} onClick={e => setSubtotal(e)}>£ 20 </Button> 
+             
+              <Card style={{minWidth: '125px'}}>
+                 <CardBody>
+                   total:  {props.total}
+                </CardBody>
+              </Card>
+              
+              </div>
+              
+              : null}
+             
+
+              </Col>
     
               
-              <Col className={'col-4'}>
+              <Col className={'col-3'}>
               <Keyboard         setValue={setValue}
                                 nums={nums}
                                 reset={reset}
@@ -83,6 +107,9 @@ const Main = () => {
   
 }
 
+const mapStatetoProps = state => ({
+  total: state.total
+});
 
 
-export default withRouter(Main);
+export default connect(mapStatetoProps)(Main);

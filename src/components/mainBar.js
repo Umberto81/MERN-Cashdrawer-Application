@@ -12,7 +12,6 @@ import {
     DropdownMenu,
     DropdownItem, Button } from 'reactstrap';
 import useLogin from '../custom_hooks.js/login_hook';
-import useFunctions from '../custom_hooks.js/hooks';
 import {connect} from 'react-redux'
   
 import {Redirect} from 'react-router-dom'

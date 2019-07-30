@@ -9,7 +9,7 @@ import MessageModal from './messageModal';
 const CardProductEnquiry = (props) => {
 
   const {toggle, toggleAdd, noToggleAdd, modal,
-    product, bakeryDetails, setValue, reset, back, nums, addQtyNumber, alphabeticCall, newlist, listTrue, callAllItems} = useModal();
+    product} = useModal();
 
     const {productEnquired} = props;
 

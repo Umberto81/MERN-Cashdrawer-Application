@@ -1,7 +1,17 @@
 import React from 'react';
 import { Table, Button } from 'reactstrap';
+import {subTotal} from '../actions/totalActions'
+import {  useDispatch } from "react-redux";
+
 
 const TableList = (props) =>{
+
+  const dispatch = useDispatch();
+
+  const saveTotal = () =>{
+    dispatch(subTotal(total));
+    console.log(total);
+  }
 
   let list = props.productsDetails.map((item, index) =>{
 
@@ -42,7 +52,7 @@ const TableList = (props) =>{
          <td>	£ {total}</td>
 
        </tbody>
-       <Button color='success' size="sm"  type='button' style={{display: props.productsDetails.length === 0 ? 'none' : 'block' }}>SubTotal</Button>  
+       <Button color='success' size="lg"  type='button' style={{display: props.productsDetails.length === 0 ? 'none' : 'block' }} onClick={() => saveTotal(total)}>SubTotal</Button>  
 
       </Table>
     )

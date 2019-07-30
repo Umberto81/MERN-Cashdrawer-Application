@@ -16,7 +16,14 @@ const ProductEnquiry = () =>{
       <fragment>
 
              <MainBar />
+
+             <Row style={{justifyContent: 'center'}} className={'mb-3'}>
+               <h2 >Insert Code to Enquire a Product</h2>
+
+               </Row>
+
              <Row className={'mt-1'}>
+               
                <Col className={'col-2'}></Col>
             
            <Col className={'col-4'} >

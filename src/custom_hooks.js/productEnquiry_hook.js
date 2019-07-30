@@ -12,7 +12,6 @@ const useProduct = () => {
  
     //keyboards variables
     const [nums, setNums] = useState('');
-    const [qty, setQty] = useState(1);
 
 
 

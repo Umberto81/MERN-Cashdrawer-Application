@@ -1,7 +1,8 @@
 
 const initState = {
     member: false,
-    product: []
+    product: [],
+    total: null
 };
 
 console.log(initState);
@@ -21,7 +22,21 @@ const rootReducer = (state = initState, action) => {
                  ...state,
                  member: action.member
              }
-        
+        case 'SAVE_TOTAL':
+            return{
+                ...state,
+                total: action.total
+            }
+        case 'ZERO_TOTAL':
+            return{
+                ...state,
+                total: action.total
+            }
+        case 'FINAL_SUBTOTAL':
+            return{
+                ...state,
+                total: action.total
+            }
 
 
         default:
