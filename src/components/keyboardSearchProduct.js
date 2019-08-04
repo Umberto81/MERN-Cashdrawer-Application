@@ -7,7 +7,7 @@ const KeyboardSearchProduct = (props) =>{
     return(
         <div>
             <Row>
-            <Col   className={'col-md-4'} style={{justifyContent: 'center'}}>
+            <Col   className={'col-md-4 justify-content-center'}>
          <Card style={{minWidth: '125px'}}>
             <CardBody>
 

@@ -17,7 +17,7 @@ const ProductEnquiry = () =>{
 
              <MainBar />
 
-             <Row style={{justifyContent: 'center'}} className={'mb-3'}>
+             <Row className={'mb-3 justify_content-center'}>
                <h2 >Insert Code to Enquire a Product</h2>
 
                </Row>

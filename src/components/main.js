@@ -1,6 +1,7 @@
 
 import React from 'react';
 import Keyboard from './keyboard';
+import SubTotalKeyboard from './subTotalKeyboard';
 import {Row, Col, Button, Card, CardBody} from 'reactstrap';
 import MainBar from './mainBar';
 import TableList from './TableList';
@@ -16,7 +17,7 @@ const Main = (props) => {
       
       nums, setValue, reset, back, requestProducts,
       deleteProduct, productDetails, clearList,
-      addCarrierBag, discount, member, setMember
+      addCarrierBag, discount, member, setMember, calculateChange
       
       } = useFunctions('');
 
@@ -40,7 +41,7 @@ const Main = (props) => {
               </Col>
               
               
-              <Col className={'col-2'} style={{display: 'flex', flexDirection: 'column'}}>
+              <Col className={'col-2 d-flex flex-column'}>
               <Row >
                 <Button color='secondary'  size='lg'  outline   className={'mr-1 mb-1 keyboard-flex'} to='/bakery' tag={Link}>In store  Bakery </Button> 
     
@@ -88,12 +89,26 @@ const Main = (props) => {
     
               
               <Col className={'col-3'}>
+              {props.total !== null ? 
+              <div>
+                 <SubTotalKeyboard         setValue={setValue}
+                                nums={nums}
+                                reset={reset}
+                                back={back}
+                                calculateChange={calculateChange}
+                      />  
+              </div> :
+              <div>
               <Keyboard         setValue={setValue}
                                 nums={nums}
                                 reset={reset}
                                 back={back}
                                 requestProducts={requestProducts}
+
                       />  
+
+              </div>}
+             
               </Col>
     
           </Row>

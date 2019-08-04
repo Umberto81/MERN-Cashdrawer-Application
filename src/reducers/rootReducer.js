@@ -38,6 +38,12 @@ const rootReducer = (state = initState, action) => {
                 total: action.total
             }
 
+        case 'CALCULATED_CHANGE':
+            return{
+                ...state,
+                total: action.total
+            }
+
 
         default:
             return state;

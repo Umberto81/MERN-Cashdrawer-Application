@@ -5,8 +5,11 @@ import {
 import axios from 'axios';
 import useLogin from '../custom_hooks.js/login_hook'
 import {  useDispatch } from "react-redux";
-import {applyDiscount} from '../actions/discountAction';
-import {zeroTotal} from '../actions/totalActions';
+import { applyDiscount } from '../actions/discountAction';
+import { zeroTotal } from '../actions/totalActions';
+import { useSelector } from 'react-redux'
+import { calculatedChange} from '../actions/totalActions';
+
 
 const useFunctions = () => {
 
@@ -15,10 +18,11 @@ const useFunctions = () => {
   const [nums, setNums] = useState('');
   const [productDetails, setproductDetails] = useState(initialValue);
   const [member, setMember] = useState(false);
+  const total = useSelector(state => state.total);
+
   const dispatch = useDispatch();
 
-  const { logged
- } = useLogin();
+  const { logged } = useLogin();
 
   //keeps persistent localstorage database
   useEffect(() => {
@@ -117,6 +121,14 @@ const useFunctions = () => {
     }
   }
 
+  //calculates the amount of change due after transaction
+  const calculateChange = () =>{
+    let finalTotal = parseFloat(nums) - parseFloat(total);
+
+    dispatch(calculatedChange(finalTotal));
+  }
+
+
   return {
     setValue,
     reset,
@@ -129,7 +141,7 @@ const useFunctions = () => {
     clearList,
     addCarrierBag,
     setproductDetails,
-    discount, member, setMember
+    discount, member, setMember, calculateChange
   }
 
 }

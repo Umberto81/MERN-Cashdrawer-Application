@@ -31,7 +31,7 @@ const Bakery = () => {
 
         return(
             
-            <Col className={'col-3'} style={{display: 'flex', justifyContent: 'center'}}>
+            <Col className={'col-3 d-flex justify-content-center'}>
 
             <Card className={'mb-1'}> 
             <CardImg className={' mx-auto d-block mt-2'}  style={{flexGrow: '1'}} src={item.img_path} alt="Card image cap" />
@@ -65,7 +65,7 @@ const Bakery = () => {
 
         return(
             
-            <Col className={'col-3'} style={{display: 'flex', justifyContent: 'center'}}>
+            <Col className={'col-3 d-flex justify-content-center'}>
 
             
             <Card className={'mb-1'}> 

@@ -2,19 +2,19 @@ import React from 'react';
 import { Row, Button, Card, CardBody, Col} from 'reactstrap';
 
 
-const Keyboard = (props) =>{
+const SubtotalKeyboard = (props) =>{
 
 
     return(
         <div>
 
 
-          <Col className={'col d-flex flex-column'} >
+          <Col className={'col'} style={{display: 'flex', flexDirection: 'column'}} >
 
         
           <Row>
 
-                    <Button color='secondary' className={'mr-1 mb-1 keyboard-flex'} type='button' value = '1' onClick={e => props.setValue(e)}>1</Button>
+                    <Button color='secondary' className={'mr-1 mb-1 keyboard-flex'} type='button' value = '1' onClick={e => props.setValue(e)}>A</Button>
                     <Button color='secondary' className={'mr-1 mb-1 keyboard-flex '}  type='button' value = '2' onClick={e => props.setValue(e)}>2</Button>
                     <Button color='secondary' className={'mr-1 mb-1 keyboard-flex'} type='button' value = '3' onClick={e => props.setValue(e)}>3</Button>  
 
@@ -41,7 +41,7 @@ const Keyboard = (props) =>{
             </Row>
             <Row>
                     <Button color='secondary' type='button' className={'mr-1 mb-1 keyboard-flex'} onClick={props.back}>Back</Button>  
-                    <Button color='success' type='button' className={'mr-1 mb-1 keyboard-flex'} onClick={props.requestProducts}>Enter</Button>  
+                    <Button color='success' type='button' className={'mr-1 mb-1 keyboard-flex'} onClick={props.calculateChange}>Enter</Button>  
 
             </Row>
 
@@ -49,7 +49,7 @@ const Keyboard = (props) =>{
           <Card style={{minWidth: '125px'}}>
             <CardBody>
 
-            {props.nums === '' ? 'insert a code' : props.nums}
+            {props.nums === '' ? 'insert money amount' : props.nums}
 
             </CardBody>
 
@@ -62,4 +62,4 @@ const Keyboard = (props) =>{
     )
 }
 
-export default Keyboard;
+export default SubtotalKeyboard;
