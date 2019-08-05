@@ -7,8 +7,6 @@ import useLogin from '../custom_hooks.js/login_hook'
 import {  useDispatch } from "react-redux";
 import { applyDiscount } from '../actions/discountAction';
 import { zeroTotal } from '../actions/totalActions';
-import { useSelector } from 'react-redux'
-import { calculatedChange} from '../actions/totalActions';
 
 
 const useFunctions = () => {
@@ -18,7 +16,6 @@ const useFunctions = () => {
   const [nums, setNums] = useState('');
   const [productDetails, setproductDetails] = useState(initialValue);
   const [member, setMember] = useState(false);
-  const total = useSelector(state => state.total);
 
   const dispatch = useDispatch();
 
@@ -121,12 +118,7 @@ const useFunctions = () => {
     }
   }
 
-  //calculates the amount of change due after transaction
-  const calculateChange = () =>{
-    let finalTotal = parseFloat(nums) - parseFloat(total);
 
-    dispatch(calculatedChange(finalTotal));
-  }
 
 
   return {
@@ -141,7 +133,7 @@ const useFunctions = () => {
     clearList,
     addCarrierBag,
     setproductDetails,
-    discount, member, setMember, calculateChange
+    discount, member, setMember
   }
 
 }

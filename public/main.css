@@ -1174,7 +1174,7 @@ a:hover {
 }
 
 .keyboard-flex {
-  flex: 2;
+  flex: 1;
   white-space: nowrap;
 }
 
@@ -1184,7 +1184,7 @@ a:hover {
 }
 
 * {
-  font-family: "Raleway", sans-serif;
+  font-family: "IBM Plex Mono", monospace;
 }
 
 /*!

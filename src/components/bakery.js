@@ -56,7 +56,8 @@ const Bakery = () => {
         if(nameA < nameB){
             return(-1);
         }
-        if(nameA > nameB){
+        if(nameA > nameB){      
+
             return(1);
         }
 
@@ -95,7 +96,7 @@ const Bakery = () => {
                        modal={modal} 
                        noToggleAdd={noToggleAdd}
                        product={product}
-                       />            
+/>            
 
              <Row >
             

@@ -17,7 +17,7 @@ const ProductEnquiry = () =>{
 
              <MainBar />
 
-             <Row className={'mb-3 justify_content-center'}>
+             <Row className={'mb-3 justify-content-center'}>
                <h2 >Insert Code to Enquire a Product</h2>
 
                </Row>
@@ -31,7 +31,7 @@ const ProductEnquiry = () =>{
               <CardProductEnquiry product={product}/>
               <br></br>
 
-              <Button color='secondary'  size='sm'  outline   className={'mr-1 mb-1 button-alphabet'} to='/main' tag={Link}> Shopping </Button>
+              <Button color='secondary'  size='sm'  outline   className={'mr-1 mb-1 h-25 d-flex align-items-center justify-content-center'} to='/main' tag={Link}> Shopping </Button>
 
              </Col>
 

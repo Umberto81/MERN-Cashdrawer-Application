@@ -1,9 +1,8 @@
 import React from 'react';
-import { Card, CardText, CardBody,
-  CardTitle, CardSubtitle, Button } from 'reactstrap';
-import {connect} from 'react-redux'
+import { Card, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
 import useModal from '../custom_hooks.js/modalBakery_hook';
 import MessageModal from './messageModal';
+import { useSelector } from 'react-redux'
 
 
 const CardProductEnquiry = (props) => {
@@ -11,7 +10,7 @@ const CardProductEnquiry = (props) => {
   const {toggle, toggleAdd, noToggleAdd, modal,
     product} = useModal();
 
-    const {productEnquired} = props;
+    const productEnquired = useSelector(state => state.product);
 
     const list = productEnquired.map((item) =>{
       return(
@@ -49,10 +48,5 @@ const CardProductEnquiry = (props) => {
   );
 };
 
-const mapStatetoProps = state => ({
-  productEnquired: state.product
-});
 
-
-
-export default connect(mapStatetoProps)(CardProductEnquiry);
+export default CardProductEnquiry;

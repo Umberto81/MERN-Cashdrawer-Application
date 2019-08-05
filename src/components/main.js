@@ -8,7 +8,9 @@ import TableList from './TableList';
 import useFunctions from '../custom_hooks.js/hooks';
 import useSubTotal from '../custom_hooks.js/subTotalHook';
 import { Link } from 'react-router-dom'
-import {connect} from 'react-redux'
+import { useSelector } from 'react-redux'
+import ModalTotal from './modalTotal';
+
 
 const Main = (props) => {
 
@@ -17,12 +19,13 @@ const Main = (props) => {
       
       nums, setValue, reset, back, requestProducts,
       deleteProduct, productDetails, clearList,
-      addCarrierBag, discount, member, setMember, calculateChange
+      addCarrierBag, discount, member, setMember
       
       } = useFunctions('');
 
-      const {setSubtotal} = useSubTotal();
-      
+      const {setSubtotal, setValueTotal, numsTotal, resetTotal, backTotal, calculateChange, toggle, modal} = useSubTotal();
+      const total = useSelector(state => state.total);
+
 
   
   
@@ -41,31 +44,31 @@ const Main = (props) => {
               </Col>
               
               
-              <Col className={'col-2 d-flex flex-column'}>
+              <Col className={'col-2 d-flex flex-column justify-content-between'}>
               <Row >
-                <Button color='secondary'  size='lg'  outline   className={'mr-1 mb-1 keyboard-flex'} to='/bakery' tag={Link}>In store  Bakery </Button> 
+                <Button color='secondary'  size='lg'  outline   className={'mr-1 mb-1 keyboard-flex'} to='/bakery' tag={Link}>In store Bakery </Button> 
     
                 <Button color='secondary'  size='lg'  outline   className={'mr-1 mb-1 keyboard-flex'} tag={Link} to='/produce'>Produce</Button>  
-    
                 <Button color='danger' size='lg' className={'mr-1 mb-1 keyboard-flex'} onClick={clearList}>Clear</Button>
               </Row>
     
+    
               <Row>
-                <Button color='warning' size='lg' className={'mr-1 mb-1 keyboard-flex'} onClick={clearList}>Customer Refusal</Button>
+                <Button color='warning' size='lg' className={'mr-1 mb-1 '} onClick={clearList}>Customer Refusal</Button>
                 <Button color='warning' size='lg' className={'mr-1 mb-1 keyboard-flex'} onClick={discount}>Card Discount</Button>
                 <Button color='warning' size='lg' className={'mr-1 mb-1 keyboard-flex'} onClick={addCarrierBag}>Carrier Bag</Button>
                 </Row>    
     
               <Row>
-                <Button  color='secondary' outline className={'mr-1 mb-1 keyboard-flex'} size='lg' tag={Link}  to="/managerFunctions">Manager Functions</Button>
+                <Button  color='secondary' outline className={'mr-1 mb-1'} size='lg' tag={Link}  to="/managerFunctions">Manager Functions</Button>
     
                 <Button color='secondary' outline size='lg' className={'mr-1 mb-1 keyboard-flex'} tag={Link} to='productEnquiry'>Product Enquiry</Button>
               </Row>
               
               </Col>
 
-              <Col className={'col-2'} style={{display: 'flex', flexDirection: 'column'}}>
-                {props.total !== null ? 
+              <Col className={'col-2 d-flex flex-direction-column'}>
+                {total !== null ? 
                <div> 
 
               <Button color='secondary' size='lg' value='1.00' className={'mr-1 mb-1 keyboard-flex'} onClick={e => setSubtotal(e)}>£ 1 </Button> 
@@ -76,26 +79,25 @@ const Main = (props) => {
              
               <Card style={{minWidth: '125px'}}>
                  <CardBody>
-                   total:  {props.total}
+                   total:  {total}
                 </CardBody>
               </Card>
               
               </div>
               
               : null}
-             
 
               </Col>
     
               
               <Col className={'col-3'}>
-              {props.total !== null ? 
+              {total !== null ? 
               <div>
-                 <SubTotalKeyboard         setValue={setValue}
-                                nums={nums}
-                                reset={reset}
-                                back={back}
-                                calculateChange={calculateChange}
+                 <SubTotalKeyboard setValueTotal={setValueTotal}
+                                   numsTotal={numsTotal}
+                                   resetTotal={resetTotal}
+                                   backTotal={backTotal}
+                                   calculateChange={calculateChange}
                       />  
               </div> :
               <div>
@@ -110,7 +112,10 @@ const Main = (props) => {
               </div>}
              
               </Col>
-    
+              < ModalTotal toggle = {toggle}
+                      modal={modal} 
+/>            
+
           </Row>
           
           </div>
@@ -122,9 +127,5 @@ const Main = (props) => {
   
 }
 
-const mapStatetoProps = state => ({
-  total: state.total
-});
 
-
-export default connect(mapStatetoProps)(Main);
+export default Main;
