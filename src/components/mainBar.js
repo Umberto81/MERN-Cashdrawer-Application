@@ -12,8 +12,8 @@ import {
     DropdownMenu,
     DropdownItem, Button } from 'reactstrap';
 import useLogin from '../custom_hooks.js/login_hook';
-import {connect} from 'react-redux'
-  
+import { useSelector } from 'react-redux'
+ 
 import {Redirect} from 'react-router-dom'
 
 
@@ -40,7 +40,7 @@ const MainBar = (props)=>{
     logged, logout
  } = useLogin();
 
-console.log(props.member);
+ const member = useSelector(state => state.member);
  
 
  if(!logged){
@@ -54,10 +54,7 @@ console.log(props.member);
       <Collapse navbar>
         <Nav className="ml-auto" navbar>
           <NavItem>
-            <NavLink href="#">Components</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="#">{props.member ? 'Member' : 'Not a member'}</NavLink>
+            <NavLink href="#">{member ? 'Member' : 'Not a member'}</NavLink>
           </NavItem>
           <UncontrolledDropdown nav inNavbar>
             <DropdownToggle nav caret>
@@ -65,7 +62,7 @@ console.log(props.member);
             </DropdownToggle>
             <DropdownMenu right>
               <DropdownItem>
-               <Button size='sm' onClick={logout}>{logged? 'Logout' : 'Login'}</Button> 
+                <Button size='sm' onClick={logout}>{logged? 'Sign Off' : 'Login'}</Button> 
               </DropdownItem>
               <DropdownItem>
                 Option 2
@@ -87,9 +84,4 @@ console.log(props.member);
    
 }
 
-const mapStatetoProps = state => ({
-  member: state.member
-});
-
-
-export default connect(mapStatetoProps)(MainBar);
+export default MainBar;

@@ -1,46 +1,42 @@
 import React from 'react'
 import { Button, Form, FormGroup, Label, Input, Row, Col, Container } from 'reactstrap';
 import useLogin from '../custom_hooks.js/login_hook'
+import KeyboardLogin from './keyboardLogin';
+import useFunctions from '../custom_hooks.js/hooks';
+import { withRouter } from "react-router";
 
 
 const Login = (props) => {
 
-  const INITIAL_STATE = {
-    username: '',
-    password: ''
-  }
+  
 
 
   const {
-    handleChange, value, handleSubmit
- } = useLogin(INITIAL_STATE, props);
+    
+    handleSubmit,  setValue, 
+    reset,
+    back,
+    nums,
+    
+ } = useLogin(props);
 
   return (
     
     <Container>
      
-    <Row>
-      <Col></Col>
-        <Col className={'col-md-3 pt-5'}>
-        <Form>
-    <FormGroup >
-      <Label for="username">Username</Label>
-      <Input type="text" name="username" value={value.username} id="username" placeholder="Username" 
-        onChange={handleChange}
-      />
-    </FormGroup>
-    <FormGroup>
-      <Label for="Password">Password</Label>
-      <Input type="password" name="password" value={value.password} id="examplePassword" placeholder="Password"
-                  onChange={handleChange}
-                  />
-    </FormGroup>
+    <Row className={' pt-5'}>
+      <Col className={'col-4'}></Col>
+        <Col className={'col-5'}>
+        <KeyboardLogin         setValue={setValue}
+                                nums={nums}
+                                reset={reset}
+                                back={back}
+                                handleSubmit={handleSubmit}
 
-    <Button size='sm' type='button' onClick={(e) => handleSubmit(e, props)}>Submit</Button>
-    </Form>
+                      />  
         </Col>
 
-    <Col>
+    <Col className={'col-3'}>
     </Col>
 
     </Row>
@@ -48,10 +44,8 @@ const Login = (props) => {
 
     
 )
- 
 
-   
 }
 
-export default Login;
+export default withRouter(Login);
 

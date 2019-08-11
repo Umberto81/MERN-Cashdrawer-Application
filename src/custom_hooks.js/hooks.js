@@ -68,10 +68,9 @@ const useFunctions = () => {
       product_price: 0.50,
       product_count: 1
     }];
+
     setproductDetails(productJoin);
    
-
-
   }
 
   /************
@@ -88,6 +87,8 @@ const useFunctions = () => {
       axios.get('http://localhost:4000/products/' + nums)
         .then(response => {
           setproductDetails([...productDetails, ...response.data]);
+          let audioBeep = new Audio('../audio/beep.mp3');
+          audioBeep.play();
           setNums('');
 
         }).catch(error => {
@@ -102,9 +103,6 @@ const useFunctions = () => {
     dispatch(applyDiscount());
   }
 
-
-
-
   //deletes the product
   const deleteProduct = (id) => {
     let copy = [...productDetails];
@@ -117,9 +115,6 @@ const useFunctions = () => {
       }
     }
   }
-
-
-
 
   return {
     setValue,

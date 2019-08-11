@@ -1169,7 +1169,7 @@ a:hover {
   color: #8fbdec !important;
 }
 
-.modal-body, .modal-footer {
+.modal-body, .modal-footer, .modal-header {
   background-color: #8fbdec !important;
 }
 
@@ -2710,7 +2710,7 @@ pre code {
 
 .table-sm th,
 .table-sm td {
-  padding: 0.3rem;
+  padding: 0.8rem;
 }
 
 .table-bordered {

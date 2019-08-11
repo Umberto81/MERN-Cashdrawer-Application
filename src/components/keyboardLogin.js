@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Button, Card, CardBody, Col} from 'reactstrap';
 
-const KeyboardSearchProduct = (props) =>{
+const KeyboardLogin = (props) =>{
 
 
     return(
@@ -11,7 +11,7 @@ const KeyboardSearchProduct = (props) =>{
              <Card style={{minWidth: '125px'}}>
             <CardBody>
 
-            {props.nums === '' ? 'insert code' : props.nums}
+            {props.nums === '' ? 'insert password' : props.nums}
 
             </CardBody>
 
@@ -52,7 +52,7 @@ const KeyboardSearchProduct = (props) =>{
 </Row>
 <Row>
 <Button color='secondary' type='button' className={'mr-1 mb-1 keyboard-flex'} onClick={props.back}>Back</Button>  
-<Button color='success' type='button' className={'mr-1 mb-1 keyboard-flex'} onClick={props.requestProduct}>Enter</Button>  
+<Button color='success' type='button' className={'mr-1 mb-1 keyboard-flex'} onClick={props.handleSubmit}>Enter</Button>  
 
 </Row>
 
@@ -64,4 +64,4 @@ const KeyboardSearchProduct = (props) =>{
     )
 }
 
-export default KeyboardSearchProduct;
+export default KeyboardLogin;

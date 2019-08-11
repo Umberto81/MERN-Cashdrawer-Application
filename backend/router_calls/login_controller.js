@@ -24,3 +24,16 @@ exports.getLoginCredentials = (req, res) => {
     });
 }
 
+exports.deleteLoginById = (req, res) =>{
+    let id = req.params.id;
+    Login.findByIdAndRemove(id, (err) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json({
+                message: 'deleted'
+            });
+        }
+    });
+}
+

@@ -30,12 +30,12 @@ const CardProductEnquiry = (props) => {
     <fragment>
 
 < MessageModal toggle = {toggle}
-                       toggleAdd= {toggleAdd}
-                       productDescription={product}
-                       modal={modal} 
-                       noToggleAdd={noToggleAdd}
-                       product={product}
-                       />      
+              toggleAdd= {toggleAdd}
+              productDescription={product}
+              modal={modal} 
+              noToggleAdd={noToggleAdd}
+              product={product}
+/>      
  <Card>
        
        <CardBody>

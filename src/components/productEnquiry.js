@@ -13,7 +13,7 @@ const ProductEnquiry = () =>{
   const {requestProduct, product, setValue, reset, back, nums, addQtyNumber} = useProduct();
 
     return(
-      <fragment>
+      <div>
 
              <MainBar />
 
@@ -42,7 +42,7 @@ const ProductEnquiry = () =>{
                                reset={reset}
                                back={back}
                                addQtyNumber={addQtyNumber}
-                              requestProduct={requestProduct}
+                               requestProduct={requestProduct}
 
         
         
@@ -52,7 +52,7 @@ const ProductEnquiry = () =>{
     </Row>
 
 
-    </fragment>
+    </div>
    
     )
 }

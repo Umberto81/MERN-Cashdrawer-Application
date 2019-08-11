@@ -64,6 +64,7 @@ productsRoute.route('/description/:description').get(product_controller.findProd
  *****/
 
  loginRoute.route('/addLogin').post(login_controller.saveLogin);
+ loginRoute.route('/delete/:id').delete(login_controller.deleteLoginById);
  loginRoute.route('/').get(login_controller.getLoginCredentials);
 
 

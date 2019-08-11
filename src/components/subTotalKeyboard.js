@@ -36,7 +36,7 @@ const SubtotalKeyboard = (props) =>{
                     
             </Row>
             <Row>
-                    <Button color='secondary' type='button' className={'mr-1 mb-1 keyboard-flex'} onClick={props.reset}>AC</Button>  
+                    <Button color='secondary' type='button' className={'mr-1 mb-1 keyboard-flex'} onClick={props.resetTotal}>AC</Button>  
                     <Button color='secondary' type='button' className={'mr-1 mb-1 keyboard-flex'} value = '0' onClick={e => props.setValueTotal(e)}>0</Button> 
                     <Button color='secondary' type='button' className={'mr-1 mb-1 keyboard-flex'} value = '00' onClick={e => props.setValueTotal(e)}>00</Button>  
 

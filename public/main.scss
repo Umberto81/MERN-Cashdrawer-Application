@@ -73,13 +73,13 @@ a:hover{
   color: $main-color;
 }
 
-.modal-body, .modal-footer{
+.modal-body, .modal-footer, .modal-header{
   background-color: $main-color;
 }
 
 
 $card-bg: #343a40;
-$card-spacer-y:                     .5rem ;
+$card-spacer-y: .5rem ;
 
 .keyboard-flex{
   flex: 1;
@@ -90,9 +90,7 @@ $card-spacer-y:                     .5rem ;
   width: 100%;
   white-space: nowrap;
 }
-
-  
-
+$table-cell-padding-sm: .8rem; 
 
 *{
 

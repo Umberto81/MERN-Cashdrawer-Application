@@ -2,15 +2,17 @@ import React from 'react';
 import { Table, Button } from 'reactstrap';
 import {subTotal} from '../actions/totalActions'
 import {  useDispatch } from "react-redux";
+import { useSelector } from 'react-redux'
 
 
 const TableList = (props) =>{
 
   const dispatch = useDispatch();
+  const member = useSelector(state => state.member);
 
   const saveTotal = () =>{
+    
     dispatch(subTotal(total));
-    console.log(total);
   }
 
   let list = props.productsDetails.map((item, index) =>{
@@ -27,12 +29,19 @@ const TableList = (props) =>{
   });
 
   const total = props.productsDetails.reduce((a, b) => {
+    if(member === true){
+      //calculate 10% discount if members
+      let discount = a + b.product_price * b.product_count /10 
+      return  a + b.product_price * b.product_count - discount;
+      
+    }
     return a + b.product_price * b.product_count;
   }, 0);
 
 
     return(
-<Table striped hover dark responsive>
+      <div>
+<Table striped hover dark responsive size='sm'>
         <thead>
           <tr>
             <th>#</th>
@@ -43,18 +52,30 @@ const TableList = (props) =>{
           </tr>
         </thead>
         <tbody>
-         {list}
-        </tbody>
-       <thead>
-         <tr>Total</tr>
-       </thead>
-       <tbody>
-         <td>	£ {total}</td>
-
-       </tbody>
-       <Button color='success' size="lg"  type='button' style={{display: props.productsDetails.length === 0 ? 'none' : 'block' }} onClick={() => saveTotal(total)}>SubTotal</Button>  
-
+          {list}
+        </tbody>  
       </Table>
+      <Table dark>
+        <thead>
+            <tr>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+            <td>	£ {total}</td>
+
+            </tr>
+
+          </tbody>
+      </Table>
+      <Button color='success' size="lg"  type='button' style={{display: props.productsDetails.length === 0 ? 'none' : 'block' }} onClick={() => saveTotal(total)}>SubTotal</Button>  
+
+
+
+      </div>
+
+      
     )
 }
 

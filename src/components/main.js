@@ -23,7 +23,7 @@ const Main = (props) => {
       
       } = useFunctions('');
 
-      const {setSubtotal, setValueTotal, numsTotal, resetTotal, backTotal, calculateChange, toggle, modal} = useSubTotal();
+      const {setSubtotal, setValueTotal, numsTotal, resetTotal, backTotal, calculateChange, toggle, modal, resetAfterTotal} = useSubTotal();
       const total = useSelector(state => state.total);
 
 
@@ -50,16 +50,12 @@ const Main = (props) => {
     
                 <Button color='secondary'  size='lg'  outline   className={'mr-1 mb-1 keyboard-flex'} tag={Link} to='/produce'>Produce</Button>  
                 <Button color='danger' size='lg' className={'mr-1 mb-1 keyboard-flex'} onClick={clearList}>Clear</Button>
-              </Row>
+              
     
-    
-              <Row>
                 <Button color='warning' size='lg' className={'mr-1 mb-1 '} onClick={clearList}>Customer Refusal</Button>
                 <Button color='warning' size='lg' className={'mr-1 mb-1 keyboard-flex'} onClick={discount}>Card Discount</Button>
                 <Button color='warning' size='lg' className={'mr-1 mb-1 keyboard-flex'} onClick={addCarrierBag}>Carrier Bag</Button>
-                </Row>    
     
-              <Row>
                 <Button  color='secondary' outline className={'mr-1 mb-1'} size='lg' tag={Link}  to="/managerFunctions">Manager Functions</Button>
     
                 <Button color='secondary' outline size='lg' className={'mr-1 mb-1 keyboard-flex'} tag={Link} to='productEnquiry'>Product Enquiry</Button>
@@ -113,7 +109,8 @@ const Main = (props) => {
              
               </Col>
               < ModalTotal toggle = {toggle}
-                      modal={modal} 
+                             modal={modal} 
+                             resetAfterTotal={resetAfterTotal}
 />            
 
           </Row>

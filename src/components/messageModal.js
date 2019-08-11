@@ -12,7 +12,7 @@ const MessageModal = (props) =>{
 
     return(
          < div > 
-        <Modal isOpen={props.modal} toggle={props.toggle}>
+        <Modal isOpen={props.modal} toggle={props.toggle} className={'modal-dialog-centered'}>
           <ModalBody className={'text-center'}>
           Would you like to add {props.productDescription}?
           </ModalBody>

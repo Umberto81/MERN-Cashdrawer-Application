@@ -1,13 +1,13 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
+import useFunctions from '../custom_hooks.js/hooks';
 
-
-const useLogin = (initialState, props) =>{
+const useLogin = (props) =>{
     const initialValue = JSON.parse(localStorage.getItem('logged' || 0));
 
     //chiarire il re-rendering.....
     const [logged, setLogged] = useState(initialValue);
-    const [value, setvalue] = useState(initialState);
+    const [value, setvalue] = useState();
 
     useEffect(() => {
 
@@ -15,6 +15,28 @@ const useLogin = (initialState, props) =>{
     
       }, [logged]);
     
+      //keyboards variables
+    const [nums, setNums] = useState('');
+console.log(nums);
+
+
+    //set the state keyboard numbers
+    const setValue = (e) => {
+
+        setNums(nums + e.target.value);
+    }
+
+    //resets all the numbers into the text area
+    const reset = () => {
+
+        setNums('');
+    }
+
+    //delete only the last number into the text area
+    const back = () => {
+
+        setNums(nums.substr(0, nums.length - 1));
+    }
  
 
   
@@ -25,20 +47,20 @@ const useLogin = (initialState, props) =>{
         
     }
 
-    const handleSubmit = (e, props, cb) =>{
+    const handleSubmit = (e) =>{
         e.preventDefault();
      
         axios.get('http://localhost:4000/login')
         .then(response =>{
-            //console.log(response.data);
-            if(value.password === response.data[0].password && value.username === response.data[0].userName){
+            if(parseInt(nums) === response.data[0].password ){
+                console.log('ffffffffffffff');
                 setLogged(true);
                 props.history.push('/main');
                               
             }
         }).catch(error => {
-            console.log(error.response)
-        });;
+            console.log(error)
+        });
 
       }
 
@@ -49,7 +71,11 @@ const useLogin = (initialState, props) =>{
 
     return{
 
-        handleChange, logged, value, handleSubmit, setLogged, logout
+        handleChange, logged, value, handleSubmit, setLogged, logout,  setValue,
+        reset,
+        back,
+        nums,
+        
     }
 
 }

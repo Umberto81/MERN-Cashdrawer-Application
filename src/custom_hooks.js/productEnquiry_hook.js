@@ -47,16 +47,10 @@ const useProduct = () => {
         }).catch(error => {
             console.log(error.response)
         });
-
-
-
-     
-
     }
 
   }
 
-    
     return {
         setValue,
         reset,

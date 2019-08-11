@@ -4,17 +4,17 @@ import {finalSubTotal} from '../actions/totalActions';
 import {  useDispatch } from "react-redux";
 import { useSelector } from 'react-redux'
 import { calculatedChange} from '../actions/totalActions';
+import useFunctions from '../custom_hooks.js/hooks';
 
 const useSubTotal = () =>{
 
     const total = useSelector(state => state.total);
     const dispatch = useDispatch();
     const [numsTotal, setNums] = useState('');
-
+    const { clearList } = useFunctions('');
 
     //triggers the modal window
     const [modal, setModal] = useState(false);
-console.log(modal);
 
       //set the state keyboard numbers
   const setValueTotal = (e) => {
@@ -37,9 +37,11 @@ console.log(modal);
 
   //set the subtotal buttons value
   const setSubtotal = (e) => {
-
+    
     let finalTotal = parseFloat(e.target.value) - parseFloat(total);
     dispatch(finalSubTotal(finalTotal));
+    toggle();
+
   }
 
   //toggle for modal window, add quantity to selection
@@ -52,16 +54,23 @@ console.log(modal);
 
   //calculates the amount of change due after transaction
   const calculateChange = () =>{
+
     let finalTotal = parseFloat(numsTotal) - parseFloat(total);
 
     dispatch(calculatedChange(finalTotal));
     toggle();
   }
 
+  const resetAfterTotal = () =>{
+    setModal(!modal);
+    clearList();
+
+  }
+
 
 
   return{
-      setSubtotal, toggle, modal, setValueTotal, numsTotal, resetTotal, backTotal, calculateChange
+      setSubtotal, toggle, modal, setValueTotal, numsTotal, resetTotal, backTotal, calculateChange, resetAfterTotal
   }
 
 
