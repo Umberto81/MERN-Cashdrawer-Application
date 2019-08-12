@@ -1,8 +1,7 @@
 import React from 'react'
-import { Button, Form, FormGroup, Label, Input, Row, Col, Container } from 'reactstrap';
+import { Row, Col, Container, Button } from 'reactstrap';
 import useLogin from '../custom_hooks.js/login_hook'
 import KeyboardLogin from './keyboardLogin';
-import useFunctions from '../custom_hooks.js/hooks';
 import { withRouter } from "react-router";
 
 
@@ -13,12 +12,11 @@ const Login = (props) => {
 
   const {
     
-    handleSubmit,  setValue, 
-    reset,
-    back,
-    nums,
+    handleSubmit,  setValue,  reset,
+    back, nums, errors
     
  } = useLogin(props);
+
 
   return (
     
@@ -38,7 +36,18 @@ const Login = (props) => {
 
     <Col className={'col-3'}>
     </Col>
+  
+    </Row>
 
+    <Row>
+      <Col className={'col-3'}></Col>
+      <Col className={'col-8 justify-content-center'}>
+      {errors.length !== 0? <div className={"bg-danger text-dark p-3 mb-2 mt-2 "}>
+      {errors}
+
+</div> : null}
+      
+      </Col>
     </Row>
     </Container>
 

@@ -1,6 +1,5 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
-import useFunctions from '../custom_hooks.js/hooks';
 
 const useLogin = (props) =>{
     const initialValue = JSON.parse(localStorage.getItem('logged' || 0));
@@ -8,6 +7,8 @@ const useLogin = (props) =>{
     //chiarire il re-rendering.....
     const [logged, setLogged] = useState(initialValue);
     const [value, setvalue] = useState();
+    const [errors, setErrors] = useState([]);
+    console.log(errors);
 
     useEffect(() => {
 
@@ -17,7 +18,6 @@ const useLogin = (props) =>{
     
       //keyboards variables
     const [nums, setNums] = useState('');
-console.log(nums);
 
 
     //set the state keyboard numbers
@@ -49,14 +49,25 @@ console.log(nums);
 
     const handleSubmit = (e) =>{
         e.preventDefault();
+    if(nums.length > 4){
+        let pwdTooLong = 'password must be 4 digits long';
+        setErrors(pwdTooLong);
+        setNums('');
+        return;
+
+    }        
      
         axios.get('http://localhost:4000/login')
         .then(response =>{
             if(parseInt(nums) === response.data[0].password ){
-                console.log('ffffffffffffff');
                 setLogged(true);
                 props.history.push('/main');
-                              
+            }else{
+                let wrongPwd = 'wrong password';
+                setErrors(wrongPwd);
+                setNums('');
+
+                return;
             }
         }).catch(error => {
             console.log(error)
@@ -71,10 +82,10 @@ console.log(nums);
 
     return{
 
-        handleChange, logged, value, handleSubmit, setLogged, logout,  setValue,
-        reset,
-        back,
-        nums,
+        handleChange, logged, value,
+        handleSubmit, setLogged, logout,  
+        setValue, reset, back,
+        nums, errors
         
     }
 
