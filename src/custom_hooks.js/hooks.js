@@ -15,7 +15,11 @@ const useFunctions = () => {
   const [nums, setNums] = useState('');
   const [member, setMember] = useState(false);
 
+  //vars to set Modal errors in main component
+  const [errors, setErrors] = useState('');
 
+   //triggers the modal window
+   const [modalError, setModalError] = useState(false);
   //set the state keyboard numbers
   const setValue = (e) => {
 
@@ -75,6 +79,12 @@ const useFunctions = () => {
     if (nums !== "") {
       axios.get('http://localhost:4000/products/' + nums)
         .then(response => {
+          if(!Object.keys(response.data).length){
+            setErrors('no product found');
+            togglErerror();
+            setNums('');
+            return;
+        }
           dispatch(setproductDetails([...productDetails, ...response.data]));
           let audioBeep = new Audio('../audio/beep.mp3');
           audioBeep.play();
@@ -104,6 +114,14 @@ const useFunctions = () => {
       }
     }
   }
+  //toggle for modal window, add quantity to selection
+  const togglErerror = () => {
+
+    setModalError(!modalError);
+
+}
+
+
 
   return {
     setValue,
@@ -116,7 +134,9 @@ const useFunctions = () => {
     productDetails,
     clearList,
     addCarrierBag,
-    discount, member, setMember
+    discount, member, setMember,
+    errors, togglErerror, setModalError, 
+    modalError
   }
 
 }

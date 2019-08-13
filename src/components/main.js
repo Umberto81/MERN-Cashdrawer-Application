@@ -10,7 +10,7 @@ import useSubTotal from '../custom_hooks.js/subTotalHook';
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import ModalTotal from './modalTotal';
-
+import ErrorModal from './errorModal';
 
 const Main = (props) => {
 
@@ -19,7 +19,8 @@ const Main = (props) => {
       
       nums, setValue, reset, back, requestProducts,
       deleteProduct, productDetails, clearList,
-      addCarrierBag, discount, member, setMember
+      addCarrierBag, discount, member, setMember, errors,
+      togglErerror, modalError
       
       } = useFunctions('');
 
@@ -109,7 +110,13 @@ const Main = (props) => {
               < ModalTotal toggle = {toggle}
                              modal={modal} 
                              resetAfterTotal={resetAfterTotal}
-/>            
+              />    
+              {errors &&  <ErrorModal toggle={togglErerror}
+                          modal={modalError}
+                          errors={errors} 
+              
+              />   }
+                  
 
           </Row>
           

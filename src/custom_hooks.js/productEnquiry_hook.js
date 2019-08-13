@@ -12,9 +12,11 @@ const useProduct = () => {
  
     //keyboards variables
     const [nums, setNums] = useState('');
-
-
-
+    //vars to trigger modal error in product enquiry component
+    const [errors, setErrors] = useState('');
+   //triggers the modal window
+    const [modalError, setModalError] = useState(false);
+   
     //set the state keyboard numbers
     const setValue = (e) => {
 
@@ -39,7 +41,12 @@ const useProduct = () => {
     if (nums !== "") {
         axios.get('http://localhost:4000/products/' + nums)
         .then(response => {
-          
+            if(!Object.keys(response.data).length){
+                setErrors('no product found');
+                togglErerror();
+                setNums('');
+                return;
+            }
         dispatch(addProductEnquiry(response.data));
 
         setNums('');
@@ -51,12 +58,18 @@ const useProduct = () => {
 
   }
 
+    //toggle for modal window, add quantity to selection
+    const togglErerror = () => {
+
+        setModalError(!modalError);
+    
+    }
+
     return {
-        setValue,
-        reset,
-        back,
-        nums,
-        requestProduct
+        setValue, reset, back,
+        nums, requestProduct,  errors, 
+        togglErerror, setModalError, 
+        modalError
     }
 }
 

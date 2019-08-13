@@ -55,6 +55,7 @@ const TableList = (props) =>{
           {list}
         </tbody>  
       </Table>
+
       <Table dark>
         <thead>
             <tr>
@@ -63,12 +64,12 @@ const TableList = (props) =>{
           </thead>
           <tbody>
             <tr>
-            <td>	£ {total}</td>
-
+              <td>	£ {total}</td>
             </tr>
 
           </tbody>
       </Table>
+
       <Button color='success' size="lg"  type='button' style={{display: props.productsDetails.length === 0 ? 'none' : 'block' }} onClick={() => saveTotal(total)}>SubTotal</Button>  
 
 

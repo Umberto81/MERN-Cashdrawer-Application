@@ -5,12 +5,14 @@ import {Link} from 'react-router-dom';
 import MainBar from './mainBar';
 import useProduct from '../custom_hooks.js/productEnquiry_hook';
 import CardProductEnquiry from './cardProductEnquiry';
+import ErrorModal from './errorModal';
 
 
 const ProductEnquiry = () =>{
 
  
-  const {requestProduct, product, setValue, reset, back, nums, addQtyNumber} = useProduct();
+  const {requestProduct, product, setValue, reset, back, nums, addQtyNumber, 
+    errors, togglErerror,  modalError } = useProduct();
 
     return(
       <div>
@@ -37,18 +39,23 @@ const ProductEnquiry = () =>{
 
     <Col className={'col-4'}>
 
-        <KeyboardSearchProduct setValue={setValue}
-                               nums={nums}
-                               reset={reset}
-                               back={back}
-                               addQtyNumber={addQtyNumber}
-                               requestProduct={requestProduct}
+          <KeyboardSearchProduct setValue={setValue}
+                                nums={nums}
+                                reset={reset}
+                                back={back}
+                                addQtyNumber={addQtyNumber}
+                                requestProduct={requestProduct}
 
         
         
-        />
+          />
       </Col>
 
+      {errors &&  <ErrorModal toggle={togglErerror}
+                              modal={modalError}
+                              errors={errors} 
+              
+              />   }
     </Row>
 
 
