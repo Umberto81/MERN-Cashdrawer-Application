@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import {  useDispatch } from "react-redux";
 import { applyDiscount } from '../actions/discountAction';
@@ -8,11 +8,11 @@ import {setproductDetails} from '../actions/addProductDetails';
 
 const useFunctions = () => {
 
+  //THIS VALUE COMES FROM REDUX STORE
   const productDetails = useSelector(state => state.productsList.productDetails);
   const dispatch = useDispatch();
 
   const [nums, setNums] = useState('');
-  //const [productDetails, setproductDetails] = useState(details);
   const [member, setMember] = useState(false);
 
 
@@ -54,7 +54,7 @@ const useFunctions = () => {
 
     let productJoin = [...productDetails, {
         product_description: 'carrierBag',
-        product_price: 0.50,
+        product_price: '0.50',
         product_count: 1
     }];
 

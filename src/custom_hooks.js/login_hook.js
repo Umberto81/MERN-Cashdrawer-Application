@@ -1,5 +1,7 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
+import {  useDispatch } from "react-redux";
+import {setproductDetails} from '../actions/addProductDetails';
 
 const useLogin = (props) =>{
     const initialValue = JSON.parse(localStorage.getItem('logged' || 0));
@@ -8,6 +10,8 @@ const useLogin = (props) =>{
     const [logged, setLogged] = useState(initialValue);
     const [value, setvalue] = useState();
     const [errors, setErrors] = useState([]);
+
+    const dispatch = useDispatch();
 
     useEffect(() => {
 
@@ -46,6 +50,7 @@ const useLogin = (props) =>{
         
     }
 
+    //handles the log in page with errors
     const handleSubmit = (e) =>{
         e.preventDefault();
     if(nums.length > 4){
@@ -74,7 +79,10 @@ const useLogin = (props) =>{
 
       }
 
+      //logsout and delete the list
       const logout = () =>{
+        dispatch(setproductDetails([]));
+
         setLogged(false);
        
       }
