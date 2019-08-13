@@ -2,13 +2,11 @@
 const initState = {
     member: false,
     product: [],
-    total: null
+    total: null,
 };
 
-console.log(initState);
 
 const rootReducer = (state = initState, action) => {
-
     switch(action.type){
 
         case 'ADD_PRODUCT':
@@ -17,12 +15,18 @@ const rootReducer = (state = initState, action) => {
                 product: action.payload
             };
         
-            case 'APPLY_DISCOUNT':  
-             return{
-                 ...state,
-                 member: action.member
-             }
-        case 'SAVE_TOTAL':
+        case 'APPLY_DISCOUNT':  
+            return{
+                ...state,
+                member: action.member
+            };
+        
+        case 'REMOVE_DISCOUNT':
+            return {
+                ...state,
+                member: action.member
+            }
+    case 'SAVE_TOTAL':
             return{
                 ...state,
                 total: action.total
@@ -43,8 +47,7 @@ const rootReducer = (state = initState, action) => {
                 ...state,
                 total: action.total
             }
-
-
+      
         default:
             return state;
     }

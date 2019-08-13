@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux'
 
 const ModalTotal = (props) =>{
 
-  const total = useSelector(state => state.total);
+  const total = useSelector(state => state.products.total);
 
     return(
          <fragment> 

@@ -24,10 +24,8 @@ const Main = (props) => {
       } = useFunctions('');
 
       const {setSubtotal, setValueTotal, numsTotal, resetTotal, backTotal, calculateChange, toggle, modal, resetAfterTotal} = useSubTotal();
-      const total = useSelector(state => state.total);
 
-
-  
+      const total = useSelector(state => state.products.total);
   
         return (
           <div>

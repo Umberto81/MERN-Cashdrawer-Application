@@ -8,7 +8,6 @@ const useLogin = (props) =>{
     const [logged, setLogged] = useState(initialValue);
     const [value, setvalue] = useState();
     const [errors, setErrors] = useState([]);
-    console.log(errors);
 
     useEffect(() => {
 
@@ -77,7 +76,7 @@ const useLogin = (props) =>{
 
       const logout = () =>{
         setLogged(false);
-       // console.log('logout');
+       
       }
 
     return{

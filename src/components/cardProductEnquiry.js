@@ -10,7 +10,7 @@ const CardProductEnquiry = (props) => {
   const {toggle, toggleAdd, noToggleAdd, modal,
     product} = useModal();
 
-    const productEnquired = useSelector(state => state.product);
+    const productEnquired = useSelector(state => state.products.product);
 
     const list = productEnquired.map((item) =>{
       return(

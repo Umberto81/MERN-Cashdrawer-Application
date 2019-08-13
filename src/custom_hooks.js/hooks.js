@@ -1,32 +1,20 @@
-import {
-  useState,
-  useEffect
-} from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
-import useLogin from '../custom_hooks.js/login_hook'
 import {  useDispatch } from "react-redux";
 import { applyDiscount } from '../actions/discountAction';
 import { zeroTotal } from '../actions/totalActions';
-
+import { useSelector} from 'react-redux';
+import {setproductDetails} from '../actions/addProductDetails';
 
 const useFunctions = () => {
 
-  const initialValue = JSON.parse(localStorage.getItem('list' || 0));
-
-  const [nums, setNums] = useState('');
-  const [productDetails, setproductDetails] = useState(initialValue);
-  const [member, setMember] = useState(false);
-
+  const productDetails = useSelector(state => state.productsList.productDetails);
   const dispatch = useDispatch();
 
-  const { logged } = useLogin();
+  const [nums, setNums] = useState('');
+  //const [productDetails, setproductDetails] = useState(details);
+  const [member, setMember] = useState(false);
 
-  //keeps persistent localstorage database
-  useEffect(() => {
-
-    localStorage.setItem('list', JSON.stringify(productDetails));
-
-  }, [productDetails, logged]);
 
   //set the state keyboard numbers
   const setValue = (e) => {
@@ -54,8 +42,9 @@ const useFunctions = () => {
    */
 
   const clearList = () => {
-    setproductDetails([]);
+    dispatch(setproductDetails([]));
     dispatch(zeroTotal());
+  
   }
 
 
@@ -64,12 +53,12 @@ const useFunctions = () => {
   const addCarrierBag = () => {
 
     let productJoin = [...productDetails, {
-      product_description: 'carrierBag',
-      product_price: 0.50,
-      product_count: 1
+        product_description: 'carrierBag',
+        product_price: 0.50,
+        product_count: 1
     }];
 
-    setproductDetails(productJoin);
+    dispatch(setproductDetails(productJoin));
    
   }
 
@@ -86,13 +75,13 @@ const useFunctions = () => {
     if (nums !== "") {
       axios.get('http://localhost:4000/products/' + nums)
         .then(response => {
-          setproductDetails([...productDetails, ...response.data]);
+          dispatch(setproductDetails([...productDetails, ...response.data]));
           let audioBeep = new Audio('../audio/beep.mp3');
           audioBeep.play();
           setNums('');
 
         }).catch(error => {
-          console.log(error.response)
+          console.log(error)
       });
     }
 
@@ -109,7 +98,7 @@ const useFunctions = () => {
     for (let i = 0; i < copy.length; i++) {
       if (i === id) {
         copy.splice(i, 1);
-        setproductDetails(copy);
+        dispatch(setproductDetails(copy));
         localStorage.setItem('list', JSON.stringify(productDetails));
 
       }
@@ -127,7 +116,6 @@ const useFunctions = () => {
     productDetails,
     clearList,
     addCarrierBag,
-    setproductDetails,
     discount, member, setMember
   }
 

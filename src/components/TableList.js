@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux'
 const TableList = (props) =>{
 
   const dispatch = useDispatch();
-  const member = useSelector(state => state.member);
+  const member = useSelector(state => state.products.member);
 
   const saveTotal = () =>{
     

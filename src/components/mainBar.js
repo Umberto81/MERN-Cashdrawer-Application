@@ -40,7 +40,7 @@ const MainBar = (props)=>{
     logged, logout
  } = useLogin();
 
- const member = useSelector(state => state.member);
+ const member = useSelector(state => state.products.member);
  
 
  if(!logged){

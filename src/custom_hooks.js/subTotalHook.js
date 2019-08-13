@@ -1,14 +1,15 @@
 
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {finalSubTotal} from '../actions/totalActions';
 import {  useDispatch } from "react-redux";
 import { useSelector } from 'react-redux'
 import { calculatedChange} from '../actions/totalActions';
 import useFunctions from '../custom_hooks.js/hooks';
+import {removeDiscount} from '../actions/discountAction';
 
 const useSubTotal = () =>{
 
-    const total = useSelector(state => state.total);
+    const total = useSelector(state => state.products.total);
     const dispatch = useDispatch();
     const [numsTotal, setNums] = useState('');
     const { clearList } = useFunctions('');
@@ -17,9 +18,9 @@ const useSubTotal = () =>{
     const [modal, setModal] = useState(false);
 
       //set the state keyboard numbers
-  const setValueTotal = (e) => {
+     const setValueTotal = (e) => {
 
-    setNums(numsTotal + e.target.value);
+      setNums(numsTotal + e.target.value);
   }
 
   //resets all the numbers into the text area
@@ -40,6 +41,8 @@ const useSubTotal = () =>{
     
     let finalTotal = parseFloat(e.target.value) - parseFloat(total);
     dispatch(finalSubTotal(finalTotal));
+    dispatch(removeDiscount());
+
     toggle();
 
   }
@@ -48,7 +51,6 @@ const useSubTotal = () =>{
   const toggle = () => {
 
     setModal(!modal);
-   console.log('fired modal');
 
 }
 
@@ -58,6 +60,7 @@ const useSubTotal = () =>{
     let finalTotal = parseFloat(numsTotal) - parseFloat(total);
 
     dispatch(calculatedChange(finalTotal));
+    dispatch(removeDiscount());
     toggle();
   }
 
@@ -67,12 +70,11 @@ const useSubTotal = () =>{
 
   }
 
-
-
   return{
-      setSubtotal, toggle, modal, setValueTotal, numsTotal, resetTotal, backTotal, calculateChange, resetAfterTotal
+      setSubtotal, toggle, modal, 
+      setValueTotal, numsTotal, resetTotal, 
+      backTotal, calculateChange, resetAfterTotal
   }
-
 
 }
 

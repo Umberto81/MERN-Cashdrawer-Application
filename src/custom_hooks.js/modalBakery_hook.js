@@ -1,9 +1,8 @@
-import {
-    useState,
-    useEffect
-} from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
-import useFunctions from './hooks';
+import {setproductDetails} from '../actions/addProductDetails';
+import { useSelector} from 'react-redux';
+import {  useDispatch } from "react-redux";
 
 const useModal = () => {
     //triggers the modal window
@@ -15,10 +14,10 @@ const useModal = () => {
     //set the url to call the right product kind
     const [url, setUrl] = useState('');
 
-    const {
-        setproductDetails,
-        productDetails
-    } = useFunctions();
+
+    const productDetails = useSelector(state => state.productsList.productDetails);
+    const dispatch = useDispatch();
+
 
     //sets the list based on the kind of product selectioned
     const [bakeryDetails, setBakeryDetails] = useState([]);
@@ -93,7 +92,7 @@ const useModal = () => {
                 for (let i in copy) {
                     if (copy[i].product_description === response.data[0].product_description) {
                         copy[i].product_count += qty;
-                        setproductDetails(copy);
+                        dispatch(setproductDetails(copy));
                         setModal(!modal);
                         return;
                     }
@@ -104,14 +103,14 @@ const useModal = () => {
                 if(qty  > 1){
 
                  response.data[0].product_count += qty -1;
-                 setproductDetails([...productDetails, ...response.data]);
+                 dispatch(setproductDetails([...productDetails, ...response.data]));
                     setModal(!modal);
                     return;
 
 
                
                 }else{
-                    setproductDetails([...productDetails, ...response.data]);
+                    dispatch(setproductDetails([...productDetails, ...response.data]));
                     setModal(!modal);
                 }
                     
@@ -119,7 +118,7 @@ const useModal = () => {
                
 
             }).catch(error => {
-                console.log(error.response)
+                console.log(error)
             });
 
 
@@ -157,7 +156,7 @@ const useModal = () => {
                 //implementare il salvataggio in array
                 setBakeryDetails(response.data);
             }).catch(error => {
-                console.log(error.response)
+                console.log(error)
             });
             setListTrue(false);
 

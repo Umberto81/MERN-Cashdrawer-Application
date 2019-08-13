@@ -1,7 +1,5 @@
 import React from 'react';
 import { Row, Button, Card, CardBody, Col} from 'reactstrap';
-import useSubTotal from '../custom_hooks.js/subTotalHook';
-
 
 const SubtotalKeyboard = (props) =>{
 

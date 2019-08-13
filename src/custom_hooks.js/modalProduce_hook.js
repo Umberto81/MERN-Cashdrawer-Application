@@ -4,21 +4,21 @@ import {
 } from 'react';
 import axios from 'axios';
 import useFunctions from './hooks';
+import {setproductDetails} from '../actions/addProductDetails';
+import { useSelector} from 'react-redux';
+import {  useDispatch } from "react-redux";
 
 const useModal = () => {
     //triggers the modal window
     const [modal, setModal] = useState(false);
+    const productDetails = useSelector(state => state.productsList.productDetails);
+    const dispatch = useDispatch();
 
     //grabs the product types
     const [product, setProductDescription] = useState();
 
     //set the url to call the right product kind
     const [url, setUrl] = useState('');
-
-    const {
-        setproductDetails,
-        productDetails
-    } = useFunctions();
 
     //sets the list based on the kind of product selectioned
     const [produceDetails, setProduceDetails] = useState([]);
@@ -41,7 +41,7 @@ const useModal = () => {
 
         axios.get('http://localhost:4000/products/section/produce')
             .then(response => {
-                setProduceDetails(response.data);
+                dispatch(setProduceDetails(response.data));
             });
 
     }, []);
@@ -91,7 +91,7 @@ const useModal = () => {
                 for (let i in copy) {
                     if (copy[i].product_description === response.data[0].product_description) {
                         copy[i].product_count += qty;
-                        setproductDetails(copy);
+                        dispatch(setproductDetails(copy));
                         setModal(!modal);
                         return;
                     }
@@ -102,14 +102,14 @@ const useModal = () => {
                 if(qty  > 1){
 
                  response.data[0].product_count += qty -1;
-                 setproductDetails([...productDetails, ...response.data]);
+                 dispatch(setproductDetails([...productDetails, ...response.data]));
                     setModal(!modal);
                     return;
 
 
                
                 }else{
-                    setproductDetails([...productDetails, ...response.data]);
+                    dispatch(setproductDetails([...productDetails, ...response.data]));
                     setModal(!modal);
                 }
                     
@@ -117,7 +117,7 @@ const useModal = () => {
                
 
             }).catch(error => {
-                console.log(error.response)
+                console.log(error)
             });
 
 
@@ -153,9 +153,9 @@ const useModal = () => {
         axios.get('http://localhost:4000/products/section/produce')
             .then(response => {
                 //implementare il salvataggio in array
-                setProduceDetails(response.data);
+                dispatch(setProduceDetails(response.data));
             }).catch(error => {
-                console.log(error.response)
+                console.log(error)
             });
             setListTrue(false);
 
