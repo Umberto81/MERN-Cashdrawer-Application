@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 4000;
 const product_controller = require('./router_calls/products_controller');
 
 const login_controller = require('./router_calls/login_controller');
-const pwd = process.env.MONGO_PASSWORD;
+const pwd = process.env.REACT_APP_MONGO_PASSWORD;
 app.use(cors());
 app.use(bodyParser.json());
 
