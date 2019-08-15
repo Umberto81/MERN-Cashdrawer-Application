@@ -8,13 +8,11 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const productsRoute = express.Router();
-const bakeryRoute = express.Router();
-const produceRoute = express.Router();
+
 const loginRoute = express.Router();
 const PORT = process.env.PORT || 4000;
 const product_controller = require('./router_calls/products_controller');
-// const bakery_controller = require('./router_calls/bakery_controller');
-// const produce_controller = require('./router_calls/produce_controller');
+
 const login_controller = require('./router_calls/login_controller');
 const pwd = process.env.MONGO_PASSWORD;
 app.use(cors());
@@ -69,8 +67,6 @@ productsRoute.route('/description/:description').get(product_controller.findProd
 
 
 app.use('/products', productsRoute);
-// app.use('/bakery', bakeryRoute);
-// app.use('/produce', produceRoute);
 app.use('/login', loginRoute);
 
 
