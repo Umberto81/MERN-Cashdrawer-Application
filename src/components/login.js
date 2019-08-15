@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Col, Container } from 'reactstrap';
+import { Row, Col, Container, UncontrolledTooltip } from 'reactstrap';
 import useLogin from '../custom_hooks.js/login_hook'
 import KeyboardLogin from './keyboardLogin';
 import { withRouter } from "react-router";
@@ -35,6 +35,14 @@ const Login = (props) => {
         </Col>
 
     <Col className={'col-3'}>
+    <div>
+      <p style={{color: 'white'}}>How to Login: <span style={{textDecoration: "underline", color:"white"}} href="#" id="UncontrolledTooltipExample">tooltip</span>.</p>
+      <UncontrolledTooltip placement="right" target="UncontrolledTooltipExample">
+        The Login code is 1111
+        Insert a different or longer number to see how errors are handled.
+
+      </UncontrolledTooltip>
+    </div>
     </Col>
   
     </Row>

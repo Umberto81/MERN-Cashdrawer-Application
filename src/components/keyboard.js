@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Button, Card, CardBody, Col} from 'reactstrap';
+import { Row, Button, Card, CardBody, Col, UncontrolledTooltip} from 'reactstrap';
 
 
 const Keyboard = (props) =>{
@@ -54,6 +54,16 @@ const Keyboard = (props) =>{
             </CardBody>
 
           </Card>
+          <div>
+      <p style={{color: 'white'}}>How to use the keyboard: <span style={{textDecoration: "underline", color:"white"}} href="#" id="UncontrolledTooltipExample">tooltip</span>.</p>
+      <UncontrolledTooltip placement="right" target="UncontrolledTooltipExample">
+        Digit from 2001 to 2008 and press enter to insert a bakery product. 
+        Digit from 3001 to 3008 to insert a produce product. 
+        This action mimics the scanning barcode laser function.
+        Insert a different number to see how errors are handled.
+
+      </UncontrolledTooltip>
+    </div>
 
           </Row>
         </Col>

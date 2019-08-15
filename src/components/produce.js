@@ -57,10 +57,10 @@ const Bakery = () => {
 
         return(
             
-            <Button size='sm' color='secondary' className={' mt-1 mr-1'} onClick={() => toggle(item.product_description, 'bakery')}>
-                <img  style={{backgroundSize: 'cover', display: 'inline-block', height:'150px', width: '150px'}} src={item.img_path} alt=''/>
-                <p className={'mt-2'}>{item.product_description}</p>
-            </Button>
+        <Button size='sm' color='secondary' className={' mt-1 mr-1'} onClick={() => toggle(item.product_description, 'bakery')}>
+        <img  style={{backgroundSize: 'cover', display: 'inline-block', height:'150px', width: '150px'}} src={item.img_path} alt=''/>
+            <p className={'mt-2'}>{item.product_description}</p>
+        </Button>   
      
         ); 
            

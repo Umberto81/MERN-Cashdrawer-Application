@@ -31,7 +31,7 @@ const time = () => {
     }
 
     return hour + ':' + minutes +  '    ' + day + '-' 
-    + month + '-' + year;
+    + month + '-' + year + ' -------   ';
 }
 
 const MainBar = (props)=>{
@@ -49,7 +49,7 @@ const MainBar = (props)=>{
   return (
     <div>
     <Navbar expand="md">
-      <NavbarBrand href="/">CashDrawer - {time()}</NavbarBrand>
+      <NavbarBrand href="/">CashDrawer - {time()}    App developed by Umberto Gonnella --------</NavbarBrand>
       <NavbarToggler  />
       <Collapse navbar>
         <Nav className="ml-auto" navbar>

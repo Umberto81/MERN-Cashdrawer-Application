@@ -79,9 +79,6 @@ const useModal = () => {
 
     }
 
-
-
-
     //add bakeryitem to shopping list in modal window
     const toggleAdd = (product) => {
 
@@ -99,7 +96,6 @@ const useModal = () => {
 
                 }
 
-                // aggiornare la qty per fare in modo che alla prima chiamata sia mostrato il totale qty
                 if(qty  > 1){
 
                  response.data[0].product_count += qty -1;
@@ -126,7 +122,7 @@ const useModal = () => {
 
     }
 
-    //adds only the requeeted alphabetical items
+    //adds only the requested alphabetical items
     const alphabeticCall = (e) =>{
         let str = e.target.value.split("");
         let list = [];
