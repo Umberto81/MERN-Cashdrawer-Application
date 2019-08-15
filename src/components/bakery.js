@@ -31,18 +31,13 @@ const Bakery = () => {
 
         return(
             
-            <Col className={'col-3 d-flex justify-content-center'}>
-
-            <Card className={'mb-1'}> 
-            <CardImg className={' mx-auto d-block mt-2'}  style={{flexGrow: '1'}} src={item.img_path} alt="Card image cap" />
-                <CardBody >
-                <CardTitle>{item.product_description}</CardTitle>
-                <CardSubtitle>{item.product_price}</CardSubtitle>
-                <Button size='sm' color='secondary'  onClick={() => toggle(item.product_description, 'bakery')}>Add Item</Button>
-                </CardBody>
-            </Card>
+        <Button size='sm' color='secondary' className={' mt-1 mr-1'} onClick={() => toggle(item.product_description, 'bakery')}>
+            <img  style={{backgroundSize: 'cover', display: 'inline-block', height:'150px', width: '150px'}} src={item.img_path} alt=''/>
+                <p className={'mt-2'}>{item.product_description}</p>
+        </Button>
+         
         
-            </Col>
+    
             
         ); 
            
@@ -66,19 +61,10 @@ const Bakery = () => {
 
         return(
             
-            <Col className={'col-3 d-flex justify-content-center'}>
-
-            
-            <Card className={'mb-1'}> 
-            <CardImg className={' mx-auto d-block mt-2'}  style={{flexGrow: '1'}} src={item.img_path} alt="Card image cap" />
-                <CardBody >
-                <CardTitle>{item.product_description}</CardTitle>
-                <CardSubtitle>{item.product_price}</CardSubtitle>
-                <Button size='sm' color='secondary'   onClick={() => toggle(item.product_description)}>Add Item</Button>
-                </CardBody>
-            </Card>
-    
-            </Col>
+        <Button size='sm' color='secondary' className={' mt-1'} onClick={() => toggle(item.product_description, 'bakery')}>
+            <img  style={{backgroundSize: 'cover', display: 'inline-block', height:'150px', width: '150px'}} src={item.img_path} alt=''/>
+            <p className={'mt-1'}>{item.product_description}</p>
+        </Button>
             
         ); 
            

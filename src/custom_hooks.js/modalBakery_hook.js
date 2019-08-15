@@ -42,7 +42,7 @@ const useModal = () => {
             .then(response => {
                 setBakeryDetails(response.data);
             }).catch(error => {
-                console.log(error.response)
+                console.log(error)
             });
 
     }, []);
@@ -106,17 +106,11 @@ const useModal = () => {
                  dispatch(setproductDetails([...productDetails, ...response.data]));
                     setModal(!modal);
                     return;
-
-
-               
                 }else{
                     dispatch(setproductDetails([...productDetails, ...response.data]));
                     setModal(!modal);
                 }
                     
-            
-               
-
             }).catch(error => {
                 console.log(error)
             });
@@ -163,23 +157,12 @@ const useModal = () => {
     }
 
     return {
-        toggleAdd,
-        noToggleAdd,
-        toggle,
-        modal,
-        setModal,
-        url,
-        setUrl,
-        product,
-        bakeryDetails,
-        setValue,
-        reset,
-        back,
-        nums,
-        alphabeticCall,
-        newlist,
-        listTrue,
-        callAllItems
+        toggleAdd, noToggleAdd, toggle,
+        modal, setModal, url,
+        setUrl, product, bakeryDetails,
+        setValue, reset, back,
+        nums, alphabeticCall, newlist,
+        listTrue, callAllItems
     }
 }
 
