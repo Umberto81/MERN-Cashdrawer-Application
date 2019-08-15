@@ -37,7 +37,7 @@ const Login = (props) => {
     <Col className={'col-3'}>
     <div>
       <p style={{color: 'white'}}>How to Login: <span style={{textDecoration: "underline", color:"white"}} href="#" id="UncontrolledTooltipExample">tooltip</span>.</p>
-      <UncontrolledTooltip placement="right" target="UncontrolledTooltipExample">
+      <UncontrolledTooltip placement="bottom" target="UncontrolledTooltipExample">
         The Login code is 1111
         Insert a different or longer number to see how errors are handled.
 

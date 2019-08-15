@@ -56,7 +56,7 @@ const Keyboard = (props) =>{
           </Card>
           <div>
       <p style={{color: 'white'}}>How to use the keyboard: <span style={{textDecoration: "underline", color:"white"}} href="#" id="UncontrolledTooltipExample">tooltip</span>.</p>
-      <UncontrolledTooltip placement="right" target="UncontrolledTooltipExample">
+      <UncontrolledTooltip placement="left" target="UncontrolledTooltipExample">
         Digit from 2001 to 2008 and press enter to insert a bakery product. 
         Digit from 3001 to 3008 to insert a produce product. 
         This action mimics the scanning barcode laser function.
