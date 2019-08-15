@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
 const productsRoute = express.Router();
 
 const loginRoute = express.Router();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 80;
 const product_controller = require('./router_calls/products_controller');
 
 const login_controller = require('./router_calls/login_controller');
