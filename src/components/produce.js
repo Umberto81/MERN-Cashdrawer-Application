@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, Button, Col, Row, Card, CardImg, CardBody,CardTitle, CardSubtitle } from 'reactstrap';
+import {Container, Button, Col, Row } from 'reactstrap';
 import { Link } from 'react-router-dom'
 import useModal from '../custom_hooks.js/modalProduce_hook';
 import KeyboardAddQuantity from './keyboardAddQuantity';

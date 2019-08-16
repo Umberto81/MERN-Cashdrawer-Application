@@ -1,5 +1,5 @@
 
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import {finalSubTotal} from '../actions/totalActions';
 import {  useDispatch } from "react-redux";
 import { useSelector } from 'react-redux'
