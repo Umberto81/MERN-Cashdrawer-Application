@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
 const productsRoute = express.Router();
 
 const loginRoute = express.Router();
-const PORT = process.env.PORT || 80;
+const PORT = process.env.PORT || 4000;
 const product_controller = require('./router_calls/products_controller');
 
 const login_controller = require('./router_calls/login_controller');
@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 
 
 // mongoose.connect('mongodb://127.0.0.1:27017/cashdrawer', { useNewUrlParser: true});
- mongoose.connect(`mongodb+srv://goffredo:${pwd}@cluster0-b5oxy.mongodb.net/test?retryWrites=true&w=majority`, {useNewUrlParser: true});
+ mongoose.connect(process.env.MONGODB_URI || `mongodb+srv://goffredo:${pwd}@cluster0-b5oxy.mongodb.net/test?retryWrites=true&w=majority`, {useNewUrlParser: true});
 const connection = mongoose.connection;
 
 
@@ -69,7 +69,9 @@ productsRoute.route('/description/:description').get(product_controller.findProd
 app.use('/products', productsRoute);
 app.use('/login', loginRoute);
 
-
+if(process.env.NODE_ENV === 'production'){
+    
+}
 
 app.listen(PORT, () =>{
     console.log('server running on port ' + PORT);
