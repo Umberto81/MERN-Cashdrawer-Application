@@ -16,7 +16,7 @@ const product_controller = require('./router_calls/products_controller');
 const login_controller = require('./router_calls/login_controller');
 const pwd = process.env.REACT_APP_MONGO_PASSWORD;
 app.use(cors());
-//test
+
 app.use(bodyParser.json());
 
 
@@ -71,11 +71,14 @@ app.use('/products', productsRoute);
 app.use('/login', loginRoute);
 
 
-    app.use(express.static(path.join(__dirname, 'build')));
-
-    app.get('/*', (req, res) => {
-        res.sendFile(path.join(__dirname, 'build', 'index.html'));
+if (process.env.NODE_ENV === 'production') {
+    // Serve any static files
+    app.use(express.static(path.join(__dirname, 'build')));// Handle React routing, return all requests to React app
+    app.get('*', function(req, res) {
+      res.sendFile(path.join(__dirname, 'build', 'index.html'));
     });
+  }
+
 
 
 app.listen(PORT, () =>{
