@@ -16,6 +16,7 @@ const product_controller = require('./router_calls/products_controller');
 const login_controller = require('./router_calls/login_controller');
 const pwd = process.env.REACT_APP_MONGO_PASSWORD;
 app.use(cors());
+//test
 app.use(bodyParser.json());
 
 
