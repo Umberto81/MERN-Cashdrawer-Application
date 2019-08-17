@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const productsRoute = express.Router();
-
+const path = require('path');
 const loginRoute = express.Router();
 const PORT = process.env.PORT || 4000;
 const product_controller = require('./router_calls/products_controller');
@@ -70,7 +70,11 @@ app.use('/products', productsRoute);
 app.use('/login', loginRoute);
 
 if(process.env.NODE_ENV === 'production'){
-    
+    app.use(express.static(path.join(__dirname, '/../build')));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname + '/../build/index.html'));
+      });
 }
 
 app.listen(PORT, () =>{
@@ -80,3 +84,4 @@ app.listen(PORT, () =>{
 
 
 
+app.use(express.static(path.join(__dirname, '/../client/build')));
