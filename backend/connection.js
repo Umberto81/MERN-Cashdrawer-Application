@@ -69,12 +69,14 @@ productsRoute.route('/description/:description').get(product_controller.findProd
 app.use('/products', productsRoute);
 app.use('/login', loginRoute);
 
-if(process.env.NODE_ENV === 'production'){
-app.use(express.static(path.join(__dirname, 'build')));
-    app.get('/*', function (req, res) {
-        res.sendFile(path.join(__dirname, 'build', 'index.html'));
-      });
-    }
+// ... other app.use middleware 
+app.use(express.static(path.join(__dirname, "client", "build")))
+
+// ...
+// Right before your app.listen(), add this:
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 app.listen(PORT, () =>{
     console.log('server running on port ' + PORT);
