@@ -10,7 +10,7 @@ const useLogin = (props) =>{
     const [logged, setLogged] = useState(initialValue);
     const [value, setvalue] = useState();
     const [errors, setErrors] = useState([]);
-
+    const base_url = window.location.origin;
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -61,7 +61,7 @@ const useLogin = (props) =>{
 
     }        
      
-        axios.get('https://cash-drawer.herokuapp.com/login')
+        axios.get(base_url + '/login')
         .then(response =>{
             if(parseInt(nums) === response.data[0].password ){
                 setLogged(true);
