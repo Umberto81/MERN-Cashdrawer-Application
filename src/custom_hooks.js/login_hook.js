@@ -61,7 +61,7 @@ const useLogin = (props) =>{
 
     }        
      
-        axios.get('http://localhost:4000/login')
+        axios.get('https://cash-drawer.herokuapp.com/login')
         .then(response =>{
             if(parseInt(nums) === response.data[0].password ){
                 setLogged(true);
